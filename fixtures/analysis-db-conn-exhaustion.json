@@ -1,0 +1,3289 @@
+{
+  "version": 1,
+  "generatedAt": 1791241560000,
+  "inputsPresent": {
+    "logs": true,
+    "traces": true,
+    "alerts": true,
+    "helm": true
+  },
+  "stats": {
+    "logs": {
+      "lines": 119,
+      "parsed": 109,
+      "skipped": 0,
+      "signals": 53,
+      "format": "plain text + kubectl events + kubectl --prefix JSON + 4 more",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "traces": {
+      "lines": 102,
+      "parsed": 102,
+      "skipped": 0,
+      "signals": 12,
+      "format": "Jaeger JSON",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "alerts": {
+      "lines": 145,
+      "parsed": 145,
+      "skipped": 0,
+      "signals": 6,
+      "format": "Alertmanager webhook JSON",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "helm": {
+      "lines": 99,
+      "parsed": 98,
+      "skipped": 0,
+      "signals": 9,
+      "format": "helm history + helm diff",
+      "tzAssumed": 4,
+      "warnings": [
+        "Helm history times have no time zone; assumed -07:00."
+      ]
+    }
+  },
+  "window": {
+    "start": 1791238912429,
+    "end": 1791241560000,
+    "firstAnomaly": 1791239812429,
+    "now": 1791241560000
+  },
+  "headline": "orders-api in prod-us-east and prod-us-west is out of database connections after Helm release orders r24",
+  "severity": "SEV1",
+  "clusters": [
+    {
+      "name": "prod-us-east",
+      "componentCount": 5,
+      "failing": 4,
+      "degraded": 0,
+      "status": "failing"
+    },
+    {
+      "name": "prod-us-west",
+      "componentCount": 4,
+      "failing": 3,
+      "degraded": 0,
+      "status": "failing"
+    }
+  ],
+  "components": [
+    {
+      "id": "service:prod-us-east/orders/orders-api",
+      "name": "orders-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "orders",
+      "status": "root",
+      "impact": 0.95,
+      "userFacing": false,
+      "firstErrorTs": 1791239812434,
+      "lastErrorTs": 1791241532000,
+      "statusSince": 1791239812434,
+      "counts": {
+        "error": 19,
+        "warn": 15,
+        "info": 26
+      },
+      "kinds": [
+        "probe_failed",
+        "panic",
+        "conn_exhaustion",
+        "crash_loop",
+        "span_error",
+        "hpa_maxed",
+        "error_generic",
+        "http_5xx",
+        "scheduling_failed",
+        "change",
+        "rollout"
+      ],
+      "pods": [
+        "orders-api-6d8f7b9c54-t8wnx",
+        "orders-api-6d8f7b9c54-4hqzm",
+        "orders-api-6d8f7b9c54-b7xrd",
+        "orders-api-6d8f7b9c54-k2v9p",
+        "orders-api-6d8f7b9c54-fn2wc",
+        "orders-api-6d8f7b9c54-q5lsv",
+        "orders-api-6d8f7b9c54-6vtxq",
+        "orders-api-6d8f7b9c54-9wd4n",
+        "orders-api-6d8f7b9c54-hk7pl",
+        "orders-api-6d8f7b9c54-x4c2b",
+        "orders-api-6d8f7b9c54-2mzrk",
+        "orders-api-7b9c6d5f48-lp8vd"
+      ],
+      "release": "orders",
+      "changeIds": [
+        "chg-sc7k4g",
+        "chg-1ee0qmq",
+        "chg-lckz35",
+        "chg-1us8ip3",
+        "chg-spu6ey",
+        "chg-14tru7u",
+        "chg-1d3eyen",
+        "chg-1ftpvuw"
+      ]
+    },
+    {
+      "id": "service:prod-us-east/web/storefront",
+      "name": "storefront",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "web",
+      "status": "failing",
+      "impact": 0.81,
+      "userFacing": true,
+      "firstErrorTs": 1791239812429,
+      "lastErrorTs": 1791241272703,
+      "statusSince": 1791239812429,
+      "counts": {
+        "error": 5,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [
+        "span_error",
+        "slo_burn"
+      ],
+      "pods": [
+        "storefront-84b6d9c7f5-zt4qm"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-west/web/storefront",
+      "name": "storefront",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-west",
+      "namespace": "web",
+      "status": "failing",
+      "impact": 0.81,
+      "userFacing": true,
+      "firstErrorTs": 1791240058300,
+      "lastErrorTs": 1791240058303,
+      "statusSince": 1791240058300,
+      "counts": {
+        "error": 2,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [
+        "span_error"
+      ],
+      "pods": [
+        "storefront-6f8d7b9c45-hx2vl"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-us-east/data/orders-postgresql",
+      "name": "orders-postgresql",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "data",
+      "status": "failing",
+      "impact": 0.78,
+      "userFacing": false,
+      "firstErrorTs": 1791239812431,
+      "lastErrorTs": 1791241479905,
+      "statusSince": 1791239812431,
+      "counts": {
+        "error": 10,
+        "warn": 0,
+        "info": 15
+      },
+      "kinds": [
+        "conn_exhaustion"
+      ],
+      "pods": [
+        "orders-postgresql-0"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-west/orders/orders-api",
+      "name": "orders-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-west",
+      "namespace": "orders",
+      "status": "failing",
+      "impact": 0.77,
+      "userFacing": false,
+      "firstErrorTs": 1791240058304,
+      "lastErrorTs": 1791241371640,
+      "statusSince": 1791240058304,
+      "counts": {
+        "error": 8,
+        "warn": 0,
+        "info": 5
+      },
+      "kinds": [
+        "panic",
+        "conn_exhaustion",
+        "span_error",
+        "http_5xx",
+        "alert_resolved"
+      ],
+      "pods": [
+        "orders-api-5f7d6c8b49-r6xbk",
+        "orders-api-5f7d6c8b49-wz5dn",
+        "orders-api-5f7d6c8b49-8jqzv",
+        "orders-api-6b8f9c7d55-v4lqs",
+        "orders-api-5f7d6c8b49-cl2tm"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-east/orders/orders-worker",
+      "name": "orders-worker",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "orders",
+      "status": "failing",
+      "impact": 0.76,
+      "userFacing": false,
+      "firstErrorTs": 1791239885771,
+      "lastErrorTs": 1791241258322,
+      "statusSince": 1791239885771,
+      "counts": {
+        "error": 3,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [
+        "conn_exhaustion"
+      ],
+      "pods": [
+        "orders-worker-58c7d9b6f4-pz6tk"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-west/orders/orders-worker",
+      "name": "orders-worker",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-west",
+      "namespace": "orders",
+      "status": "failing",
+      "impact": 0.76,
+      "userFacing": false,
+      "firstErrorTs": 1791239971044,
+      "lastErrorTs": 1791241092590,
+      "statusSince": 1791239971044,
+      "counts": {
+        "error": 2,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [
+        "conn_exhaustion"
+      ],
+      "pods": [
+        "orders-worker-7c4b8d6f59-mq2xs"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-east/orders/inventory-api",
+      "name": "inventory-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "orders",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [
+        "inventory-api-5c9b7d8f64-wd8rt"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-west/orders/inventory-api",
+      "name": "inventory-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-west",
+      "namespace": "orders",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [
+        "inventory-api-7d6c8f5b49-kp4zn"
+      ],
+      "release": null,
+      "changeIds": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "service:prod-us-east/web/storefront->service:prod-us-east/orders/orders-api",
+      "from": "service:prod-us-east/web/storefront",
+      "to": "service:prod-us-east/orders/orders-api",
+      "calls": 4,
+      "errors": 2,
+      "errorRate": 0.5,
+      "p95ms": 30018.4,
+      "status": "failing",
+      "firstErrorTs": 1791239812434,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/orders/orders-api->datastore:prod-us-east/data/orders-postgresql",
+      "from": "service:prod-us-east/orders/orders-api",
+      "to": "datastore:prod-us-east/data/orders-postgresql",
+      "calls": 5,
+      "errors": 2,
+      "errorRate": 0.4,
+      "p95ms": 30001.8,
+      "status": "failing",
+      "firstErrorTs": 1791239812437,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/orders/orders-api->service:prod-us-east/orders/inventory-api",
+      "from": "service:prod-us-east/orders/orders-api",
+      "to": "service:prod-us-east/orders/inventory-api",
+      "calls": 2,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 32.2,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-west/web/storefront->service:prod-us-west/orders/orders-api",
+      "from": "service:prod-us-west/web/storefront",
+      "to": "service:prod-us-west/orders/orders-api",
+      "calls": 2,
+      "errors": 1,
+      "errorRate": 0.5,
+      "p95ms": 30018.4,
+      "status": "failing",
+      "firstErrorTs": 1791240058304,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-west/orders/orders-api->datastore:prod-us-east/data/orders-postgresql",
+      "from": "service:prod-us-west/orders/orders-api",
+      "to": "datastore:prod-us-east/data/orders-postgresql",
+      "calls": 2,
+      "errors": 1,
+      "errorRate": 0.5,
+      "p95ms": 30001.7,
+      "status": "failing",
+      "firstErrorTs": 1791240058308,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-west/orders/orders-api->service:prod-us-west/orders/inventory-api",
+      "from": "service:prod-us-west/orders/orders-api",
+      "to": "service:prod-us-west/orders/inventory-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 16.2,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/orders/orders-worker->datastore:prod-us-east/data/orders-postgresql",
+      "from": "service:prod-us-east/orders/orders-worker",
+      "to": "datastore:prod-us-east/data/orders-postgresql",
+      "calls": 3,
+      "errors": 3,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791239885771,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-us-west/orders/orders-worker->datastore:prod-us-east/data/orders-postgresql",
+      "from": "service:prod-us-west/orders/orders-worker",
+      "to": "datastore:prod-us-east/data/orders-postgresql",
+      "calls": 2,
+      "errors": 2,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791239971044,
+      "source": "logs"
+    }
+  ],
+  "signals": [
+    {
+      "id": "hlm-7",
+      "source": "helm",
+      "line": 7,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Helm release orders (orders) revision 23 → 24, chart orders-3.2.0 → orders-3.3.0, status deployed",
+      "raw": "24      \tMon Oct  5 15:31:40 2026\tdeployed  \torders-3.3.0\t3.3.0      \tUpgrade complete",
+      "attrs": {
+        "isDeploy": true,
+        "release": "orders",
+        "revision": 24,
+        "previousRevision": 23,
+        "status": "deployed",
+        "deployedAtSource": "helm-history"
+      }
+    },
+    {
+      "id": "hlm-21",
+      "source": "helm",
+      "line": 21,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "chart orders-3.2.0 → orders-3.3.0",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "attrs": {
+        "changeId": "chg-sc7k4g",
+        "category": "chart",
+        "risk": "low",
+        "release": "orders",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "orders-3.2.0",
+        "after": "orders-3.3.0",
+        "resourceKind": "HorizontalPodAutoscaler",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-29",
+      "source": "helm",
+      "line": 29,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HorizontalPodAutoscaler orders-api maxReplicas 6 → 20",
+      "raw": "+   maxReplicas: 20",
+      "attrs": {
+        "changeId": "chg-1ee0qmq",
+        "category": "hpa",
+        "risk": "high",
+        "release": "orders",
+        "field": "spec.maxReplicas",
+        "before": "6",
+        "after": "20",
+        "resourceKind": "HorizontalPodAutoscaler",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-46",
+      "source": "helm",
+      "line": 46,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "chart orders-3.2.0 → orders-3.3.0",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "attrs": {
+        "changeId": "chg-lckz35",
+        "category": "chart",
+        "risk": "low",
+        "release": "orders",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "orders-3.2.0",
+        "after": "orders-3.3.0",
+        "resourceKind": "ConfigMap",
+        "resourceName": "orders-api-env",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-53",
+      "source": "helm",
+      "line": 53,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ConfigMap orders-api-env ORDERS_SPLIT_SHIPMENTS_ENABLED: false → true",
+      "raw": "+   ORDERS_SPLIT_SHIPMENTS_ENABLED: \"true\"",
+      "attrs": {
+        "changeId": "chg-1us8ip3",
+        "category": "configmap",
+        "risk": "medium",
+        "release": "orders",
+        "field": "data.ORDERS_SPLIT_SHIPMENTS_ENABLED",
+        "before": "false",
+        "after": "true",
+        "resourceKind": "ConfigMap",
+        "resourceName": "orders-api-env",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-66",
+      "source": "helm",
+      "line": 66,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "app version 3.2.0 → 3.3.0",
+      "raw": "+     app.kubernetes.io/version: \"3.3.0\"",
+      "attrs": {
+        "changeId": "chg-spu6ey",
+        "category": "chart",
+        "risk": "low",
+        "release": "orders",
+        "field": "metadata.labels.app.kubernetes.io/version",
+        "before": "3.2.0",
+        "after": "3.3.0",
+        "resourceKind": "Deployment",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-68",
+      "source": "helm",
+      "line": 68,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "chart orders-3.2.0 → orders-3.3.0",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "attrs": {
+        "changeId": "chg-14tru7u",
+        "category": "chart",
+        "risk": "low",
+        "release": "orders",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "orders-3.2.0",
+        "after": "orders-3.3.0",
+        "resourceKind": "Deployment",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-80",
+      "source": "helm",
+      "line": 80,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "app version 3.2.0 → 3.3.0",
+      "raw": "+         app.kubernetes.io/version: \"3.3.0\"",
+      "attrs": {
+        "changeId": "chg-1d3eyen",
+        "category": "chart",
+        "risk": "low",
+        "release": "orders",
+        "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+        "before": "3.2.0",
+        "after": "3.3.0",
+        "resourceKind": "Deployment",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-85",
+      "source": "helm",
+      "line": 85,
+      "ts": 1791239500000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "orders-api image tag 3.2.0 → 3.3.0",
+      "raw": "+           image: \"registry.example.com/orders/orders-api:3.3.0\"",
+      "attrs": {
+        "changeId": "chg-1ftpvuw",
+        "category": "image",
+        "risk": "medium",
+        "release": "orders",
+        "field": "spec.template.spec.containers[orders-api].image",
+        "before": "registry.example.com/orders/orders-api:3.2.0",
+        "after": "registry.example.com/orders/orders-api:3.3.0",
+        "resourceKind": "Deployment",
+        "resourceName": "orders-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "log-22",
+      "source": "logs",
+      "line": 22,
+      "ts": 1791239520000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set orders-api-6d8f7b9c54 to 2",
+      "raw": "34m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled up replica set orders-api-6d8f7b9c54 to 2",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-6d8f7b9c54",
+        "replicas": 2,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 2040000
+      }
+    },
+    {
+      "id": "log-23",
+      "source": "logs",
+      "line": 23,
+      "ts": 1791239580000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set orders-api-7b9c6d5f48 to 4 from 6",
+      "raw": "33m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled down replica set orders-api-7b9c6d5f48 to 4 from 6",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-7b9c6d5f48",
+        "replicas": 4,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1980000
+      }
+    },
+    {
+      "id": "log-24",
+      "source": "logs",
+      "line": 24,
+      "ts": 1791239640000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set orders-api-7b9c6d5f48 to 0 from 2",
+      "raw": "32m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled down replica set orders-api-7b9c6d5f48 to 0 from 2",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-7b9c6d5f48",
+        "replicas": 0,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1920000
+      }
+    },
+    {
+      "id": "log-26",
+      "source": "logs",
+      "line": 26,
+      "ts": 1791239700000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set orders-api-6d8f7b9c54 to 9 from 6",
+      "raw": "31m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled up replica set orders-api-6d8f7b9c54 to 9 from 6",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-6d8f7b9c54",
+        "replicas": 9,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1860000
+      }
+    },
+    {
+      "id": "trc-40",
+      "source": "traces",
+      "line": 40,
+      "ts": 1791239812429,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/web/storefront",
+      "relatedIds": [
+        "trc-41",
+        "trc-42",
+        "trc-43"
+      ],
+      "text": "storefront: POST /api/orders failed — POST /api/orders failed with 500",
+      "raw": "storefront POST /api/orders trace=34153978fbc01c25d4cdd774fb561441 span=b50cb308f94e82d1",
+      "attrs": {
+        "traceId": "34153978fbc01c25d4cdd774fb561441",
+        "spanId": "b50cb308f94e82d1",
+        "op": "POST /api/orders",
+        "durMs": 30026.8,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "httpStatus": 500,
+        "statusMessage": "POST /api/orders failed with 500",
+        "medianMs": 21245.9,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "log-68",
+      "source": "logs",
+      "line": 68,
+      "ts": 1791239812431,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:36:52.431 UTC [29166] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:36:52.431598116Z 2026-10-05 22:36:52.431 UTC [29166] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "trc-41",
+      "source": "traces",
+      "line": 41,
+      "ts": 1791239812431,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/web/storefront",
+      "relatedIds": [
+        "trc-40",
+        "trc-42",
+        "trc-43"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "storefront POST trace=34153978fbc01c25d4cdd774fb561441 span=1c729d74e20fa74b",
+      "attrs": {
+        "traceId": "34153978fbc01c25d4cdd774fb561441",
+        "spanId": "1c729d74e20fa74b",
+        "op": "POST",
+        "durMs": 30021.9,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "b50cb308f94e82d1",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "orders-api",
+        "medianMs": 21241.1,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-42",
+      "source": "traces",
+      "line": 42,
+      "ts": 1791239812434,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [
+        "trc-40",
+        "trc-41",
+        "trc-43"
+      ],
+      "text": "orders-api: POST /v1/orders failed — CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+      "raw": "orders-api POST /v1/orders trace=34153978fbc01c25d4cdd774fb561441 span=f63311e1d8b422dd",
+      "attrs": {
+        "traceId": "34153978fbc01c25d4cdd774fb561441",
+        "spanId": "f63311e1d8b422dd",
+        "op": "POST /v1/orders",
+        "durMs": 30018.4,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "parentId": "1c729d74e20fa74b",
+        "httpStatus": 500,
+        "statusMessage": "CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+        "medianMs": 21237.1,
+        "causeKind": "panic"
+      }
+    },
+    {
+      "id": "trc-43",
+      "source": "traces",
+      "line": 43,
+      "ts": 1791239812437,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [
+        "trc-40",
+        "trc-41",
+        "trc-42"
+      ],
+      "text": "orders-api: HikariDataSource.getConnection failed — HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=37)",
+      "raw": "orders-api HikariDataSource.getConnection trace=34153978fbc01c25d4cdd774fb561441 span=3f8cb02754b3d41a",
+      "attrs": {
+        "traceId": "34153978fbc01c25d4cdd774fb561441",
+        "spanId": "3f8cb02754b3d41a",
+        "op": "HikariDataSource.getConnection",
+        "durMs": 30001.8,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "f63311e1d8b422dd",
+        "statusMessage": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=37)",
+        "peer": "orders-postgresql",
+        "dbSystem": "postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql",
+        "medianMs": 30001.6,
+        "causeKind": "conn_exhaustion"
+      }
+    },
+    {
+      "id": "log-69",
+      "source": "logs",
+      "line": 69,
+      "ts": 1791239812642,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:36:52.642 UTC [29790] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:36:52.64244485Z 2026-10-05 22:36:52.642 UTC [29790] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "log-28",
+      "source": "logs",
+      "line": 28,
+      "ts": 1791239820000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set orders-api-6d8f7b9c54 to 13 from 9",
+      "raw": "29m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled up replica set orders-api-6d8f7b9c54 to 13 from 9",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-6d8f7b9c54",
+        "replicas": 13,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1740000
+      }
+    },
+    {
+      "id": "alr-8",
+      "source": "alerts",
+      "line": 8,
+      "ts": 1791239872604,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "PostgresqlTooManyConnections firing — orders-postgresql (data): PostgreSQL instance has too many connections (> 80%).",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"PostgresqlTooManyConnections\",\"cluster\":\"prod-us-east\",\"container\":\"metrics\",\"instance\":\"10.48.9.33:9187\",\"job\":\"data/orders-postgresql\",\"namespace\":\"data\",\"pod\":\"orders-postgresql-0\",\"severity\":\"critical\"},\"annotations\":{\"summary\":\"PostgreSQL instance has too many connections (> 80%).\",\"description\":\"orders-postgresql-0 is using 99.3% of max_connections (397 of 400 non-reserved slots).\",\"runbook_url\":\"https://runbooks.example.com/postgres/too-many-connections\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:37:52.604Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "PostgresqlTooManyConnections",
+        "status": "firing",
+        "alertKind": "conn_exhaustion",
+        "labels": {
+          "team": "orders",
+          "alertname": "PostgresqlTooManyConnections",
+          "cluster": "prod-us-east",
+          "container": "metrics",
+          "instance": "10.48.9.33:9187",
+          "job": "data/orders-postgresql",
+          "namespace": "data",
+          "pod": "orders-postgresql-0",
+          "severity": "critical"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "PostgreSQL instance has too many connections (> 80%).",
+          "description": "orders-postgresql-0 is using 99.3% of max_connections (397 of 400 non-reserved slots).",
+          "runbook_url": "https://runbooks.example.com/postgres/too-many-connections"
+        },
+        "runbook": "https://runbooks.example.com/postgres/too-many-connections",
+        "fingerprint": "4ac01c5fac81671f",
+        "startsAt": 1791239872604,
+        "pod": "orders-postgresql-0"
+      }
+    },
+    {
+      "id": "log-98",
+      "source": "logs",
+      "line": 98,
+      "ts": 1791239885771,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-worker",
+      "relatedIds": [],
+      "text": "failed to persist order event, will retry: failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)",
+      "raw": "[pod/orders-worker-58c7d9b6f4-pz6tk/orders-worker] {\"level\":\"error\",\"ts\":\"2026-10-05T22:38:05.771Z\",\"caller\":\"consumer/handler.go:91\",\"msg\":\"failed to persist order event, will retry\",\"topic\":\"orders.v1\",\"partition\":4,\"error\":\"failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-worker-58c7d9b6f4-pz6tk",
+        "container": "orders-worker",
+        "target": "orders-postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql"
+      }
+    },
+    {
+      "id": "log-70",
+      "source": "logs",
+      "line": 70,
+      "ts": 1791239900610,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:38:20.610 UTC [30462] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:38:20.610570637Z 2026-10-05 22:38:20.610 UTC [30462] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "log-118",
+      "source": "logs",
+      "line": 118,
+      "ts": 1791239971044,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-west/orders/orders-worker",
+      "relatedIds": [],
+      "text": "failed to persist order event, will retry: failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)",
+      "raw": "[pod/orders-worker-7c4b8d6f59-mq2xs/orders-worker] {\"level\":\"error\",\"ts\":\"2026-10-05T22:39:31.044Z\",\"caller\":\"consumer/handler.go:91\",\"msg\":\"failed to persist order event, will retry\",\"topic\":\"orders.v1\",\"partition\":11,\"error\":\"failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-worker-7c4b8d6f59-mq2xs",
+        "container": "orders-worker",
+        "target": "orders-postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql"
+      }
+    },
+    {
+      "id": "alr-31",
+      "source": "alerts",
+      "line": 31,
+      "ts": 1791239998117,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "OrdersApiHighErrorRate firing — orders-api (orders): orders-api 5xx ratio above 5% for 2 minutes.",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"OrdersApiHighErrorRate\",\"cluster\":\"prod-us-east\",\"namespace\":\"orders\",\"service\":\"orders-api\",\"severity\":\"critical\"},\"annotations\":{\"summary\":\"orders-api 5xx ratio above 5% for 2 minutes.\",\"description\":\"41.7% of orders-api requests in prod-us-east returned 5xx over the last 5 minutes.\",\"runbook_url\":\"https://runbooks.example.com/orders/orders-api-errors\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:39:58.117Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "OrdersApiHighErrorRate",
+        "status": "firing",
+        "alertKind": "http_5xx",
+        "labels": {
+          "team": "orders",
+          "alertname": "OrdersApiHighErrorRate",
+          "cluster": "prod-us-east",
+          "namespace": "orders",
+          "service": "orders-api",
+          "severity": "critical"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "orders-api 5xx ratio above 5% for 2 minutes.",
+          "description": "41.7% of orders-api requests in prod-us-east returned 5xx over the last 5 minutes.",
+          "runbook_url": "https://runbooks.example.com/orders/orders-api-errors"
+        },
+        "runbook": "https://runbooks.example.com/orders/orders-api-errors",
+        "fingerprint": "f8f95f4a5c1dee72",
+        "startsAt": 1791239998117
+      }
+    },
+    {
+      "id": "log-30",
+      "source": "logs",
+      "line": 30,
+      "ts": 1791240000000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set orders-api-6d8f7b9c54 to 17 from 13",
+      "raw": "26m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled up replica set orders-api-6d8f7b9c54 to 17 from 13",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-6d8f7b9c54",
+        "replicas": 17,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1560000
+      }
+    },
+    {
+      "id": "log-31",
+      "source": "logs",
+      "line": 31,
+      "ts": 1791240000000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "scheduling_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "FailedScheduling: 0/24 nodes are available: 6 Insufficient cpu, 18 node(s) didn't match Pod's node affinity/selector. preemption: 0/24 nodes are available: 6 No preemption victims found for incoming pod, 18 Preemption is not helpful for scheduling.",
+      "raw": "26m         Warning   FailedScheduling    pod/orders-api-6d8f7b9c54-t8wnx      0/24 nodes are available: 6 Insufficient cpu, 18 node(s) didn't match Pod's node affinity/selector. preemption: 0/24 nodes are available: 6 No preemption victims found for incoming pod, 18 Preemption is not helpful for scheduling.",
+      "attrs": {
+        "reason": "FailedScheduling",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-t8wnx",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-t8wnx",
+        "relative": true,
+        "ageMs": 1560000
+      }
+    },
+    {
+      "id": "trc-54",
+      "source": "traces",
+      "line": 54,
+      "ts": 1791240058300,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-west/web/storefront",
+      "relatedIds": [
+        "trc-55",
+        "trc-56",
+        "trc-57"
+      ],
+      "text": "storefront: POST /api/orders failed — POST /api/orders failed with 500",
+      "raw": "storefront POST /api/orders trace=046c53f02ee60536ee9e92854da7b3f6 span=7c21018676794d6b",
+      "attrs": {
+        "traceId": "046c53f02ee60536ee9e92854da7b3f6",
+        "spanId": "7c21018676794d6b",
+        "op": "POST /api/orders",
+        "durMs": 30024.3,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "httpStatus": 500,
+        "statusMessage": "POST /api/orders failed with 500",
+        "medianMs": 21245.9,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-55",
+      "source": "traces",
+      "line": 55,
+      "ts": 1791240058303,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-west/web/storefront",
+      "relatedIds": [
+        "trc-54",
+        "trc-56",
+        "trc-57"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "storefront POST trace=046c53f02ee60536ee9e92854da7b3f6 span=0e6142c12d8ef3b7",
+      "attrs": {
+        "traceId": "046c53f02ee60536ee9e92854da7b3f6",
+        "spanId": "0e6142c12d8ef3b7",
+        "op": "POST",
+        "durMs": 30019.4,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "7c21018676794d6b",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "orders-api",
+        "medianMs": 21241.1,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-56",
+      "source": "traces",
+      "line": 56,
+      "ts": 1791240058304,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [
+        "trc-54",
+        "trc-55",
+        "trc-57"
+      ],
+      "text": "orders-api: POST /v1/orders failed — CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+      "raw": "orders-api POST /v1/orders trace=046c53f02ee60536ee9e92854da7b3f6 span=07567378f85b95b6",
+      "attrs": {
+        "traceId": "046c53f02ee60536ee9e92854da7b3f6",
+        "spanId": "07567378f85b95b6",
+        "op": "POST /v1/orders",
+        "durMs": 30018.4,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "parentId": "0e6142c12d8ef3b7",
+        "httpStatus": 500,
+        "statusMessage": "CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+        "medianMs": 21237.1,
+        "causeKind": "panic"
+      }
+    },
+    {
+      "id": "trc-57",
+      "source": "traces",
+      "line": 57,
+      "ts": 1791240058308,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [
+        "trc-54",
+        "trc-55",
+        "trc-56"
+      ],
+      "text": "orders-api: HikariDataSource.getConnection failed — HikariPool-1 - Connection is not available, request timed out after 30000ms (total=7, active=7, idle=0, waiting=44)",
+      "raw": "orders-api HikariDataSource.getConnection trace=046c53f02ee60536ee9e92854da7b3f6 span=1ab311c21871426e",
+      "attrs": {
+        "traceId": "046c53f02ee60536ee9e92854da7b3f6",
+        "spanId": "1ab311c21871426e",
+        "op": "HikariDataSource.getConnection",
+        "durMs": 30001.7,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "07567378f85b95b6",
+        "statusMessage": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=7, active=7, idle=0, waiting=44)",
+        "peer": "orders-postgresql",
+        "dbSystem": "postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql",
+        "medianMs": 30001.6,
+        "causeKind": "conn_exhaustion"
+      }
+    },
+    {
+      "id": "log-71",
+      "source": "logs",
+      "line": 71,
+      "ts": 1791240062884,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:41:02.884 UTC [30553] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:41:02.884060864Z 2026-10-05 22:41:02.884 UTC [30553] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "alr-51",
+      "source": "alerts",
+      "line": 51,
+      "ts": 1791240095882,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "OrdersApiHighErrorRate firing — orders-api (orders): orders-api 5xx ratio above 5% for 2 minutes.",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"OrdersApiHighErrorRate\",\"cluster\":\"prod-us-west\",\"namespace\":\"orders\",\"service\":\"orders-api\",\"severity\":\"critical\"},\"annotations\":{\"summary\":\"orders-api 5xx ratio above 5% for 2 minutes.\",\"description\":\"33.9% of orders-api requests in prod-us-west returned 5xx over the last 5 minutes.\",\"runbook_url\":\"https://runbooks.example.com/orders/orders-api-errors\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:41:35.882Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "OrdersApiHighErrorRate",
+        "status": "firing",
+        "alertKind": "http_5xx",
+        "labels": {
+          "team": "orders",
+          "alertname": "OrdersApiHighErrorRate",
+          "cluster": "prod-us-west",
+          "namespace": "orders",
+          "service": "orders-api",
+          "severity": "critical"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "orders-api 5xx ratio above 5% for 2 minutes.",
+          "description": "33.9% of orders-api requests in prod-us-west returned 5xx over the last 5 minutes.",
+          "runbook_url": "https://runbooks.example.com/orders/orders-api-errors"
+        },
+        "runbook": "https://runbooks.example.com/orders/orders-api-errors",
+        "fingerprint": "2cd3f1f2e5d289e2",
+        "startsAt": 1791240095882
+      }
+    },
+    {
+      "id": "log-34",
+      "source": "logs",
+      "line": 34,
+      "ts": 1791240120000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set orders-api-6d8f7b9c54 to 20 from 17",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/orders-api                Scaled up replica set orders-api-6d8f7b9c54 to 20 from 17",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/orders-api",
+        "format": "kubectl events",
+        "replicaSet": "orders-api-6d8f7b9c54",
+        "replicas": 20,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-72",
+      "source": "logs",
+      "line": 72,
+      "ts": 1791240270017,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:44:30.017 UTC [30776] FATAL:  sorry, too many clients already",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:44:30.01773223Z 2026-10-05 22:44:30.017 UTC [30776] FATAL:  sorry, too many clients already",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "log-112",
+      "source": "logs",
+      "line": 112,
+      "ts": 1791240314809,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-5f7d6c8b49-r6xbk/orders-api] {\"@timestamp\":\"2026-10-05T22:45:14.809+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-39\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-5f7d6c8b49-r6xbk",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-99",
+      "source": "logs",
+      "line": 99,
+      "ts": 1791240439064,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-worker",
+      "relatedIds": [],
+      "text": "failed to persist order event, will retry: failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: sorry, too many clients already (SQLSTATE 53300)",
+      "raw": "[pod/orders-worker-58c7d9b6f4-pz6tk/orders-worker] {\"level\":\"error\",\"ts\":\"2026-10-05T22:47:19.064Z\",\"caller\":\"consumer/handler.go:91\",\"msg\":\"failed to persist order event, will retry\",\"topic\":\"orders.v1\",\"partition\":3,\"error\":\"failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: sorry, too many clients already (SQLSTATE 53300)\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-worker-58c7d9b6f4-pz6tk",
+        "container": "orders-worker",
+        "target": "orders-postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql"
+      }
+    },
+    {
+      "id": "log-11",
+      "source": "logs",
+      "line": 11,
+      "ts": 1791240575490,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "hpa_maxed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "ScalingLimited  True    TooManyReplicas   the desired replica count is more than the maximum replica count",
+      "raw": "  ScalingLimited  True    TooManyReplicas   the desired replica count is more than the maximum replica count",
+      "attrs": {
+        "format": "plain text",
+        "tsCarried": true
+      }
+    },
+    {
+      "id": "log-52",
+      "source": "logs",
+      "line": 52,
+      "ts": 1791240575490,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-6d8f7b9c54-6vtxq/orders-api] {\"@timestamp\":\"2026-10-05T22:49:35.490+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-34\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-6vtxq",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "alr-71",
+      "source": "alerts",
+      "line": 71,
+      "ts": 1791240740431,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "slo_burn",
+      "componentId": "service:prod-us-east/web/storefront",
+      "relatedIds": [],
+      "text": "ErrorBudgetBurn firing — storefront (default): storefront-orders is burning its error budget 17.3x faster than sustainable. (burn rate 17.3×)",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"ErrorBudgetBurn\",\"long_window\":\"1h\",\"service\":\"storefront\",\"severity\":\"critical\",\"short_window\":\"5m\",\"slo\":\"storefront-orders\"},\"annotations\":{\"summary\":\"storefront-orders is burning its error budget 17.3x faster than sustainable.\",\"description\":\"1h burn rate 17.3 (5m: 38.6) against a 99.9% / 30-day objective, across prod-us-east and prod-us-west.\",\"burn_rate\":\"17.3\",\"error_ratio\":\"0.0173\",\"runbook_url\":\"https://runbooks.example.com/slo/error-budget-burn\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:52:20.431Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "ErrorBudgetBurn",
+        "status": "firing",
+        "alertKind": "slo_burn",
+        "labels": {
+          "team": "orders",
+          "alertname": "ErrorBudgetBurn",
+          "long_window": "1h",
+          "service": "storefront",
+          "severity": "critical",
+          "short_window": "5m",
+          "slo": "storefront-orders"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "storefront-orders is burning its error budget 17.3x faster than sustainable.",
+          "description": "1h burn rate 17.3 (5m: 38.6) against a 99.9% / 30-day objective, across prod-us-east and prod-us-west.",
+          "burn_rate": "17.3",
+          "error_ratio": "0.0173",
+          "runbook_url": "https://runbooks.example.com/slo/error-budget-burn"
+        },
+        "runbook": "https://runbooks.example.com/slo/error-budget-burn",
+        "fingerprint": "a907a3c29bf51f4b",
+        "startsAt": 1791240740431,
+        "burnRate": 17.3,
+        "errorRatio": 0.0173,
+        "window": "1h",
+        "longWindowMinutes": 60
+      }
+    },
+    {
+      "id": "log-73",
+      "source": "logs",
+      "line": 73,
+      "ts": 1791240764509,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 22:52:44.509 UTC [31172] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T22:52:44.509389034Z 2026-10-05 22:52:44.509 UTC [31172] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "log-53",
+      "source": "logs",
+      "line": 53,
+      "ts": 1791240764516,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=13, active=13, idle=0, waiting=17)",
+      "raw": "[pod/orders-api-6d8f7b9c54-9wd4n/orders-api] {\"@timestamp\":\"2026-10-05T22:52:44.516+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=13, active=13, idle=0, waiting=17)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-42\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-9wd4n",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-54",
+      "source": "logs",
+      "line": 54,
+      "ts": 1791240764518,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-6d8f7b9c54-9wd4n/orders-api] {\"@timestamp\":\"2026-10-05T22:52:44.518+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-52\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-9wd4n",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-113",
+      "source": "logs",
+      "line": 113,
+      "ts": 1791240810223,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=33)",
+      "raw": "[pod/orders-api-5f7d6c8b49-wz5dn/orders-api] {\"@timestamp\":\"2026-10-05T22:53:30.223+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=33)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-64\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-5f7d6c8b49-wz5dn",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-114",
+      "source": "logs",
+      "line": 114,
+      "ts": 1791240810226,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-5f7d6c8b49-wz5dn/orders-api] {\"@timestamp\":\"2026-10-05T22:53:30.226+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-54\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: sorry, too many clients already\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-5f7d6c8b49-wz5dn",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "alr-94",
+      "source": "alerts",
+      "line": 94,
+      "ts": 1791241012009,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "hpa_maxed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "KubeHpaMaxedOut firing — orders-api (orders): HPA is running at max replicas",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"KubeHpaMaxedOut\",\"cluster\":\"prod-us-east\",\"horizontalpodautoscaler\":\"orders-api\",\"job\":\"kube-state-metrics\",\"namespace\":\"orders\",\"severity\":\"warning\"},\"annotations\":{\"summary\":\"HPA is running at max replicas\",\"description\":\"HPA orders/orders-api has been running at max replicas for longer than 15 minutes.\",\"runbook_url\":\"https://runbooks.example.com/kubernetes/kubehpamaxedout\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:56:52.009Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "KubeHpaMaxedOut",
+        "status": "firing",
+        "alertKind": "hpa_maxed",
+        "labels": {
+          "team": "orders",
+          "alertname": "KubeHpaMaxedOut",
+          "cluster": "prod-us-east",
+          "horizontalpodautoscaler": "orders-api",
+          "job": "kube-state-metrics",
+          "namespace": "orders",
+          "severity": "warning"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "warning",
+        "annotations": {
+          "summary": "HPA is running at max replicas",
+          "description": "HPA orders/orders-api has been running at max replicas for longer than 15 minutes.",
+          "runbook_url": "https://runbooks.example.com/kubernetes/kubehpamaxedout"
+        },
+        "runbook": "https://runbooks.example.com/kubernetes/kubehpamaxedout",
+        "fingerprint": "af458c2be8f3c9d3",
+        "startsAt": 1791241012009
+      }
+    },
+    {
+      "id": "log-55",
+      "source": "logs",
+      "line": 55,
+      "ts": 1791241033224,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=6, active=6, idle=0, waiting=42)",
+      "raw": "[pod/orders-api-6d8f7b9c54-hk7pl/orders-api] {\"@timestamp\":\"2026-10-05T22:57:13.224+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=6, active=6, idle=0, waiting=42)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-60\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-hk7pl",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-56",
+      "source": "logs",
+      "line": 56,
+      "ts": 1791241033226,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-6d8f7b9c54-hk7pl/orders-api] {\"@timestamp\":\"2026-10-05T22:57:13.226+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-36\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: sorry, too many clients already\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-hk7pl",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-119",
+      "source": "logs",
+      "line": 119,
+      "ts": 1791241092590,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-west/orders/orders-worker",
+      "relatedIds": [],
+      "text": "failed to persist order event, will retry: failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: sorry, too many clients already (SQLSTATE 53300)",
+      "raw": "[pod/orders-worker-7c4b8d6f59-mq2xs/orders-worker] {\"level\":\"error\",\"ts\":\"2026-10-05T22:58:12.590Z\",\"caller\":\"consumer/handler.go:91\",\"msg\":\"failed to persist order event, will retry\",\"topic\":\"orders.v1\",\"partition\":4,\"error\":\"failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: sorry, too many clients already (SQLSTATE 53300)\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-worker-7c4b8d6f59-mq2xs",
+        "container": "orders-worker",
+        "target": "orders-postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql"
+      }
+    },
+    {
+      "id": "log-100",
+      "source": "logs",
+      "line": 100,
+      "ts": 1791241258322,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-worker",
+      "relatedIds": [],
+      "text": "failed to persist order event, will retry: failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)",
+      "raw": "[pod/orders-worker-58c7d9b6f4-pz6tk/orders-worker] {\"level\":\"error\",\"ts\":\"2026-10-05T23:00:58.322Z\",\"caller\":\"consumer/handler.go:91\",\"msg\":\"failed to persist order event, will retry\",\"topic\":\"orders.v1\",\"partition\":0,\"error\":\"failed to connect to `user=orders database=orders`: 10.40.12.7:5432 (orders-postgresql.data.prod-us-east.internal.example.com): server error: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute (SQLSTATE 53300)\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-worker-58c7d9b6f4-pz6tk",
+        "container": "orders-worker",
+        "target": "orders-postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql"
+      }
+    },
+    {
+      "id": "trc-86",
+      "source": "traces",
+      "line": 86,
+      "ts": 1791241272700,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/web/storefront",
+      "relatedIds": [
+        "trc-87",
+        "trc-88",
+        "trc-89"
+      ],
+      "text": "storefront: POST /api/orders failed — POST /api/orders failed with 500",
+      "raw": "storefront POST /api/orders trace=9a197085d87a89b3502cce100aedab03 span=096740ba0dfe0a9d",
+      "attrs": {
+        "traceId": "9a197085d87a89b3502cce100aedab03",
+        "spanId": "096740ba0dfe0a9d",
+        "op": "POST /api/orders",
+        "durMs": 30030,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "httpStatus": 500,
+        "statusMessage": "POST /api/orders failed with 500",
+        "medianMs": 21245.9,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-87",
+      "source": "traces",
+      "line": 87,
+      "ts": 1791241272703,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/web/storefront",
+      "relatedIds": [
+        "trc-86",
+        "trc-88",
+        "trc-89"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "storefront POST trace=9a197085d87a89b3502cce100aedab03 span=69f895552075c33f",
+      "attrs": {
+        "traceId": "9a197085d87a89b3502cce100aedab03",
+        "spanId": "69f895552075c33f",
+        "op": "POST",
+        "durMs": 30025.4,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "096740ba0dfe0a9d",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "orders-api",
+        "medianMs": 21241.1,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-88",
+      "source": "traces",
+      "line": 88,
+      "ts": 1791241272704,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [
+        "trc-86",
+        "trc-87",
+        "trc-89"
+      ],
+      "text": "orders-api: POST /v1/orders failed — CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+      "raw": "orders-api POST /v1/orders trace=9a197085d87a89b3502cce100aedab03 span=325c2c5e980877bd",
+      "attrs": {
+        "traceId": "9a197085d87a89b3502cce100aedab03",
+        "spanId": "325c2c5e980877bd",
+        "op": "POST /v1/orders",
+        "durMs": 30018.2,
+        "spanKind": "server",
+        "format": "Jaeger JSON",
+        "parentId": "69f895552075c33f",
+        "httpStatus": 500,
+        "statusMessage": "CannotCreateTransactionException: Could not open JPA EntityManager for transaction",
+        "medianMs": 21237.1,
+        "causeKind": "panic"
+      }
+    },
+    {
+      "id": "trc-89",
+      "source": "traces",
+      "line": 89,
+      "ts": 1791241272708,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [
+        "trc-86",
+        "trc-87",
+        "trc-88"
+      ],
+      "text": "orders-api: HikariDataSource.getConnection failed — HikariPool-1 - Connection is not available, request timed out after 30000ms (total=11, active=11, idle=0, waiting=39)",
+      "raw": "orders-api HikariDataSource.getConnection trace=9a197085d87a89b3502cce100aedab03 span=96042d5091b57007",
+      "attrs": {
+        "traceId": "9a197085d87a89b3502cce100aedab03",
+        "spanId": "96042d5091b57007",
+        "op": "HikariDataSource.getConnection",
+        "durMs": 30001.4,
+        "spanKind": "client",
+        "format": "Jaeger JSON",
+        "parentId": "325c2c5e980877bd",
+        "statusMessage": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=11, active=11, idle=0, waiting=39)",
+        "peer": "orders-postgresql",
+        "dbSystem": "postgresql",
+        "targetId": "datastore:prod-us-east/data/orders-postgresql",
+        "medianMs": 30001.6,
+        "causeKind": "conn_exhaustion"
+      }
+    },
+    {
+      "id": "log-74",
+      "source": "logs",
+      "line": 74,
+      "ts": 1791241302190,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 23:01:42.190 UTC [31969] FATAL:  sorry, too many clients already",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T23:01:42.190801619Z 2026-10-05 23:01:42.190 UTC [31969] FATAL:  sorry, too many clients already",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "alr-115",
+      "source": "alerts",
+      "line": 115,
+      "ts": 1791241302330,
+      "tsInferred": false,
+      "severity": "info",
+      "kind": "alert_resolved",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "CPUThrottlingHigh resolved — orders-api (orders): Processes experience elevated CPU throttling.",
+      "raw": "{\"labels\":{\"team\":\"orders\",\"alertname\":\"CPUThrottlingHigh\",\"cluster\":\"prod-us-west\",\"container\":\"orders-api\",\"namespace\":\"orders\",\"pod\":\"orders-api-5f7d6c8b49-cl2tm\",\"severity\":\"info\"},\"annotations\":{\"summary\":\"Processes experience elevated CPU throttling.\",\"description\":\"46.2% throttling of CPU in namespace orders for container orders-api in pod orders-api-5f7d6c8b49-cl2tm.\",\"runbook_url\":\"https://runbooks.example.com/kubernetes/cputhrottlinghigh\"},\"status\":\"resolved\",\"startsAt\":\"2026-10-05T22:53:12.330Z\",\"endsAt\":\"2026-10-05T23:01:42.330Z\"}",
+      "attrs": {
+        "alertname": "CPUThrottlingHigh",
+        "status": "resolved",
+        "alertKind": "throttled",
+        "labels": {
+          "team": "orders",
+          "alertname": "CPUThrottlingHigh",
+          "cluster": "prod-us-west",
+          "container": "orders-api",
+          "namespace": "orders",
+          "pod": "orders-api-5f7d6c8b49-cl2tm",
+          "severity": "info"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "info",
+        "annotations": {
+          "summary": "Processes experience elevated CPU throttling.",
+          "description": "46.2% throttling of CPU in namespace orders for container orders-api in pod orders-api-5f7d6c8b49-cl2tm.",
+          "runbook_url": "https://runbooks.example.com/kubernetes/cputhrottlinghigh"
+        },
+        "runbook": "https://runbooks.example.com/kubernetes/cputhrottlinghigh",
+        "fingerprint": "6c101ff89d5fc21f",
+        "startsAt": 1791240792330,
+        "endsAt": 1791241302330,
+        "pod": "orders-api-5f7d6c8b49-cl2tm"
+      }
+    },
+    {
+      "id": "log-57",
+      "source": "logs",
+      "line": 57,
+      "ts": 1791241302786,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=8, active=8, idle=0, waiting=19)",
+      "raw": "[pod/orders-api-6d8f7b9c54-x4c2b/orders-api] {\"@timestamp\":\"2026-10-05T23:01:42.786+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=8, active=8, idle=0, waiting=19)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-34\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-x4c2b",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-58",
+      "source": "logs",
+      "line": 58,
+      "ts": 1791241302788,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-6d8f7b9c54-x4c2b/orders-api] {\"@timestamp\":\"2026-10-05T23:01:42.788+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-49\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-x4c2b",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-49",
+      "source": "logs",
+      "line": 49,
+      "ts": 1791241348000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-t8wnx is CrashLoopBackOff (5 restarts)",
+      "raw": "orders-api-6d8f7b9c54-t8wnx   0/1     CrashLoopBackOff   5 (3m32s ago)   26m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-t8wnx",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 5,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1560000,
+        "relative": true,
+        "ageMs": 212000
+      }
+    },
+    {
+      "id": "log-115",
+      "source": "logs",
+      "line": 115,
+      "ts": 1791241371637,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=21)",
+      "raw": "[pod/orders-api-5f7d6c8b49-8jqzv/orders-api] {\"@timestamp\":\"2026-10-05T23:02:51.637+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiting=21)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-49\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-5f7d6c8b49-8jqzv",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-116",
+      "source": "logs",
+      "line": 116,
+      "ts": 1791241371640,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-5f7d6c8b49-8jqzv/orders-api] {\"@timestamp\":\"2026-10-05T23:02:51.640+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-11\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-5f7d6c8b49-8jqzv",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-63",
+      "source": "logs",
+      "line": 63,
+      "ts": 1791241384118,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Exception during pool initialization.",
+      "raw": "[pod/orders-api-6d8f7b9c54-k2v9p/orders-api] {\"@timestamp\":\"2026-10-05T23:03:04.118+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Exception during pool initialization.\",\"logger_name\":\"com.zaxxer.hikari.pool.HikariPool\",\"thread_name\":\"main\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-k2v9p",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-64",
+      "source": "logs",
+      "line": 64,
+      "ts": 1791241384159,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory': Unable to obtain connection from database: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-api-6d8f7b9c54-k2v9p/orders-api] {\"@timestamp\":\"2026-10-05T23:03:04.159+00:00\",\"@version\":\"1\",\"message\":\"Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory': Unable to obtain connection from database: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\",\"logger_name\":\"org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext\",\"thread_name\":\"main\",\"level\":\"WARN\",\"level_value\":30000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "orders-api-6d8f7b9c54-k2v9p",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-47",
+      "source": "logs",
+      "line": 47,
+      "ts": 1791241391000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-k2v9p is CrashLoopBackOff (6 restarts)",
+      "raw": "orders-api-6d8f7b9c54-k2v9p   0/1     CrashLoopBackOff   6 (2m49s ago)   26m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-k2v9p",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1560000,
+        "relative": true,
+        "ageMs": 169000
+      }
+    },
+    {
+      "id": "log-65",
+      "source": "logs",
+      "line": 65,
+      "ts": 1791241391149,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "error_generic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Application run failed",
+      "raw": "[pod/orders-api-6d8f7b9c54-k2v9p/orders-api] {\"@timestamp\":\"2026-10-05T23:03:11.149+00:00\",\"@version\":\"1\",\"message\":\"Application run failed\",\"logger_name\":\"org.springframework.boot.SpringApplication\",\"thread_name\":\"main\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-k2v9p",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-76",
+      "source": "logs",
+      "line": 76,
+      "ts": 1791241479905,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "2026-10-05 23:04:39.905 UTC [32115] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "raw": "[pod/orders-postgresql-0/postgresql] 2026-10-05T23:04:39.905974544Z 2026-10-05 23:04:39.905 UTC [32115] FATAL:  remaining connection slots are reserved for roles with the SUPERUSER attribute",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "critical",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql"
+      }
+    },
+    {
+      "id": "log-87",
+      "source": "logs",
+      "line": 87,
+      "ts": 1791241479905,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "relatedIds": [],
+      "text": "max_connections",
+      "raw": " max_connections",
+      "attrs": {
+        "format": "plain text",
+        "pod": "orders-postgresql-0",
+        "container": "postgresql",
+        "tsCarried": true
+      }
+    },
+    {
+      "id": "log-59",
+      "source": "logs",
+      "line": 59,
+      "ts": 1791241479915,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HikariPool-1 - Connection is not available, request timed out after 30000ms (total=10, active=10, idle=0, waiting=18)",
+      "raw": "[pod/orders-api-6d8f7b9c54-2mzrk/orders-api] {\"@timestamp\":\"2026-10-05T23:04:39.915+00:00\",\"@version\":\"1\",\"message\":\"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=10, active=10, idle=0, waiting=18)\",\"logger_name\":\"org.hibernate.engine.jdbc.spi.SqlExceptionHelper\",\"thread_name\":\"http-nio-8080-exec-55\",\"level\":\"ERROR\",\"level_value\":40000}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-2mzrk",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-60",
+      "source": "logs",
+      "line": 60,
+      "ts": 1791241479917,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause",
+      "raw": "[pod/orders-api-6d8f7b9c54-2mzrk/orders-api] {\"@timestamp\":\"2026-10-05T23:04:39.917+00:00\",\"@version\":\"1\",\"message\":\"Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction] with root cause\",\"logger_name\":\"org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]\",\"thread_name\":\"http-nio-8080-exec-10\",\"level\":\"ERROR\",\"level_value\":40000,\"stack_trace\":\"org.postgresql.util.PSQLException: FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\\n\\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2734)\\n\\tat org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:813)\\n\\t... 23 frames truncated\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "orders-api-6d8f7b9c54-2mzrk",
+        "container": "orders-api"
+      }
+    },
+    {
+      "id": "log-35",
+      "source": "logs",
+      "line": 35,
+      "ts": 1791241498000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "62s         Warning   Unhealthy           pod/orders-api-6d8f7b9c54-4hqzm      Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-4hqzm",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-4hqzm",
+        "relative": true,
+        "ageMs": 62000
+      }
+    },
+    {
+      "id": "log-36",
+      "source": "logs",
+      "line": 36,
+      "ts": 1791241514000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container orders-api in pod orders-api-6d8f7b9c54-t8wnx_orders(fdcd7b39-9696-44b8-8b7d-cd5655fd8a57)",
+      "raw": "46s         Warning   BackOff             pod/orders-api-6d8f7b9c54-t8wnx      Back-off restarting failed container orders-api in pod orders-api-6d8f7b9c54-t8wnx_orders(fdcd7b39-9696-44b8-8b7d-cd5655fd8a57)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-t8wnx",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-t8wnx",
+        "relative": true,
+        "ageMs": 46000
+      }
+    },
+    {
+      "id": "log-37",
+      "source": "logs",
+      "line": 37,
+      "ts": 1791241517000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "43s         Warning   Unhealthy           pod/orders-api-6d8f7b9c54-b7xrd      Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-b7xrd",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-b7xrd",
+        "relative": true,
+        "ageMs": 43000
+      }
+    },
+    {
+      "id": "log-38",
+      "source": "logs",
+      "line": 38,
+      "ts": 1791241532000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container orders-api in pod orders-api-6d8f7b9c54-k2v9p_orders(73e51aad-025f-4939-86bc-fae4a652618e)",
+      "raw": "28s         Warning   BackOff             pod/orders-api-6d8f7b9c54-k2v9p      Back-off restarting failed container orders-api in pod orders-api-6d8f7b9c54-k2v9p_orders(73e51aad-025f-4939-86bc-fae4a652618e)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-k2v9p",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-k2v9p",
+        "relative": true,
+        "ageMs": 28000
+      }
+    },
+    {
+      "id": "log-39",
+      "source": "logs",
+      "line": 39,
+      "ts": 1791241543000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "17s         Warning   Unhealthy           pod/orders-api-6d8f7b9c54-fn2wc      Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-fn2wc",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-fn2wc",
+        "relative": true,
+        "ageMs": 17000
+      }
+    },
+    {
+      "id": "log-40",
+      "source": "logs",
+      "line": 40,
+      "ts": 1791241547000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "13s         Warning   Unhealthy           pod/orders-api-6d8f7b9c54-q5lsv      Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/orders-api-6d8f7b9c54-q5lsv",
+        "format": "kubectl events",
+        "pod": "orders-api-6d8f7b9c54-q5lsv",
+        "relative": true,
+        "ageMs": 13000
+      }
+    },
+    {
+      "id": "log-4",
+      "source": "logs",
+      "line": 4,
+      "ts": 1791241560000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "hpa_maxed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "HorizontalPodAutoscaler orders-api is at its maximum: 20 of 20 replicas (cpu: 91%/65%)",
+      "raw": "orders-api   Deployment/orders-api   cpu: 91%/65%   3         20        20         214d",
+      "attrs": {
+        "hpa": "orders-api",
+        "minReplicas": 3,
+        "maxReplicas": 20,
+        "replicas": 20,
+        "targets": "cpu: 91%/65%",
+        "format": "kubectl get hpa",
+        "relative": true,
+        "ageMs": 0
+      }
+    },
+    {
+      "id": "log-44",
+      "source": "logs",
+      "line": 44,
+      "ts": 1791241560000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-4hqzm is Running",
+      "raw": "orders-api-6d8f7b9c54-4hqzm   0/1     Running            0               31m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-4hqzm",
+        "podStatus": "Running",
+        "restarts": 0,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1860000,
+        "relative": true,
+        "ageMs": 0
+      }
+    },
+    {
+      "id": "log-45",
+      "source": "logs",
+      "line": 45,
+      "ts": 1791241560000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-b7xrd is Running",
+      "raw": "orders-api-6d8f7b9c54-b7xrd   0/1     Running            0               29m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-b7xrd",
+        "podStatus": "Running",
+        "restarts": 0,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1740000,
+        "relative": true,
+        "ageMs": 0
+      }
+    },
+    {
+      "id": "log-46",
+      "source": "logs",
+      "line": 46,
+      "ts": 1791241560000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-fn2wc is Running",
+      "raw": "orders-api-6d8f7b9c54-fn2wc   0/1     Running            0               26m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-fn2wc",
+        "podStatus": "Running",
+        "restarts": 0,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1560000,
+        "relative": true,
+        "ageMs": 0
+      }
+    },
+    {
+      "id": "log-48",
+      "source": "logs",
+      "line": 48,
+      "ts": 1791241560000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "relatedIds": [],
+      "text": "Pod orders-api-6d8f7b9c54-q5lsv is Running",
+      "raw": "orders-api-6d8f7b9c54-q5lsv   0/1     Running            0               24m",
+      "attrs": {
+        "pod": "orders-api-6d8f7b9c54-q5lsv",
+        "podStatus": "Running",
+        "restarts": 0,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1440000,
+        "relative": true,
+        "ageMs": 0
+      }
+    }
+  ],
+  "changes": [
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "HorizontalPodAutoscaler",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "orders-3.2.0",
+      "after": "orders-3.3.0",
+      "changeType": "changed",
+      "line": 21,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart orders-3.2.0 → orders-3.3.0",
+      "id": "chg-sc7k4g",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "signalId": "hlm-21"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "HorizontalPodAutoscaler",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "spec.maxReplicas",
+      "before": "6",
+      "after": "20",
+      "changeType": "changed",
+      "line": 29,
+      "category": "hpa",
+      "risk": "high",
+      "summary": "HorizontalPodAutoscaler orders-api maxReplicas 6 → 20",
+      "id": "chg-1ee0qmq",
+      "raw": "+   maxReplicas: 20",
+      "signalId": "hlm-29"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "ConfigMap",
+      "resourceName": "orders-api-env",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "orders-3.2.0",
+      "after": "orders-3.3.0",
+      "changeType": "changed",
+      "line": 46,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart orders-3.2.0 → orders-3.3.0",
+      "id": "chg-lckz35",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "signalId": "hlm-46"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "ConfigMap",
+      "resourceName": "orders-api-env",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "data.ORDERS_SPLIT_SHIPMENTS_ENABLED",
+      "before": "false",
+      "after": "true",
+      "changeType": "changed",
+      "line": 53,
+      "category": "configmap",
+      "risk": "medium",
+      "summary": "ConfigMap orders-api-env ORDERS_SPLIT_SHIPMENTS_ENABLED: false → true",
+      "id": "chg-1us8ip3",
+      "raw": "+   ORDERS_SPLIT_SHIPMENTS_ENABLED: \"true\"",
+      "signalId": "hlm-53"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "Deployment",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "metadata.labels.app.kubernetes.io/version",
+      "before": "3.2.0",
+      "after": "3.3.0",
+      "changeType": "changed",
+      "line": 66,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 3.2.0 → 3.3.0",
+      "id": "chg-spu6ey",
+      "raw": "+     app.kubernetes.io/version: \"3.3.0\"",
+      "signalId": "hlm-66"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "Deployment",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "orders-3.2.0",
+      "after": "orders-3.3.0",
+      "changeType": "changed",
+      "line": 68,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart orders-3.2.0 → orders-3.3.0",
+      "id": "chg-14tru7u",
+      "raw": "+     helm.sh/chart: orders-3.3.0",
+      "signalId": "hlm-68"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "Deployment",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+      "before": "3.2.0",
+      "after": "3.3.0",
+      "changeType": "changed",
+      "line": 80,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 3.2.0 → 3.3.0",
+      "id": "chg-1d3eyen",
+      "raw": "+         app.kubernetes.io/version: \"3.3.0\"",
+      "signalId": "hlm-80"
+    },
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "resourceKind": "Deployment",
+      "resourceName": "orders-api",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "cluster": "prod-us-east",
+      "field": "spec.template.spec.containers[orders-api].image",
+      "before": "registry.example.com/orders/orders-api:3.2.0",
+      "after": "registry.example.com/orders/orders-api:3.3.0",
+      "changeType": "changed",
+      "line": 85,
+      "category": "image",
+      "risk": "medium",
+      "summary": "orders-api image tag 3.2.0 → 3.3.0",
+      "id": "chg-1ftpvuw",
+      "raw": "+           image: \"registry.example.com/orders/orders-api:3.3.0\"",
+      "signalId": "hlm-85"
+    }
+  ],
+  "deploy": {
+    "release": "orders",
+    "namespace": "orders",
+    "revision": 24,
+    "previousRevision": 23,
+    "chartFrom": "orders-3.2.0",
+    "chartTo": "orders-3.3.0",
+    "appFrom": "3.2.0",
+    "appTo": "3.3.0",
+    "deployedAt": 1791239500000,
+    "deployedAtSource": "helm-history",
+    "tsInferred": true,
+    "cluster": "prod-us-east",
+    "clusterKnown": true,
+    "status": "deployed",
+    "description": "Upgrade complete",
+    "line": 7,
+    "changeCount": 8,
+    "componentId": "service:prod-us-east/orders/orders-api",
+    "signalId": "hlm-7"
+  },
+  "deploys": [
+    {
+      "release": "orders",
+      "namespace": "orders",
+      "revision": 24,
+      "previousRevision": 23,
+      "chartFrom": "orders-3.2.0",
+      "chartTo": "orders-3.3.0",
+      "appFrom": "3.2.0",
+      "appTo": "3.3.0",
+      "deployedAt": 1791239500000,
+      "deployedAtSource": "helm-history",
+      "tsInferred": true,
+      "cluster": "prod-us-east",
+      "clusterKnown": true,
+      "status": "deployed",
+      "description": "Upgrade complete",
+      "line": 7,
+      "changeCount": 8,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "signalId": "hlm-7"
+    }
+  ],
+  "timeline": [
+    {
+      "ts": 1791239500000,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "change",
+      "severity": "info",
+      "signalId": "hlm-7"
+    },
+    {
+      "ts": 1791239812429,
+      "componentId": "service:prod-us-east/web/storefront",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-40"
+    },
+    {
+      "ts": 1791239812431,
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "kind": "conn_exhaustion",
+      "severity": "critical",
+      "signalId": "log-68"
+    },
+    {
+      "ts": 1791239812434,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-42"
+    },
+    {
+      "ts": 1791239885771,
+      "componentId": "service:prod-us-east/orders/orders-worker",
+      "kind": "conn_exhaustion",
+      "severity": "error",
+      "signalId": "log-98"
+    },
+    {
+      "ts": 1791239971044,
+      "componentId": "service:prod-us-west/orders/orders-worker",
+      "kind": "conn_exhaustion",
+      "severity": "error",
+      "signalId": "log-118"
+    },
+    {
+      "ts": 1791239998117,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "http_5xx",
+      "severity": "critical",
+      "signalId": "alr-31"
+    },
+    {
+      "ts": 1791240000000,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "scheduling_failed",
+      "severity": "warn",
+      "signalId": "log-31"
+    },
+    {
+      "ts": 1791240058300,
+      "componentId": "service:prod-us-west/web/storefront",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-54"
+    },
+    {
+      "ts": 1791240058304,
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-56"
+    },
+    {
+      "ts": 1791240095882,
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "kind": "http_5xx",
+      "severity": "critical",
+      "signalId": "alr-51"
+    },
+    {
+      "ts": 1791240314809,
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "kind": "panic",
+      "severity": "error",
+      "signalId": "log-112"
+    },
+    {
+      "ts": 1791240575490,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "hpa_maxed",
+      "severity": "warn",
+      "signalId": "log-11"
+    },
+    {
+      "ts": 1791240575490,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "panic",
+      "severity": "error",
+      "signalId": "log-52"
+    },
+    {
+      "ts": 1791240740431,
+      "componentId": "service:prod-us-east/web/storefront",
+      "kind": "slo_burn",
+      "severity": "critical",
+      "signalId": "alr-71"
+    },
+    {
+      "ts": 1791240764516,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "conn_exhaustion",
+      "severity": "error",
+      "signalId": "log-53"
+    },
+    {
+      "ts": 1791240810223,
+      "componentId": "service:prod-us-west/orders/orders-api",
+      "kind": "conn_exhaustion",
+      "severity": "error",
+      "signalId": "log-113"
+    },
+    {
+      "ts": 1791241348000,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "crash_loop",
+      "severity": "error",
+      "signalId": "log-49"
+    },
+    {
+      "ts": 1791241391149,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "error_generic",
+      "severity": "error",
+      "signalId": "log-65"
+    },
+    {
+      "ts": 1791241498000,
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "kind": "probe_failed",
+      "severity": "warn",
+      "signalId": "log-35"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-1noyeu4",
+      "title": "More orders-api pods exhaust the database connections",
+      "category": "connection-exhaustion",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "confidence": 0.95,
+      "summary": "The latest release lets orders-api scale further (HorizontalPodAutoscaler orders-api maxReplicas 6 → 20). Every pod keeps its own connection pool, so the total wanted exceeds what orders-postgresql allows; new connections are refused and requests fail or time out. The same pattern shows in prod-us-west.",
+      "evidence": [
+        {
+          "signalId": "log-53",
+          "changeId": null,
+          "text": "orders-api cannot get database connections 7 times (first at 22:36:52 UTC): \"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=13, active=13, idle=0, wai…\".",
+          "weight": 0.4,
+          "source": "logs",
+          "line": 53
+        },
+        {
+          "signalId": "log-68",
+          "changeId": null,
+          "text": "The database orders-postgresql (prod-us-east) is refusing new connections 10 times: \"…UTC [29166] FATAL: remaining connection slots are reserved for roles with the SUPERUSER attribute\".",
+          "weight": 0.35,
+          "source": "logs",
+          "line": 68
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1ee0qmq",
+          "text": "Helm raised the connection demand: HorizontalPodAutoscaler orders-api maxReplicas 6 → 20. Each pod opens its own pool, so more pods means more connections.",
+          "weight": 0.35,
+          "source": "helm",
+          "line": 29
+        },
+        {
+          "signalId": "log-11",
+          "changeId": null,
+          "text": "The HorizontalPodAutoscaler for orders-api is at its maximum, so the pod count (and the connection count) is as high as it can go.",
+          "weight": 0.15,
+          "source": "logs",
+          "line": 11
+        },
+        {
+          "signalId": "alr-8",
+          "changeId": null,
+          "text": "Alert PostgresqlTooManyConnections is firing.",
+          "weight": 0.15,
+          "source": "alerts",
+          "line": 8
+        },
+        {
+          "signalId": "log-98",
+          "changeId": null,
+          "text": "Other clients of the same database fail the same way (orders-worker).",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 98
+        },
+        {
+          "signalId": "log-113",
+          "changeId": null,
+          "text": "Same pattern in prod-us-west: orders-api cannot get database connections 3 times (first at 22:40:58 UTC): \"HikariPool-1 - Connection is not available, request timed out after 30000ms (total=9, active=9, idle=0, waiti…\".",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 113
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-us-east -n data exec orders-postgresql-0 -- psql -U postgres -c \"SELECT application_name, state, count(*) FROM pg_stat_activity GROUP BY 1, 2 ORDER BY 3 DESC;\"",
+          "why": "Who holds the connections, and how many are idle."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n data exec orders-postgresql-0 -- psql -U postgres -c \"SHOW max_connections;\"",
+          "why": "The server limit the pools add up against."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n orders get hpa",
+          "why": "Current and maximum replicas per autoscaler."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n orders get deployment/orders-api -o jsonpath='{.spec.replicas}'",
+          "why": "Replicas right now (multiply by the pool size per pod)."
+        },
+        {
+          "cmd": "sum by (datname, state) (pg_stat_activity_count)",
+          "why": "Prometheus query (postgres_exporter): connections by database and state."
+        },
+        {
+          "cmd": "max(pg_settings_max_connections)",
+          "why": "Prometheus query: the configured connection limit."
+        },
+        {
+          "cmd": "sum by (pod) (hikaricp_connections_pending{namespace=\"orders\"})",
+          "why": "Prometheus query (Micrometer): threads waiting for a pooled connection per pod."
+        }
+      ],
+      "rule": "pool-demand-after-change",
+      "relatedComponentIds": [
+        "service:prod-us-west/orders/orders-api"
+      ]
+    },
+    {
+      "id": "hyp-99izhq",
+      "title": "Helm release orders r24 broke orders-api",
+      "category": "bad-deploy",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "confidence": 0.705,
+      "summary": "Helm release orders r23 → r24 changed 8 fields (1 high-risk change) shortly before orders-api started failing.",
+      "evidence": [
+        {
+          "signalId": "trc-42",
+          "changeId": null,
+          "text": "orders-api first failed 5 min 12 s after the deploy: \"orders-api: POST /v1/orders failed — CannotCreateTransactionException: Could not open JPA…\".",
+          "weight": 0.3,
+          "source": "traces",
+          "line": 42
+        },
+        {
+          "signalId": "hlm-7",
+          "changeId": null,
+          "text": "Helm release orders r23 → r24 rolled out at 22:31:40 UTC, chart orders-3.2.0 → orders-3.3.0.",
+          "weight": 0.2,
+          "source": "helm",
+          "line": 7
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1ee0qmq",
+          "text": "High-risk change in this release: HorizontalPodAutoscaler orders-api maxReplicas 6 → 20.",
+          "weight": 0.15,
+          "source": "helm",
+          "line": 29
+        },
+        {
+          "signalId": "log-22",
+          "changeId": null,
+          "text": "Kubernetes rolled out a new ReplicaSet (orders-api-6d8f7b9c54) for orders-api.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 22
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1us8ip3",
+          "text": "Also changed: ConfigMap orders-api-env ORDERS_SPLIT_SHIPMENTS_ENABLED: false → true.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 53
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1ftpvuw",
+          "text": "Also changed: orders-api image tag 3.2.0 → 3.3.0.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 85
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "helm history orders -n orders --kube-context prod-us-east --max 5",
+          "why": "Which revision is live and when each one was deployed."
+        },
+        {
+          "cmd": "helm diff revision orders 23 24 -n orders --kube-context prod-us-east",
+          "why": "Every manifest change between the last good and the current revision (helm-diff plugin)."
+        },
+        {
+          "cmd": "helm get values orders -n orders --kube-context prod-us-east --revision 23",
+          "why": "The values the last good revision used."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n orders rollout history deployment/orders-api",
+          "why": "ReplicaSet revisions of the workload and when they rolled out."
+        }
+      ],
+      "rule": "deploy-correlation",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-1kqqks9",
+      "title": "orders-api cannot get enough capacity",
+      "category": "scheduling-capacity",
+      "componentId": "service:prod-us-east/orders/orders-api",
+      "confidence": 0.561,
+      "summary": "New orders-api pods cannot be placed (not enough node capacity, a quota or an unbound volume), so the workload cannot scale to meet load.",
+      "evidence": [
+        {
+          "signalId": "log-31",
+          "changeId": null,
+          "text": "1 pod of orders-api cannot be scheduled: \"FailedScheduling: 0/24 nodes are available: 6 Insufficient cpu, 18 node(s) didn't match P…\".",
+          "weight": 0.2,
+          "source": "logs",
+          "line": 31
+        },
+        {
+          "signalId": "log-11",
+          "changeId": null,
+          "text": "The autoscaler for orders-api is at its maximum.",
+          "weight": 0.2,
+          "source": "logs",
+          "line": 11
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1ee0qmq",
+          "text": "Replica settings changed: HorizontalPodAutoscaler orders-api maxReplicas 6 → 20.",
+          "weight": 0.2,
+          "source": "helm",
+          "line": 29
+        }
+      ],
+      "against": [
+        {
+          "text": "The release raised the replica ceiling (HorizontalPodAutoscaler orders-api maxReplicas 6 → 20); pods waiting for room are a side effect of scaling out further, not a cause of the errors."
+        }
+      ],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-us-east -n orders get events --field-selector reason=FailedScheduling --sort-by=.lastTimestamp",
+          "why": "Why the scheduler rejects the pods (insufficient CPU or memory, taints, affinity)."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east describe nodes | grep -A 8 'Allocated resources'",
+          "why": "Requested versus allocatable resources per node."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n orders describe hpa orders-api",
+          "why": "Autoscaler conditions (ScalingLimited) and recent scaling events."
+        }
+      ],
+      "rule": "unschedulable",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-sr0gt",
+      "title": "orders-postgresql is the failing dependency",
+      "category": "dependency-failure",
+      "componentId": "datastore:prod-us-east/data/orders-postgresql",
+      "confidence": 0.42,
+      "summary": "Callers fail when they call orders-postgresql, and nothing orders-postgresql calls is failing, so the failure starts there.",
+      "evidence": [
+        {
+          "signalId": "trc-43",
+          "changeId": null,
+          "text": "Calls into orders-postgresql fail: orders-api 2 of 5, orders-api 1 of 2.",
+          "weight": 0.35,
+          "source": "traces",
+          "line": 43
+        },
+        {
+          "signalId": "log-98",
+          "changeId": null,
+          "text": "Callers log errors naming orders-postgresql 5 times: \"failed to persist order event, will retry: failed to connect to `user=orders database=ord…\".",
+          "weight": 0.3,
+          "source": "logs",
+          "line": 98
+        },
+        {
+          "signalId": "log-68",
+          "changeId": null,
+          "text": "orders-postgresql reports its own errors 10 times: \"2026-10-05 22:36:52.431 UTC [29166] FATAL: remaining connection slots are reserved for ro…\".",
+          "weight": 0.2,
+          "source": "logs",
+          "line": 68
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-us-east -n data get endpointslices -l kubernetes.io/service-name=orders-postgresql",
+          "why": "Are there ready endpoints behind the Service."
+        },
+        {
+          "cmd": "kubectl --context prod-us-east -n data get pods -o wide | grep orders-postgresql",
+          "why": "Pod status, restarts and nodes."
+        }
+      ],
+      "rule": "deepest-failing-dependency",
+      "relatedComponentIds": []
+    }
+  ],
+  "rollbacks": [
+    {
+      "id": "rb-i3g2es",
+      "title": "Roll back Helm release orders to r23 in prod-us-east and prod-us-west",
+      "kind": "helm-rollback",
+      "commands": [
+        "helm rollback orders 23 -n orders --kube-context prod-us-east --wait --timeout 5m",
+        "kubectl --context prod-us-east -n orders rollout status deployment/orders-api --timeout=5m",
+        "helm rollback orders 23 -n orders --kube-context prod-us-west --wait --timeout 5m",
+        "kubectl --context prod-us-west -n orders rollout status deployment/orders-api --timeout=5m"
+      ],
+      "etaMinutes": 6,
+      "risk": "low",
+      "recommended": true,
+      "fixes": [
+        "hyp-1noyeu4",
+        "hyp-99izhq",
+        "hyp-1kqqks9"
+      ],
+      "caveats": [
+        "Helm records the rollback as a new revision (r25) with the contents of r23; r24 stays in the history.",
+        "It reverts all of r24's template changes, not only the suspect one: HorizontalPodAutoscaler orders-api maxReplicas 6 → 20; ConfigMap orders-api-env ORDERS_SPLIT_SHIPMENTS_ENABLED: false → true; orders-api image tag 3.2.0 → 3.3.0.",
+        "prod-us-east and prod-us-west use one database (orders-postgresql in prod-us-east), and every cluster's connections count against its limit, so rolling back only one cluster is not enough.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease orders -n orders), or it will re-apply r24 within minutes."
+      ],
+      "prerequisites": [
+        "Access to kube-context prod-us-east and prod-us-west with rights to change namespace orders.",
+        "Check that r23 ran without problems before r24: helm history orders -n orders --kube-context prod-us-east --max 5",
+        "Confirm prod-us-west runs orders r24 (Helm pane line 8 says so) before its steps: helm history orders -n orders --kube-context prod-us-west --max 5"
+      ],
+      "budgetSavedPct": 4.565
+    },
+    {
+      "id": "rb-8uao34",
+      "title": "Lower orders-api maxReplicas back to 6",
+      "kind": "scale",
+      "commands": [
+        "kubectl --context prod-us-east -n orders patch hpa orders-api --type merge -p '{\"spec\":{\"maxReplicas\":6}}'",
+        "kubectl --context prod-us-west -n orders patch hpa orders-api --type merge -p '{\"spec\":{\"maxReplicas\":6}}'"
+      ],
+      "etaMinutes": 5,
+      "risk": "low",
+      "recommended": false,
+      "fixes": [
+        "hyp-1noyeu4"
+      ],
+      "caveats": [
+        "The next helm upgrade sets maxReplicas back to 20 unless the chart values change too.",
+        "Pods above the new limit are stopped; requests in flight on them can fail, and peak traffic may need more than 6 pods.",
+        "Database connections fall only as pods stop; watch the connection count (pg_stat_activity) drop below the limit.",
+        "The command for prod-us-west assumes it runs the same chart values (maxReplicas 6 before the change).",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease orders -n orders), or it will revert this patch within minutes."
+      ],
+      "prerequisites": [
+        "Confirm maxReplicas 6 × the pool size per pod × 2 clusters sharing the database, plus the orders-worker pools, stays under the database limit (SHOW max_connections)."
+      ],
+      "budgetSavedPct": 4.605
+    }
+  ],
+  "budget": {
+    "sloTarget": 0.999,
+    "windowDays": 30,
+    "requestsPerMin": 1800,
+    "budgetSpentBeforePct": 31,
+    "errorRatio": 0.0173,
+    "errorRatioSource": "alert",
+    "burnRate": 17.3,
+    "incidentMinutes": 29.13,
+    "consumedPct": 1.1664,
+    "remainingPct": 67.8336,
+    "minutesToExhaustion": 1693.88,
+    "badRequests": 907,
+    "budgetRequests": 77760,
+    "alertRows": [
+      {
+        "severity": "Page",
+        "longWindow": "1 hour",
+        "shortWindow": "5 minutes",
+        "longMinutes": 60,
+        "shortMinutes": 5,
+        "consumedPctAtFire": 2,
+        "burnThreshold": 14.4,
+        "wouldFire": true,
+        "firesAfterMinutes": 49.94,
+        "firesInMinutes": 20.81,
+        "modelFiring": false,
+        "observedFiring": true,
+        "firing": true,
+        "firingSource": "alerts",
+        "state": "firing-observed",
+        "stateText": "Firing (in your alerts)"
+      },
+      {
+        "severity": "Page",
+        "longWindow": "6 hours",
+        "shortWindow": "30 minutes",
+        "longMinutes": 360,
+        "shortMinutes": 30,
+        "consumedPctAtFire": 5,
+        "burnThreshold": 6,
+        "wouldFire": true,
+        "firesAfterMinutes": 124.86,
+        "firesInMinutes": 95.73,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 1 h 36 min at this burn"
+      },
+      {
+        "severity": "Ticket",
+        "longWindow": "3 days",
+        "shortWindow": "6 hours",
+        "longMinutes": 4320,
+        "shortMinutes": 360,
+        "consumedPctAtFire": 10,
+        "burnThreshold": 1,
+        "wouldFire": true,
+        "firesAfterMinutes": 249.71,
+        "firesInMinutes": 220.58,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 3 h 41 min at this burn"
+      }
+    ],
+    "hasEvidence": true,
+    "observedBurnRate": 17.3,
+    "observedAlert": "ErrorBudgetBurn",
+    "observedSignalId": "alr-71",
+    "projection": [
+      {
+        "label": "Mitigate now",
+        "extraMinutes": 0,
+        "consumedPct": 1.1664,
+        "remainingPct": 67.8336
+      },
+      {
+        "label": "In 30 minutes",
+        "extraMinutes": 30,
+        "consumedPct": 2.3678,
+        "remainingPct": 66.6322
+      },
+      {
+        "label": "In 2 hours",
+        "extraMinutes": 120,
+        "consumedPct": 5.972,
+        "remainingPct": 63.028
+      }
+    ],
+    "series": [
+      {
+        "t": 0,
+        "remainingPct": 69
+      },
+      {
+        "t": 6.21,
+        "remainingPct": 68.7512
+      },
+      {
+        "t": 12.43,
+        "remainingPct": 68.5023
+      },
+      {
+        "t": 18.64,
+        "remainingPct": 68.2535
+      },
+      {
+        "t": 24.85,
+        "remainingPct": 68.0047
+      },
+      {
+        "t": 31.07,
+        "remainingPct": 67.7558
+      },
+      {
+        "t": 37.28,
+        "remainingPct": 67.507
+      },
+      {
+        "t": 43.5,
+        "remainingPct": 67.2582
+      },
+      {
+        "t": 49.71,
+        "remainingPct": 67.0093
+      },
+      {
+        "t": 55.92,
+        "remainingPct": 66.7605
+      },
+      {
+        "t": 62.14,
+        "remainingPct": 66.5117
+      },
+      {
+        "t": 68.35,
+        "remainingPct": 66.2629
+      },
+      {
+        "t": 74.56,
+        "remainingPct": 66.014
+      },
+      {
+        "t": 80.78,
+        "remainingPct": 65.7652
+      },
+      {
+        "t": 86.99,
+        "remainingPct": 65.5164
+      },
+      {
+        "t": 93.2,
+        "remainingPct": 65.2675
+      },
+      {
+        "t": 99.42,
+        "remainingPct": 65.0187
+      },
+      {
+        "t": 105.63,
+        "remainingPct": 64.7699
+      },
+      {
+        "t": 111.84,
+        "remainingPct": 64.521
+      },
+      {
+        "t": 118.06,
+        "remainingPct": 64.2722
+      },
+      {
+        "t": 124.27,
+        "remainingPct": 64.0234
+      },
+      {
+        "t": 130.49,
+        "remainingPct": 63.7745
+      },
+      {
+        "t": 136.7,
+        "remainingPct": 63.5257
+      },
+      {
+        "t": 142.91,
+        "remainingPct": 63.2769
+      },
+      {
+        "t": 149.13,
+        "remainingPct": 63.028
+      }
+    ],
+    "notes": [
+      "Error ratio from the burn-rate alert ErrorBudgetBurn.",
+      "Assumes steady traffic of 1,800 requests per minute and that the current error ratio has held since the first anomaly.",
+      "Your alert ErrorBudgetBurn fired sooner than the Workbook rule would at 17.3×: its 1-hour window needs about 50 minutes of errors, and the change behind this incident went out only 34 minutes ago. The alert probably uses a shorter window or a lower threshold, or its value is a short-window reading, so the real current burn (and the budget numbers here) may differ in either direction. Check the alert rule."
+    ],
+    "source": "https://sre.google/workbook/alerting-on-slos/"
+  },
+  "traits": {
+    "clusterCount": 2,
+    "clusters": [
+      "prod-us-east",
+      "prod-us-west"
+    ],
+    "multiCluster": true,
+    "failingClusterCount": 2,
+    "highCardinalityLabels": [
+      "instance",
+      "pod"
+    ],
+    "logLinesPerMin": 4.3,
+    "signalsPerMin": 1.8,
+    "spanCount": 31,
+    "tracedServices": 3,
+    "untracedFailingComponents": [
+      "service:prod-us-east/orders/orders-worker",
+      "service:prod-us-west/orders/orders-worker"
+    ],
+    "errorTracesMissing": false,
+    "sources": {
+      "logs": true,
+      "traces": true,
+      "alerts": true,
+      "helm": true
+    },
+    "hasDeployTime": true
+  },
+  "warnings": [
+    "Helm history times have no time zone; assumed -07:00."
+  ]
+}

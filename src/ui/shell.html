@@ -1,0 +1,238 @@
+<title>SRE War Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Atkinson+Hyperlegible+Next:wght@400;600;700&family=Atkinson+Hyperlegible+Mono:wght@400;600&display=swap">
+<style>/*INLINE:src/ui/styles.css*/</style>
+
+<div id="app" class="app">
+  <header class="strip" id="strip" data-sev="none">
+    <div class="strip-in">
+      <div class="sev" id="sev" role="img" aria-label="Severity not set" title="">
+        <span class="sev-k">SEV</span><span class="sev-n" id="sev-n">–</span>
+      </div>
+      <div class="head">
+        <div class="eyebrow">
+          <span class="brand">SRE War Room</span>
+          <span class="tag-example" id="tag-example" hidden>Example incident</span>
+        </div>
+        <h1 class="headline" id="headline">Paste logs, traces, alerts or Helm output to start.</h1>
+      </div>
+      <dl class="metrics" aria-label="Incident numbers">
+        <div class="metric" title="Time from the first anomaly in the evidence to the latest timestamp pasted.">
+          <dt class="metric-l">Since first anomaly</dt><dd class="metric-v" id="m-elapsed">—</dd>
+        </div>
+        <div class="metric" title="Burn rate: how many times faster than sustainable the error budget is being spent. 1× would use exactly the whole budget over the service level objective (SLO) window.">
+          <dt class="metric-l">Burn rate</dt><dd class="metric-v" id="m-burn">—</dd>
+        </div>
+        <div class="metric" title="Share of the whole SLO-window error budget this incident has used so far.">
+          <dt class="metric-l">Budget used</dt><dd class="metric-v" id="m-used">—</dd>
+        </div>
+        <div class="metric" title="Clusters with failing or degraded components, out of all clusters seen in the evidence.">
+          <dt class="metric-l">Clusters affected</dt><dd class="metric-v" id="m-clusters">—</dd>
+        </div>
+      </dl>
+      <div class="tools">
+        <label class="scen"><span class="sr-only">Scenario</span>
+          <select id="scenario" class="select" aria-label="Load an example incident or start blank"></select>
+        </label>
+        <button type="button" class="btn btn--primary" id="btn-export">Export brief</button>
+        <button type="button" class="btn" id="btn-theme" aria-label="Color theme: follows your system. Click to change.">Theme: System</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="minibar" id="minibar" aria-hidden="true">
+    <span class="pill mb-sev" id="mb-sev">SEV</span>
+    <span class="mb-head" id="mb-head"></span>
+    <span class="mb-burn" id="mb-burn"></span>
+  </div>
+
+  <div class="layout">
+    <div class="banner" id="banner" hidden>
+      <div class="banner-text">
+        <p class="banner-t">Example incident — replace with your own evidence.</p>
+        <p class="banner-b" id="banner-b"></p>
+      </div>
+      <span class="banner-actions">
+        <button type="button" class="btn btn--sm" id="btn-restore" hidden>Restore your last draft</button>
+        <button type="button" class="btn btn--sm" id="btn-blank">Start a blank incident</button>
+      </span>
+    </div>
+
+    <aside class="rail" id="evidence" aria-labelledby="rail-title">
+      <div class="rail-head">
+        <h2 class="rail-title" id="rail-title">Evidence</h2>
+        <span class="live" id="live">Live</span>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Evidence panes" id="tabs">
+        <button type="button" role="tab" class="tab" id="tab-logs" aria-controls="pane-logs" data-pane="logs"><span class="tab-n">Logs &amp; events</span><span class="tab-s"><i class="dot"></i><span class="tab-c">Empty</span></span></button>
+        <button type="button" role="tab" class="tab" id="tab-traces" aria-controls="pane-traces" data-pane="traces"><span class="tab-n">Traces</span><span class="tab-s"><i class="dot"></i><span class="tab-c">Empty</span></span></button>
+        <button type="button" role="tab" class="tab" id="tab-alerts" aria-controls="pane-alerts" data-pane="alerts"><span class="tab-n">Alerts</span><span class="tab-s"><i class="dot"></i><span class="tab-c">Empty</span></span></button>
+        <button type="button" role="tab" class="tab" id="tab-helm" aria-controls="pane-helm" data-pane="helm"><span class="tab-n">Helm diff &amp; history</span><span class="tab-s"><i class="dot"></i><span class="tab-c">Empty</span></span></button>
+      </div>
+
+      <div class="pane" role="tabpanel" id="pane-logs" aria-labelledby="tab-logs" data-pane="logs">
+        <div class="pane-label"><label for="in-logs">Kubernetes logs and events</label><span class="jumpnote" data-jumpnote></span></div>
+        <div class="ta-wrap"><textarea class="ta" id="in-logs" wrap="off" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off"
+          placeholder="Paste kubectl logs, kubectl get events, kubectl get pods or describe pod output. JSON, klog, logfmt and stern lines all work. Mark clusters with a line like: # cluster: prod-eu-west"></textarea></div>
+        <div class="pane-foot"><span class="stat" data-stat></span><button type="button" class="btn btn--ghost btn--sm" data-clear>Clear</button></div>
+        <ul class="pane-warn" data-warn hidden></ul>
+      </div>
+      <div class="pane" role="tabpanel" id="pane-traces" aria-labelledby="tab-traces" data-pane="traces" hidden>
+        <div class="pane-label"><label for="in-traces">Traces</label><span class="jumpnote" data-jumpnote></span></div>
+        <div class="ta-wrap"><textarea class="ta" id="in-traces" wrap="off" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off"
+          placeholder="Paste OpenTelemetry (OTLP) JSON, Jaeger JSON, or one span per line, for example: 2026-10-05T21:52:10Z trace=4bf9 span=a1 service=frontend op=&quot;GET /checkout&quot; dur=2304ms status=ERROR peer=checkout-api"></textarea></div>
+        <div class="pane-foot"><span class="stat" data-stat></span><button type="button" class="btn btn--ghost btn--sm" data-clear>Clear</button></div>
+        <ul class="pane-warn" data-warn hidden></ul>
+      </div>
+      <div class="pane" role="tabpanel" id="pane-alerts" aria-labelledby="tab-alerts" data-pane="alerts" hidden>
+        <div class="pane-label"><label for="in-alerts">Alerts</label><span class="jumpnote" data-jumpnote></span></div>
+        <div class="ta-wrap"><textarea class="ta" id="in-alerts" wrap="off" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off"
+          placeholder="Paste an Alertmanager webhook payload, Prometheus /api/v1/alerts JSON, or alert lines such as: [FIRING:2] KubePodCrashLooping (payments-api prod-eu-west critical)"></textarea></div>
+        <div class="pane-foot"><span class="stat" data-stat></span><button type="button" class="btn btn--ghost btn--sm" data-clear>Clear</button></div>
+        <ul class="pane-warn" data-warn hidden></ul>
+      </div>
+      <div class="pane" role="tabpanel" id="pane-helm" aria-labelledby="tab-helm" data-pane="helm" hidden>
+        <div class="pane-label"><label for="in-helm">Helm diff and history</label><span class="jumpnote" data-jumpnote></span></div>
+        <div class="ta-wrap"><textarea class="ta" id="in-helm" wrap="off" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off"
+          placeholder="Paste helm history <release>, helm list, helm diff upgrade output, or a unified diff of values.yaml. The release history gives the exact revision to roll back to."></textarea></div>
+        <div class="pane-foot"><span class="stat" data-stat></span><button type="button" class="btn btn--ghost btn--sm" data-clear>Clear</button></div>
+        <ul class="pane-warn" data-warn hidden></ul>
+      </div>
+
+      <fieldset class="ctx" id="context">
+        <legend>Context</legend>
+        <p class="ctx-intro">Service level objective (SLO) and timing details. Every change updates the board.</p>
+        <div class="fields">
+          <label class="field"><span>SLO target</span>
+            <select id="ctx-target" class="select">
+              <option value="99">99%</option><option value="99.5">99.5%</option><option value="99.9" selected>99.9%</option>
+              <option value="99.95">99.95%</option><option value="99.99">99.99%</option>
+            </select></label>
+          <label class="field"><span>SLO window</span>
+            <select id="ctx-window" class="select">
+              <option value="7">7 days</option><option value="28">28 days</option><option value="30" selected>30 days</option>
+            </select></label>
+          <label class="field"><span>Requests per minute</span>
+            <input id="ctx-rpm" class="input" type="number" inputmode="numeric" min="0" step="1" placeholder="e.g. 1200"></label>
+          <label class="field"><span>Budget already spent <span class="hint">% before this incident</span></span>
+            <input id="ctx-spent" class="input" type="number" inputmode="decimal" min="0" max="100" step="0.1" placeholder="0"></label>
+          <label class="field"><span>Error rate override <span class="hint">% of requests failing</span></span>
+            <input id="ctx-ratio" class="input" type="number" inputmode="decimal" min="0" max="100" step="any" placeholder="Auto"></label>
+          <label class="field"><span>Zone for times without one</span>
+            <select id="ctx-tz" class="select"></select></label>
+          <label class="field field--wide"><span>Deployed at <span class="hint">UTC — only if the Helm history is missing or wrong</span></span>
+            <input id="ctx-deployed" class="input" type="datetime-local" step="1"></label>
+        </div>
+      </fieldset>
+
+      <div class="rail-notes" id="rail-notes" hidden>
+        <h3 class="label">Notes from reading the evidence</h3>
+        <ul id="rail-notes-list"></ul>
+      </div>
+    </aside>
+
+    <main class="board" id="board">
+      <section class="sec" id="map" aria-labelledby="map-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">01</span>
+          <h2 class="sec-title" id="map-title">Blast radius</h2>
+          <span class="sec-meta" id="map-meta"></span>
+          <p class="sec-sub">Clusters, components and the calls between them, shaded by impact. Drag the timeline to replay how the failure spread. Select a component to see its evidence.</p>
+        </header>
+        <div class="map-host">
+          <div id="map-canvas" class="map-canvas"></div>
+        </div>
+      </section>
+
+      <section class="sec" id="causes" aria-labelledby="causes-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">02</span>
+          <h2 class="sec-title" id="causes-title">Probable root causes</h2>
+          <span class="sec-meta" id="causes-meta"></span>
+          <p class="sec-sub">Ranked by how strongly the evidence supports each one. Select any piece of evidence to see the exact line you pasted.</p>
+        </header>
+        <div id="causes-body"></div>
+      </section>
+
+      <section class="sec" id="rollback" aria-labelledby="rollback-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">03</span>
+          <h2 class="sec-title" id="rollback-title">Rollback options</h2>
+          <span class="sec-meta" id="rollback-meta"></span>
+          <p class="sec-sub">Ways to stop the damage, fastest safe option first, with the exact commands for your clusters.</p>
+        </header>
+        <div id="rollback-body"></div>
+      </section>
+
+      <section class="sec" id="budget" aria-labelledby="budget-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">04</span>
+          <h2 class="sec-title" id="budget-title">Error budget</h2>
+          <span class="sec-meta" id="budget-meta"></span>
+          <p class="sec-sub">How much of the service level objective (SLO) error budget this incident is using, and how fast — using the burn-rate method from the Google Site Reliability Engineering (SRE) Workbook.</p>
+        </header>
+        <div id="budget-body"></div>
+      </section>
+
+      <section class="sec" id="claude" aria-labelledby="claude-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">05</span>
+          <h2 class="sec-title" id="claude-title">Investigate with Claude</h2>
+          <span class="sec-meta"></span>
+          <p class="sec-sub">Optional. A second opinion on the same evidence, kept read-only.</p>
+        </header>
+        <div id="claude-body" class="claude-host"></div>
+      </section>
+
+      <section class="sec" id="stacks" aria-labelledby="stacks-title">
+        <header class="sec-head">
+          <span class="sec-num" aria-hidden="true">06</span>
+          <h2 class="sec-title" id="stacks-title">Observability stacks</h2>
+          <span class="sec-meta" id="stacks-meta"></span>
+          <p class="sec-sub">How four common setups would handle this incident at your scale, and where each would strain. Every figure links to its source; anything not sourced is marked as reasoning.</p>
+        </header>
+        <div class="scale" id="scale" role="group" aria-label="Your scale">
+          <label class="field"><span>Kubernetes nodes</span><input id="scale-nodes" class="input" type="number" inputmode="numeric" min="0" step="1" value="40"></label>
+          <label class="field"><span>Logs per day <span class="hint">GB</span></span><input id="scale-logs-gb" class="input" type="number" inputmode="decimal" min="0" step="1" value="50"></label>
+          <label class="field"><span>Active metric series</span><input id="scale-series" class="input" type="number" inputmode="numeric" min="0" step="10000" value="500000"></label>
+          <label class="field"><span>Hosts with tracing <span class="hint">application performance monitoring (APM)</span></span><input id="scale-apm-hosts" class="input" type="number" inputmode="numeric" min="0" step="1" value="20"></label>
+        </div>
+        <div id="stacks-body"></div>
+      </section>    </main>
+  </div>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden tabindex="-1">
+    <div class="dr-head" id="drawer-head">
+      <div>
+        <h2 class="dr-title" id="drawer-title"></h2>
+        <p class="dr-where" id="drawer-where"></p>
+        <div class="dr-tags" id="drawer-tags"></div>
+      </div>
+      <button type="button" class="btn btn--sm dr-close" id="drawer-close">Close</button>
+    </div>
+    <div class="dr-body" id="drawer-body"></div>
+  </aside>
+
+  <div class="dialog" id="brief" role="dialog" aria-modal="true" aria-labelledby="brief-title" hidden>
+    <div class="dialog-h">
+      <h2 id="brief-title">Incident brief</h2>
+      <button type="button" class="btn btn--sm" id="brief-close">Close</button>
+    </div>
+    <div class="dialog-b">
+      <p class="dialog-msg" id="brief-msg">Markdown, ready to paste into a ticket, chat or postmortem document.</p>
+      <label class="sr-only" for="brief-text">Brief text</label>
+      <textarea id="brief-text" readonly spellcheck="false"></textarea>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn--primary" id="brief-copy">Copy brief</button>
+        <button type="button" class="btn" id="brief-save" hidden>Save as file</button>
+        <span class="dialog-msg" id="brief-status" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="backpill" id="backpill" hidden><button type="button" class="btn" id="backpill-btn">Back</button></div>
+</div>
+
+<script>/*INLINE:ALL_JS*/</script>

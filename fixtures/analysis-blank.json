@@ -1,0 +1,289 @@
+{
+  "version": 1,
+  "generatedAt": 1791244800000,
+  "inputsPresent": {
+    "logs": false,
+    "traces": false,
+    "alerts": false,
+    "helm": false
+  },
+  "stats": {
+    "logs": {
+      "lines": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "signals": 0,
+      "format": "empty",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "traces": {
+      "lines": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "signals": 0,
+      "format": "empty",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "alerts": {
+      "lines": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "signals": 0,
+      "format": "empty",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "helm": {
+      "lines": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "signals": 0,
+      "format": "empty",
+      "tzAssumed": 0,
+      "warnings": []
+    }
+  },
+  "window": {
+    "start": null,
+    "end": null,
+    "firstAnomaly": null,
+    "now": null
+  },
+  "headline": "Paste logs, traces, alerts or Helm output to start.",
+  "severity": "SEV4",
+  "clusters": [],
+  "components": [],
+  "edges": [],
+  "signals": [],
+  "changes": [],
+  "deploy": null,
+  "deploys": [],
+  "timeline": [],
+  "hypotheses": [],
+  "rollbacks": [],
+  "budget": {
+    "sloTarget": 0.999,
+    "windowDays": 30,
+    "requestsPerMin": 1200,
+    "budgetSpentBeforePct": 0,
+    "errorRatio": 0.01,
+    "errorRatioSource": "default",
+    "burnRate": 10,
+    "incidentMinutes": 0,
+    "consumedPct": 0,
+    "remainingPct": 100,
+    "minutesToExhaustion": 4320,
+    "badRequests": 0,
+    "budgetRequests": 51840,
+    "alertRows": [
+      {
+        "severity": "Page",
+        "longWindow": "1 hour",
+        "shortWindow": "5 minutes",
+        "longMinutes": 60,
+        "shortMinutes": 5,
+        "consumedPctAtFire": 2,
+        "burnThreshold": 14.4,
+        "wouldFire": false,
+        "firesAfterMinutes": null,
+        "firesInMinutes": null,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "no-evidence",
+        "stateText": "No evidence yet"
+      },
+      {
+        "severity": "Page",
+        "longWindow": "6 hours",
+        "shortWindow": "30 minutes",
+        "longMinutes": 360,
+        "shortMinutes": 30,
+        "consumedPctAtFire": 5,
+        "burnThreshold": 6,
+        "wouldFire": true,
+        "firesAfterMinutes": 216,
+        "firesInMinutes": 216,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "no-evidence",
+        "stateText": "No evidence yet"
+      },
+      {
+        "severity": "Ticket",
+        "longWindow": "3 days",
+        "shortWindow": "6 hours",
+        "longMinutes": 4320,
+        "shortMinutes": 360,
+        "consumedPctAtFire": 10,
+        "burnThreshold": 1,
+        "wouldFire": true,
+        "firesAfterMinutes": 432,
+        "firesInMinutes": 432,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "no-evidence",
+        "stateText": "No evidence yet"
+      }
+    ],
+    "hasEvidence": false,
+    "observedBurnRate": null,
+    "observedAlert": null,
+    "observedSignalId": null,
+    "projection": [
+      {
+        "label": "Mitigate now",
+        "extraMinutes": 0,
+        "consumedPct": 0,
+        "remainingPct": 100
+      },
+      {
+        "label": "In 30 minutes",
+        "extraMinutes": 30,
+        "consumedPct": 0.6944,
+        "remainingPct": 99.3056
+      },
+      {
+        "label": "In 2 hours",
+        "extraMinutes": 120,
+        "consumedPct": 2.7778,
+        "remainingPct": 97.2222
+      }
+    ],
+    "series": [
+      {
+        "t": 0,
+        "remainingPct": 100
+      },
+      {
+        "t": 5,
+        "remainingPct": 99.8843
+      },
+      {
+        "t": 10,
+        "remainingPct": 99.7685
+      },
+      {
+        "t": 15,
+        "remainingPct": 99.6528
+      },
+      {
+        "t": 20,
+        "remainingPct": 99.537
+      },
+      {
+        "t": 25,
+        "remainingPct": 99.4213
+      },
+      {
+        "t": 30,
+        "remainingPct": 99.3056
+      },
+      {
+        "t": 35,
+        "remainingPct": 99.1898
+      },
+      {
+        "t": 40,
+        "remainingPct": 99.0741
+      },
+      {
+        "t": 45,
+        "remainingPct": 98.9583
+      },
+      {
+        "t": 50,
+        "remainingPct": 98.8426
+      },
+      {
+        "t": 55,
+        "remainingPct": 98.7269
+      },
+      {
+        "t": 60,
+        "remainingPct": 98.6111
+      },
+      {
+        "t": 65,
+        "remainingPct": 98.4954
+      },
+      {
+        "t": 70,
+        "remainingPct": 98.3796
+      },
+      {
+        "t": 75,
+        "remainingPct": 98.2639
+      },
+      {
+        "t": 80,
+        "remainingPct": 98.1481
+      },
+      {
+        "t": 85,
+        "remainingPct": 98.0324
+      },
+      {
+        "t": 90,
+        "remainingPct": 97.9167
+      },
+      {
+        "t": 95,
+        "remainingPct": 97.8009
+      },
+      {
+        "t": 100,
+        "remainingPct": 97.6852
+      },
+      {
+        "t": 105,
+        "remainingPct": 97.5694
+      },
+      {
+        "t": 110,
+        "remainingPct": 97.4537
+      },
+      {
+        "t": 115,
+        "remainingPct": 97.338
+      },
+      {
+        "t": 120,
+        "remainingPct": 97.2222
+      }
+    ],
+    "notes": [
+      "No burn-rate alert, traces or request logs to measure the error ratio; assumed 1%. Set the error ratio for a real estimate.",
+      "Assumes steady traffic of 1,200 requests per minute and that the current error ratio has held since the first anomaly."
+    ],
+    "source": "https://sre.google/workbook/alerting-on-slos/"
+  },
+  "traits": {
+    "clusterCount": 0,
+    "clusters": [],
+    "multiCluster": false,
+    "failingClusterCount": 0,
+    "highCardinalityLabels": [],
+    "logLinesPerMin": 0,
+    "signalsPerMin": 0,
+    "spanCount": 0,
+    "tracedServices": 0,
+    "untracedFailingComponents": [],
+    "errorTracesMissing": false,
+    "sources": {
+      "logs": false,
+      "traces": false,
+      "alerts": false,
+      "helm": false
+    },
+    "hasDeployTime": false
+  },
+  "warnings": []
+}

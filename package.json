@@ -1,0 +1,12 @@
+{
+  "name": "sre-war-room",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/",
+    "build": "node build.mjs",
+    "qa": "node scripts/qa.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

@@ -1,0 +1,2408 @@
+{
+  "version": 1,
+  "generatedAt": 1791236040000,
+  "inputsPresent": {
+    "logs": true,
+    "traces": true,
+    "alerts": true,
+    "helm": true
+  },
+  "stats": {
+    "logs": {
+      "lines": 107,
+      "parsed": 70,
+      "skipped": 29,
+      "signals": 31,
+      "format": "kubectl --prefix JSON + kubectl --prefix + kubectl get pods",
+      "tzAssumed": 0,
+      "warnings": [
+        "29 lines were not recognised and skipped."
+      ]
+    },
+    "traces": {
+      "lines": 199,
+      "parsed": 199,
+      "skipped": 0,
+      "signals": 16,
+      "format": "OTLP JSON",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "alerts": {
+      "lines": 5,
+      "parsed": 5,
+      "skipped": 0,
+      "signals": 5,
+      "format": "alert text",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "helm": {
+      "lines": 64,
+      "parsed": 63,
+      "skipped": 0,
+      "signals": 8,
+      "format": "helm history + helm diff",
+      "tzAssumed": 3,
+      "warnings": [
+        "Helm history times have no time zone; assumed -04:00."
+      ]
+    }
+  },
+  "window": {
+    "start": 1791233141090,
+    "end": 1791236040000,
+    "firstAnomaly": 1791234041090,
+    "now": 1791236040000
+  },
+  "headline": "auth-service in prod-us-central is serving an expired certificate, so calls to it fail",
+  "severity": "SEV1",
+  "clusters": [
+    {
+      "name": "prod-us-central",
+      "componentCount": 6,
+      "failing": 2,
+      "degraded": 0,
+      "status": "failing"
+    }
+  ],
+  "components": [
+    {
+      "id": "service:prod-us-central/identity/auth-service",
+      "name": "auth-service",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-central",
+      "namespace": "identity",
+      "status": "root",
+      "impact": 0.91,
+      "userFacing": false,
+      "firstErrorTs": 1791234041093,
+      "lastErrorTs": 1791235866284,
+      "statusSince": 1791234041093,
+      "counts": {
+        "error": 11,
+        "warn": 1,
+        "info": 5
+      },
+      "kinds": [
+        "tls_error"
+      ],
+      "pods": [
+        "auth-service-7d4c9b8f5-6pz2r",
+        "auth-service-7d4c9b8f5-kq9xd"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-central/edge/api-gateway",
+      "name": "api-gateway",
+      "type": "service",
+      "role": "ingress",
+      "cluster": "prod-us-central",
+      "namespace": "edge",
+      "status": "failing",
+      "impact": 0.85,
+      "userFacing": true,
+      "firstErrorTs": 1791234041090,
+      "lastErrorTs": 1791236040000,
+      "statusSince": 1791234041090,
+      "counts": {
+        "error": 40,
+        "warn": 3,
+        "info": 6
+      },
+      "kinds": [
+        "span_error",
+        "tls_error",
+        "http_5xx",
+        "slo_burn"
+      ],
+      "pods": [
+        "api-gateway-5f7b8c9d6-2kx7m",
+        "api-gateway-5f7b8c9d6-9vq4n",
+        "api-gateway-5f7b8c9d6-hl6wr"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-central/commerce/accounts-api",
+      "name": "accounts-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-central",
+      "namespace": "commerce",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [
+        "accounts-api-5d8f7c6b9-r2wtl"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-central/commerce/catalog-api",
+      "name": "catalog-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-central",
+      "namespace": "commerce",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [
+        "catalog-api-7b6c5d9f8-nk3vp"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-central/commerce/orders-api",
+      "name": "orders-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-central",
+      "namespace": "commerce",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [
+        "orders-api-6c9d8b7f5-mxq4z"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-central/discovery/recommendations",
+      "name": "recommendations",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-central",
+      "namespace": "discovery",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 22
+      },
+      "kinds": [
+        "change"
+      ],
+      "pods": [
+        "recommendations-6b8c9d7f5-tx4lp",
+        "recommendations-6b8c9d7f5-v2qzn"
+      ],
+      "release": "recommendations",
+      "changeIds": [
+        "chg-ibos3y",
+        "chg-1e1zkrn",
+        "chg-1buawya",
+        "chg-1wj1a5n",
+        "chg-zwzra6",
+        "chg-1riyu7a",
+        "chg-1p51vgj"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "service:prod-us-central/edge/api-gateway->service:prod-us-central/identity/auth-service",
+      "from": "service:prod-us-central/edge/api-gateway",
+      "to": "service:prod-us-central/identity/auth-service",
+      "calls": 9,
+      "errors": 8,
+      "errorRate": 0.8889,
+      "p95ms": 5.7,
+      "status": "failing",
+      "firstErrorTs": 1791234041091,
+      "source": "both"
+    },
+    {
+      "id": "service:prod-us-central/edge/api-gateway->service:prod-us-central/commerce/orders-api",
+      "from": "service:prod-us-central/edge/api-gateway",
+      "to": "service:prod-us-central/commerce/orders-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 30.4,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-central/edge/api-gateway->service:prod-us-central/discovery/recommendations",
+      "from": "service:prod-us-central/edge/api-gateway",
+      "to": "service:prod-us-central/discovery/recommendations",
+      "calls": 3,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 45.4,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-central/edge/api-gateway->service:prod-us-central/commerce/accounts-api",
+      "from": "service:prod-us-central/edge/api-gateway",
+      "to": "service:prod-us-central/commerce/accounts-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 29.4,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-central/edge/api-gateway->service:prod-us-central/commerce/catalog-api",
+      "from": "service:prod-us-central/edge/api-gateway",
+      "to": "service:prod-us-central/commerce/catalog-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 59.8,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    }
+  ],
+  "signals": [
+    {
+      "id": "hlm-6",
+      "source": "helm",
+      "line": 6,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "Helm release recommendations (discovery) revision 17 → 18, chart recommendations-0.14.2 → recommendations-0.15.0, status deployed",
+      "raw": "18      \tMon Oct  5 14:02:39 2026\tdeployed  \trecommendations-0.15.0\t3.5.0      \tUpgrade complete",
+      "attrs": {
+        "isDeploy": true,
+        "release": "recommendations",
+        "revision": 18,
+        "previousRevision": 17,
+        "status": "deployed",
+        "deployedAtSource": "helm-history"
+      }
+    },
+    {
+      "id": "hlm-19",
+      "source": "helm",
+      "line": 19,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "app version 3.4.1 → 3.5.0",
+      "raw": "+     app.kubernetes.io/version: \"3.5.0\"",
+      "attrs": {
+        "changeId": "chg-ibos3y",
+        "category": "chart",
+        "risk": "low",
+        "release": "recommendations",
+        "field": "metadata.labels.app.kubernetes.io/version",
+        "before": "3.4.1",
+        "after": "3.5.0",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-21",
+      "source": "helm",
+      "line": 21,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "chart recommendations-0.14.2 → recommendations-0.15.0",
+      "raw": "+     helm.sh/chart: recommendations-0.15.0",
+      "attrs": {
+        "changeId": "chg-1e1zkrn",
+        "category": "chart",
+        "risk": "low",
+        "release": "recommendations",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "recommendations-0.14.2",
+        "after": "recommendations-0.15.0",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-30",
+      "source": "helm",
+      "line": 30,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "app version 3.4.1 → 3.5.0",
+      "raw": "+         app.kubernetes.io/version: \"3.5.0\"",
+      "attrs": {
+        "changeId": "chg-1buawya",
+        "category": "chart",
+        "risk": "low",
+        "release": "recommendations",
+        "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+        "before": "3.4.1",
+        "after": "3.5.0",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-35",
+      "source": "helm",
+      "line": 35,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "recommendations image tag 3.4.1 → 3.5.0",
+      "raw": "+           image: \"registry.example.com/discovery/recommendations:3.5.0\"",
+      "attrs": {
+        "changeId": "chg-1wj1a5n",
+        "category": "image",
+        "risk": "medium",
+        "release": "recommendations",
+        "field": "spec.template.spec.containers[recommendations].image",
+        "before": "registry.example.com/discovery/recommendations:3.4.1",
+        "after": "registry.example.com/discovery/recommendations:3.5.0",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-44",
+      "source": "helm",
+      "line": 44,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "env MODEL_VERSION: recs-2026-09-28 → recs-2026-10-04",
+      "raw": "+               value: \"recs-2026-10-04\"",
+      "attrs": {
+        "changeId": "chg-zwzra6",
+        "category": "env",
+        "risk": "medium",
+        "release": "recommendations",
+        "field": "spec.template.spec.containers[recommendations].env[MODEL_VERSION].value",
+        "before": "recs-2026-09-28",
+        "after": "recs-2026-10-04",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-45",
+      "source": "helm",
+      "line": 45,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "env RECS_DIVERSITY_WEIGHT added (0.15) to recommendations",
+      "raw": "+             - name: RECS_DIVERSITY_WEIGHT",
+      "attrs": {
+        "changeId": "chg-1riyu7a",
+        "category": "env",
+        "risk": "medium",
+        "release": "recommendations",
+        "field": "spec.template.spec.containers[recommendations].env[RECS_DIVERSITY_WEIGHT]",
+        "before": null,
+        "after": "0.15",
+        "resourceKind": "Deployment",
+        "resourceName": "recommendations",
+        "changeType": "added"
+      }
+    },
+    {
+      "id": "hlm-63",
+      "source": "helm",
+      "line": 63,
+      "ts": 1791223359000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "relatedIds": [],
+      "text": "ConfigMap recommendations-flags popular_fallback_ttl_seconds: 300 → 600",
+      "raw": "+   popular_fallback_ttl_seconds: \"600\"",
+      "attrs": {
+        "changeId": "chg-1p51vgj",
+        "category": "configmap",
+        "risk": "medium",
+        "release": "recommendations",
+        "field": "data.popular_fallback_ttl_seconds",
+        "before": "300",
+        "after": "600",
+        "resourceKind": "ConfigMap",
+        "resourceName": "recommendations-flags",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "trc-143",
+      "source": "traces",
+      "line": 143,
+      "ts": 1791234041090,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-153"
+      ],
+      "text": "api-gateway: GET /v1/orders failed — authentication service unavailable",
+      "raw": "api-gateway GET /v1/orders trace=d1669bfc898b6b234bdd68ba1193ea43 span=ea5f39a90aa19262",
+      "attrs": {
+        "traceId": "d1669bfc898b6b234bdd68ba1193ea43",
+        "spanId": "ea5f39a90aa19262",
+        "op": "GET /v1/orders",
+        "durMs": 7.8,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.6
+      }
+    },
+    {
+      "id": "trc-153",
+      "source": "traces",
+      "line": 153,
+      "ts": 1791234041091,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-143"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:41Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=d1669bfc898b6b234bdd68ba1193ea43 span=df4a2210b8c4e9b9",
+      "attrs": {
+        "traceId": "d1669bfc898b6b234bdd68ba1193ea43",
+        "spanId": "df4a2210b8c4e9b9",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 5.1,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "ea5f39a90aa19262",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:41Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-38",
+      "source": "logs",
+      "line": 38,
+      "ts": 1791234041093,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.4.31:40489\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-6pz2r/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:00:41.093Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.4.31:40489\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-6pz2r",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-5",
+      "source": "logs",
+      "line": 5,
+      "ts": 1791234041094,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:41Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:00:41.094Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:41Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"d1669bfc898b6b234bdd68ba1193ea43\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "d1669bfc898b6b234bdd68ba1193ea43",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-6",
+      "source": "logs",
+      "line": 6,
+      "ts": 1791234041096,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:00:41.096Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"status\":503,\"latency_ms\":9,\"trace_id\":\"d1669bfc898b6b234bdd68ba1193ea43\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "d1669bfc898b6b234bdd68ba1193ea43",
+        "status": 503,
+        "latencyMs": 9
+      }
+    },
+    {
+      "id": "log-7",
+      "source": "logs",
+      "line": 7,
+      "ts": 1791234044733,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:44Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:00:44.733Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:44Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"e3082596eefe72e59f5657a1485dcc96\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "e3082596eefe72e59f5657a1485dcc96",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-39",
+      "source": "logs",
+      "line": 39,
+      "ts": 1791234044736,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.5.18:58525\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-kq9xd/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:00:44.736Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.5.18:58525\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-kq9xd",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-8",
+      "source": "logs",
+      "line": 8,
+      "ts": 1791234047019,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:47Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:00:47.019Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:00:47Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/account\",\"trace_id\":\"5c7133557d9bd892787ee8902d451397\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "5c7133557d9bd892787ee8902d451397",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "alr-1",
+      "source": "alerts",
+      "line": 1,
+      "ts": 1791234052000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "SSLCertificateExpired firing — auth-service (identity)",
+      "raw": "2026-10-05T21:00:52Z FIRING critical SSLCertificateExpired service=auth-service namespace=identity cluster=prod-us-central instance=auth-service.identity.svc:9443 job=blackbox-tls",
+      "attrs": {
+        "alertname": "SSLCertificateExpired",
+        "status": "firing",
+        "alertKind": "tls_error",
+        "labels": {
+          "alertname": "SSLCertificateExpired",
+          "service": "auth-service",
+          "namespace": "identity",
+          "cluster": "prod-us-central",
+          "instance": "auth-service.identity.svc:9443",
+          "job": "blackbox-tls",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical"
+      }
+    },
+    {
+      "id": "trc-91",
+      "source": "traces",
+      "line": 91,
+      "ts": 1791234097219,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-100"
+      ],
+      "text": "api-gateway: POST /v1/cart failed — authentication service unavailable",
+      "raw": "api-gateway POST /v1/cart trace=4b988412e4ddb60184f9d831c6aaf314 span=411ea0b8a45e3168",
+      "attrs": {
+        "traceId": "4b988412e4ddb60184f9d831c6aaf314",
+        "spanId": "411ea0b8a45e3168",
+        "op": "POST /v1/cart",
+        "durMs": 7.4,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.4
+      }
+    },
+    {
+      "id": "trc-100",
+      "source": "traces",
+      "line": 100,
+      "ts": 1791234097219,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-91"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:01:37Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=4b988412e4ddb60184f9d831c6aaf314 span=19871ab00045b99a",
+      "attrs": {
+        "traceId": "4b988412e4ddb60184f9d831c6aaf314",
+        "spanId": "19871ab00045b99a",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 4.5,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "411ea0b8a45e3168",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:01:37Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-40",
+      "source": "logs",
+      "line": 40,
+      "ts": 1791234097221,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.6.22:40109\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-6pz2r/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:01:37.221Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.6.22:40109\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-6pz2r",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-13",
+      "source": "logs",
+      "line": 13,
+      "ts": 1791234097222,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:01:37Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:01:37.222Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:01:37Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"POST\",\"path\":\"/v1/cart\",\"trace_id\":\"4b988412e4ddb60184f9d831c6aaf314\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "4b988412e4ddb60184f9d831c6aaf314",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-14",
+      "source": "logs",
+      "line": 14,
+      "ts": 1791234097224,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:01:37.224Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"POST\",\"path\":\"/v1/cart\",\"status\":503,\"latency_ms\":6,\"trace_id\":\"4b988412e4ddb60184f9d831c6aaf314\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "4b988412e4ddb60184f9d831c6aaf314",
+        "status": 503,
+        "latencyMs": 6
+      }
+    },
+    {
+      "id": "log-15",
+      "source": "logs",
+      "line": 15,
+      "ts": 1791234132884,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:02:12Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-2kx7m/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:02:12.884Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:02:12Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"1a22fde8f1c2a8094d768803dbe30e2b\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-2kx7m",
+        "container": "gateway",
+        "traceId": "1a22fde8f1c2a8094d768803dbe30e2b",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-41",
+      "source": "logs",
+      "line": 41,
+      "ts": 1791234132887,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.4.31:44940\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-kq9xd/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:02:12.887Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.4.31:44940\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-kq9xd",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "trc-144",
+      "source": "traces",
+      "line": 144,
+      "ts": 1791234238641,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-154"
+      ],
+      "text": "api-gateway: GET /v1/orders failed — authentication service unavailable",
+      "raw": "api-gateway GET /v1/orders trace=4987f5d028be87a91293315f9e66304a span=911939af4ce9327f",
+      "attrs": {
+        "traceId": "4987f5d028be87a91293315f9e66304a",
+        "spanId": "911939af4ce9327f",
+        "op": "GET /v1/orders",
+        "durMs": 5.6,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.6
+      }
+    },
+    {
+      "id": "trc-154",
+      "source": "traces",
+      "line": 154,
+      "ts": 1791234238642,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-144"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:03:58Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=4987f5d028be87a91293315f9e66304a span=89d43691c95df458",
+      "attrs": {
+        "traceId": "4987f5d028be87a91293315f9e66304a",
+        "spanId": "89d43691c95df458",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 3,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "911939af4ce9327f",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:03:58Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-42",
+      "source": "logs",
+      "line": 42,
+      "ts": 1791234238643,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.5.18:51923\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-6pz2r/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:03:58.643Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.5.18:51923\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-6pz2r",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-16",
+      "source": "logs",
+      "line": 16,
+      "ts": 1791234238644,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:03:58Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:03:58.644Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:03:58Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"4987f5d028be87a91293315f9e66304a\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "4987f5d028be87a91293315f9e66304a",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-17",
+      "source": "logs",
+      "line": 17,
+      "ts": 1791234238646,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:03:58.646Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"status\":503,\"latency_ms\":4,\"trace_id\":\"4987f5d028be87a91293315f9e66304a\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "4987f5d028be87a91293315f9e66304a",
+        "status": 503,
+        "latencyMs": 4
+      }
+    },
+    {
+      "id": "alr-3",
+      "source": "alerts",
+      "line": 3,
+      "ts": 1791234252000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "slo_burn",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "ApiErrorBudgetBurn firing — api-gateway (edge) (burn rate 47.9×)",
+      "raw": "2026-10-05T21:04:12Z FIRING critical ApiErrorBudgetBurn service=api-gateway namespace=edge cluster=prod-us-central slo=api-availability burn_rate=47.9 error_ratio=0.0479 long_window=1h short_window=5m",
+      "attrs": {
+        "alertname": "ApiErrorBudgetBurn",
+        "status": "firing",
+        "alertKind": "slo_burn",
+        "labels": {
+          "alertname": "ApiErrorBudgetBurn",
+          "service": "api-gateway",
+          "namespace": "edge",
+          "cluster": "prod-us-central",
+          "slo": "api-availability",
+          "burn_rate": "47.9",
+          "error_ratio": "0.0479",
+          "long_window": "1h",
+          "short_window": "5m",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical",
+        "burnRate": 47.9,
+        "errorRatio": 0.0479,
+        "window": "1h",
+        "longWindowMinutes": 60
+      }
+    },
+    {
+      "id": "log-18",
+      "source": "logs",
+      "line": 18,
+      "ts": 1791234331402,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:05:31Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:05:31.402Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:05:31Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/account\",\"trace_id\":\"ccd9627fa2053909ae3b9b51ea25f7eb\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "ccd9627fa2053909ae3b9b51ea25f7eb",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "alr-4",
+      "source": "alerts",
+      "line": 4,
+      "ts": 1791234400000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "AuthServiceTLSHandshakeErrors firing — auth-service (identity)",
+      "raw": "2026-10-05T21:06:40Z FIRING warning AuthServiceTLSHandshakeErrors service=auth-service namespace=identity cluster=prod-us-central",
+      "attrs": {
+        "alertname": "AuthServiceTLSHandshakeErrors",
+        "status": "firing",
+        "alertKind": "tls_error",
+        "labels": {
+          "alertname": "AuthServiceTLSHandshakeErrors",
+          "service": "auth-service",
+          "namespace": "identity",
+          "cluster": "prod-us-central",
+          "severity": "warning"
+        },
+        "format": "alert text",
+        "severityLabel": "warning"
+      }
+    },
+    {
+      "id": "trc-92",
+      "source": "traces",
+      "line": 92,
+      "ts": 1791234584905,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-101"
+      ],
+      "text": "api-gateway: POST /v1/checkout failed — authentication service unavailable",
+      "raw": "api-gateway POST /v1/checkout trace=17063e6674ead45c461328a1b6c50f16 span=69af60a7a5eacda8",
+      "attrs": {
+        "traceId": "17063e6674ead45c461328a1b6c50f16",
+        "spanId": "69af60a7a5eacda8",
+        "op": "POST /v1/checkout",
+        "durMs": 8.1,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.7
+      }
+    },
+    {
+      "id": "trc-101",
+      "source": "traces",
+      "line": 101,
+      "ts": 1791234584906,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-92"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:09:44Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=17063e6674ead45c461328a1b6c50f16 span=875abda29db0687e",
+      "attrs": {
+        "traceId": "17063e6674ead45c461328a1b6c50f16",
+        "spanId": "875abda29db0687e",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 5.7,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "69af60a7a5eacda8",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:09:44Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-43",
+      "source": "logs",
+      "line": 43,
+      "ts": 1791234584908,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.6.22:59270\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-kq9xd/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:09:44.908Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.6.22:59270\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-kq9xd",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-20",
+      "source": "logs",
+      "line": 20,
+      "ts": 1791234584909,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:09:44Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:09:44.909Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:09:44Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"POST\",\"path\":\"/v1/checkout\",\"trace_id\":\"17063e6674ead45c461328a1b6c50f16\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "17063e6674ead45c461328a1b6c50f16",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-21",
+      "source": "logs",
+      "line": 21,
+      "ts": 1791234584911,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:09:44.911Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"POST\",\"path\":\"/v1/checkout\",\"status\":503,\"latency_ms\":9,\"trace_id\":\"17063e6674ead45c461328a1b6c50f16\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "17063e6674ead45c461328a1b6c50f16",
+        "status": 503,
+        "latencyMs": 9
+      }
+    },
+    {
+      "id": "alr-5",
+      "source": "alerts",
+      "line": 5,
+      "ts": 1791234631000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "CertManagerCertNotReady firing — auth-service (identity)",
+      "raw": "ALERT CertManagerCertNotReady{cluster=\"prod-us-central\",condition=\"False\",exported_namespace=\"identity\",name=\"auth-service-mtls\",namespace=\"cert-manager\",severity=\"critical\"} firing since 2026-10-05T21:10:31Z",
+      "attrs": {
+        "alertname": "CertManagerCertNotReady",
+        "status": "firing",
+        "alertKind": "tls_error",
+        "labels": {
+          "alertname": "CertManagerCertNotReady",
+          "cluster": "prod-us-central",
+          "condition": "False",
+          "exported_namespace": "identity",
+          "name": "auth-service-mtls",
+          "namespace": "cert-manager",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical"
+      }
+    },
+    {
+      "id": "log-22",
+      "source": "logs",
+      "line": 22,
+      "ts": 1791234729551,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:12:09Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:12:09.551Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:12:09Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"7f40bd3fc49639663a14d5c302871945\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "7f40bd3fc49639663a14d5c302871945",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "trc-145",
+      "source": "traces",
+      "line": 145,
+      "ts": 1791234842336,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-155"
+      ],
+      "text": "api-gateway: GET /v1/account failed — authentication service unavailable",
+      "raw": "api-gateway GET /v1/account trace=1ade366119f9ba1548b67e5d9e2e9a9f span=f41eb457fadd88ae",
+      "attrs": {
+        "traceId": "1ade366119f9ba1548b67e5d9e2e9a9f",
+        "spanId": "f41eb457fadd88ae",
+        "op": "GET /v1/account",
+        "durMs": 8,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 8
+      }
+    },
+    {
+      "id": "trc-155",
+      "source": "traces",
+      "line": 155,
+      "ts": 1791234842338,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-145"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:14:02Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=1ade366119f9ba1548b67e5d9e2e9a9f span=ce2e5e49556d57e9",
+      "attrs": {
+        "traceId": "1ade366119f9ba1548b67e5d9e2e9a9f",
+        "spanId": "ce2e5e49556d57e9",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 4.6,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "f41eb457fadd88ae",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:14:02Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-44",
+      "source": "logs",
+      "line": 44,
+      "ts": 1791234842339,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.4.31:44570\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-6pz2r/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:14:02.339Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.4.31:44570\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-6pz2r",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-23",
+      "source": "logs",
+      "line": 23,
+      "ts": 1791234842340,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:14:02Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:14:02.340Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:14:02Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/account\",\"trace_id\":\"1ade366119f9ba1548b67e5d9e2e9a9f\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "1ade366119f9ba1548b67e5d9e2e9a9f",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-24",
+      "source": "logs",
+      "line": 24,
+      "ts": 1791234842342,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-hl6wr/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:14:02.342Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"GET\",\"path\":\"/v1/account\",\"status\":503,\"latency_ms\":5,\"trace_id\":\"1ade366119f9ba1548b67e5d9e2e9a9f\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-hl6wr",
+        "container": "gateway",
+        "traceId": "1ade366119f9ba1548b67e5d9e2e9a9f",
+        "status": 503,
+        "latencyMs": 5
+      }
+    },
+    {
+      "id": "trc-93",
+      "source": "traces",
+      "line": 93,
+      "ts": 1791235335008,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-102"
+      ],
+      "text": "api-gateway: GET /v1/orders failed — authentication service unavailable",
+      "raw": "api-gateway GET /v1/orders trace=eb763f7e7ec6242863cd872e6ed92a78 span=313782c264979454",
+      "attrs": {
+        "traceId": "eb763f7e7ec6242863cd872e6ed92a78",
+        "spanId": "313782c264979454",
+        "op": "GET /v1/orders",
+        "durMs": 7.5,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.6
+      }
+    },
+    {
+      "id": "trc-102",
+      "source": "traces",
+      "line": 102,
+      "ts": 1791235335009,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-93"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:22:15Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=eb763f7e7ec6242863cd872e6ed92a78 span=56be113b806042b2",
+      "attrs": {
+        "traceId": "eb763f7e7ec6242863cd872e6ed92a78",
+        "spanId": "56be113b806042b2",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 4.4,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "313782c264979454",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:22:15Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-46",
+      "source": "logs",
+      "line": 46,
+      "ts": 1791235335011,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.5.18:60007\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-kq9xd/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:22:15.011Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.5.18:60007\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-kq9xd",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-26",
+      "source": "logs",
+      "line": 26,
+      "ts": 1791235335012,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:22:15Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:22:15.012Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:22:15Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"trace_id\":\"eb763f7e7ec6242863cd872e6ed92a78\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "eb763f7e7ec6242863cd872e6ed92a78",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-27",
+      "source": "logs",
+      "line": 27,
+      "ts": 1791235335014,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:22:15.014Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"GET\",\"path\":\"/v1/orders\",\"status\":503,\"latency_ms\":6,\"trace_id\":\"eb763f7e7ec6242863cd872e6ed92a78\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "eb763f7e7ec6242863cd872e6ed92a78",
+        "status": 503,
+        "latencyMs": 6
+      }
+    },
+    {
+      "id": "log-28",
+      "source": "logs",
+      "line": 28,
+      "ts": 1791235540163,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:25:40Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-2kx7m/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:25:40.163Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:25:40Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/account\",\"trace_id\":\"7c4df85f9cef278dde1d37eea6ae9407\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-2kx7m",
+        "container": "gateway",
+        "traceId": "7c4df85f9cef278dde1d37eea6ae9407",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "trc-25",
+      "source": "traces",
+      "line": 25,
+      "ts": 1791235866281,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-32"
+      ],
+      "text": "api-gateway: POST /v1/checkout failed — authentication service unavailable",
+      "raw": "api-gateway POST /v1/checkout trace=412288b7a73bf86b9a6fd5f43199e16d span=97ff424ab0584b7c",
+      "attrs": {
+        "traceId": "412288b7a73bf86b9a6fd5f43199e16d",
+        "spanId": "97ff424ab0584b7c",
+        "op": "POST /v1/checkout",
+        "durMs": 7.3,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 7.7
+      }
+    },
+    {
+      "id": "trc-32",
+      "source": "traces",
+      "line": 32,
+      "ts": 1791235866282,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-25"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:31:06Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=412288b7a73bf86b9a6fd5f43199e16d span=3e19fa800c1c861d",
+      "attrs": {
+        "traceId": "412288b7a73bf86b9a6fd5f43199e16d",
+        "spanId": "3e19fa800c1c861d",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 3.9,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "97ff424ab0584b7c",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:31:06Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-47",
+      "source": "logs",
+      "line": 47,
+      "ts": 1791235866284,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "relatedIds": [],
+      "text": "[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \"10.12.6.22:54255\": remote error: tls: bad certificate",
+      "raw": "[pod/auth-service-7d4c9b8f5-6pz2r/auth-service] {\"level\":\"warn\",\"ts\":\"2026-10-05T21:31:06.284Z\",\"logger\":\"grpc\",\"msg\":\"[core] [Server #1]grpc: Server.Serve failed to complete security handshake from \\\"10.12.6.22:54255\\\": remote error: tls: bad certificate\",\"system\":\"grpc\",\"grpc_log\":true}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "auth-service-7d4c9b8f5-6pz2r",
+        "container": "auth-service"
+      }
+    },
+    {
+      "id": "log-30",
+      "source": "logs",
+      "line": 30,
+      "ts": 1791235866285,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:31:06Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-2kx7m/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:31:06.285Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:31:06Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"POST\",\"path\":\"/v1/checkout\",\"trace_id\":\"412288b7a73bf86b9a6fd5f43199e16d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-2kx7m",
+        "container": "gateway",
+        "traceId": "412288b7a73bf86b9a6fd5f43199e16d",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-31",
+      "source": "logs",
+      "line": 31,
+      "ts": 1791235866287,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-2kx7m/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:31:06.287Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"POST\",\"path\":\"/v1/checkout\",\"status\":503,\"latency_ms\":5,\"trace_id\":\"412288b7a73bf86b9a6fd5f43199e16d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-2kx7m",
+        "container": "gateway",
+        "traceId": "412288b7a73bf86b9a6fd5f43199e16d",
+        "status": 503,
+        "latencyMs": 5
+      }
+    },
+    {
+      "id": "trc-94",
+      "source": "traces",
+      "line": 94,
+      "ts": 1791235992740,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-103"
+      ],
+      "text": "api-gateway: GET /v1/account failed — authentication service unavailable",
+      "raw": "api-gateway GET /v1/account trace=c2dd97bd4fcd19a6b5bd7584ade40d0d span=b57c54c14b38352f",
+      "attrs": {
+        "traceId": "c2dd97bd4fcd19a6b5bd7584ade40d0d",
+        "spanId": "b57c54c14b38352f",
+        "op": "GET /v1/account",
+        "durMs": 6.4,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "authentication service unavailable",
+        "medianMs": 8
+      }
+    },
+    {
+      "id": "trc-103",
+      "source": "traces",
+      "line": 103,
+      "ts": 1791235992741,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [
+        "trc-94"
+      ],
+      "text": "api-gateway: auth.v1.TokenService/Introspect failed — connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:33:12Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "api-gateway auth.v1.TokenService/Introspect trace=c2dd97bd4fcd19a6b5bd7584ade40d0d span=cc54e4a160e8dc6b",
+      "attrs": {
+        "traceId": "c2dd97bd4fcd19a6b5bd7584ade40d0d",
+        "spanId": "cc54e4a160e8dc6b",
+        "op": "auth.v1.TokenService/Introspect",
+        "durMs": 2.8,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "b57c54c14b38352f",
+        "statusMessage": "connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:33:12Z is after 2026-10-05T21:00:00Z\"",
+        "peer": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service",
+        "medianMs": 4.5,
+        "causeKind": "tls_error"
+      }
+    },
+    {
+      "id": "log-32",
+      "source": "logs",
+      "line": 32,
+      "ts": 1791235992744,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "tls_error",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "token introspection failed: rpc error: code = Unavailable desc = connection error: desc = \"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:33:12Z is after 2026-10-05T21:00:00Z\"",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"error\",\"ts\":\"2026-10-05T21:33:12.744Z\",\"caller\":\"authz/introspect.go:142\",\"msg\":\"token introspection failed\",\"upstream\":\"auth-service.identity.svc:9443\",\"error\":\"rpc error: code = Unavailable desc = connection error: desc = \\\"transport: authentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: current time 2026-10-05T21:33:12Z is after 2026-10-05T21:00:00Z\\\"\",\"method\":\"GET\",\"path\":\"/v1/account\",\"trace_id\":\"c2dd97bd4fcd19a6b5bd7584ade40d0d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "error",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "c2dd97bd4fcd19a6b5bd7584ade40d0d",
+        "targetHost": "auth-service.identity.svc:9443",
+        "target": "auth-service",
+        "targetId": "service:prod-us-central/identity/auth-service"
+      }
+    },
+    {
+      "id": "log-33",
+      "source": "logs",
+      "line": 33,
+      "ts": 1791235992746,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "request (HTTP 503)",
+      "raw": "[pod/api-gateway-5f7b8c9d6-9vq4n/gateway] {\"level\":\"info\",\"ts\":\"2026-10-05T21:33:12.746Z\",\"caller\":\"middleware/access.go:57\",\"msg\":\"request\",\"method\":\"GET\",\"path\":\"/v1/account\",\"status\":503,\"latency_ms\":8,\"trace_id\":\"c2dd97bd4fcd19a6b5bd7584ade40d0d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "info",
+        "pod": "api-gateway-5f7b8c9d6-9vq4n",
+        "container": "gateway",
+        "traceId": "c2dd97bd4fcd19a6b5bd7584ade40d0d",
+        "status": 503,
+        "latencyMs": 8
+      }
+    },
+    {
+      "id": "alr-2",
+      "source": "alerts",
+      "line": 2,
+      "ts": 1791236040000,
+      "tsInferred": true,
+      "severity": "critical",
+      "kind": "http_5xx",
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "relatedIds": [],
+      "text": "ApiGatewayHighErrorRate firing — api-gateway (default)",
+      "raw": "[FIRING:1] ApiGatewayHighErrorRate (api-gateway prod-us-central edge critical)",
+      "attrs": {
+        "alertname": "ApiGatewayHighErrorRate",
+        "status": "firing",
+        "alertKind": "http_5xx",
+        "labels": {
+          "alertname": "ApiGatewayHighErrorRate",
+          "cluster": "prod-us-central",
+          "severity": "critical",
+          "service": "api-gateway"
+        },
+        "format": "alert text",
+        "severityLabel": "critical",
+        "relative": true,
+        "ageMs": 0,
+        "tsUnknown": true
+      }
+    }
+  ],
+  "changes": [
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "metadata.labels.app.kubernetes.io/version",
+      "before": "3.4.1",
+      "after": "3.5.0",
+      "changeType": "changed",
+      "line": 19,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 3.4.1 → 3.5.0",
+      "id": "chg-ibos3y",
+      "raw": "+     app.kubernetes.io/version: \"3.5.0\"",
+      "signalId": "hlm-19"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "recommendations-0.14.2",
+      "after": "recommendations-0.15.0",
+      "changeType": "changed",
+      "line": 21,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart recommendations-0.14.2 → recommendations-0.15.0",
+      "id": "chg-1e1zkrn",
+      "raw": "+     helm.sh/chart: recommendations-0.15.0",
+      "signalId": "hlm-21"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+      "before": "3.4.1",
+      "after": "3.5.0",
+      "changeType": "changed",
+      "line": 30,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 3.4.1 → 3.5.0",
+      "id": "chg-1buawya",
+      "raw": "+         app.kubernetes.io/version: \"3.5.0\"",
+      "signalId": "hlm-30"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "spec.template.spec.containers[recommendations].image",
+      "before": "registry.example.com/discovery/recommendations:3.4.1",
+      "after": "registry.example.com/discovery/recommendations:3.5.0",
+      "changeType": "changed",
+      "line": 35,
+      "category": "image",
+      "risk": "medium",
+      "summary": "recommendations image tag 3.4.1 → 3.5.0",
+      "id": "chg-1wj1a5n",
+      "raw": "+           image: \"registry.example.com/discovery/recommendations:3.5.0\"",
+      "signalId": "hlm-35"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "spec.template.spec.containers[recommendations].env[MODEL_VERSION].value",
+      "before": "recs-2026-09-28",
+      "after": "recs-2026-10-04",
+      "changeType": "changed",
+      "line": 44,
+      "category": "env",
+      "risk": "medium",
+      "summary": "env MODEL_VERSION: recs-2026-09-28 → recs-2026-10-04",
+      "id": "chg-zwzra6",
+      "raw": "+               value: \"recs-2026-10-04\"",
+      "signalId": "hlm-44"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "Deployment",
+      "resourceName": "recommendations",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "spec.template.spec.containers[recommendations].env[RECS_DIVERSITY_WEIGHT]",
+      "before": null,
+      "after": "0.15",
+      "changeType": "added",
+      "line": 45,
+      "category": "env",
+      "risk": "medium",
+      "summary": "env RECS_DIVERSITY_WEIGHT added (0.15) to recommendations",
+      "id": "chg-1riyu7a",
+      "raw": "+             - name: RECS_DIVERSITY_WEIGHT",
+      "signalId": "hlm-45"
+    },
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "resourceKind": "ConfigMap",
+      "resourceName": "recommendations-flags",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "cluster": "prod-us-central",
+      "field": "data.popular_fallback_ttl_seconds",
+      "before": "300",
+      "after": "600",
+      "changeType": "changed",
+      "line": 63,
+      "category": "configmap",
+      "risk": "medium",
+      "summary": "ConfigMap recommendations-flags popular_fallback_ttl_seconds: 300 → 600",
+      "id": "chg-1p51vgj",
+      "raw": "+   popular_fallback_ttl_seconds: \"600\"",
+      "signalId": "hlm-63"
+    }
+  ],
+  "deploy": {
+    "release": "recommendations",
+    "namespace": "discovery",
+    "revision": 18,
+    "previousRevision": 17,
+    "chartFrom": "recommendations-0.14.2",
+    "chartTo": "recommendations-0.15.0",
+    "appFrom": "3.4.1",
+    "appTo": "3.5.0",
+    "deployedAt": 1791223359000,
+    "deployedAtSource": "helm-history",
+    "tsInferred": true,
+    "cluster": "prod-us-central",
+    "clusterKnown": true,
+    "status": "deployed",
+    "description": "Upgrade complete",
+    "line": 6,
+    "changeCount": 7,
+    "componentId": "service:prod-us-central/discovery/recommendations",
+    "signalId": "hlm-6"
+  },
+  "deploys": [
+    {
+      "release": "recommendations",
+      "namespace": "discovery",
+      "revision": 18,
+      "previousRevision": 17,
+      "chartFrom": "recommendations-0.14.2",
+      "chartTo": "recommendations-0.15.0",
+      "appFrom": "3.4.1",
+      "appTo": "3.5.0",
+      "deployedAt": 1791223359000,
+      "deployedAtSource": "helm-history",
+      "tsInferred": true,
+      "cluster": "prod-us-central",
+      "clusterKnown": true,
+      "status": "deployed",
+      "description": "Upgrade complete",
+      "line": 6,
+      "changeCount": 7,
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "signalId": "hlm-6"
+    }
+  ],
+  "timeline": [
+    {
+      "ts": 1791223359000,
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "kind": "change",
+      "severity": "info",
+      "signalId": "hlm-6"
+    },
+    {
+      "ts": 1791234041090,
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-143"
+    },
+    {
+      "ts": 1791234041093,
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "kind": "tls_error",
+      "severity": "error",
+      "signalId": "log-38"
+    },
+    {
+      "ts": 1791234041094,
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "kind": "tls_error",
+      "severity": "error",
+      "signalId": "log-5"
+    },
+    {
+      "ts": 1791234041096,
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "kind": "http_5xx",
+      "severity": "error",
+      "signalId": "log-6"
+    },
+    {
+      "ts": 1791234252000,
+      "componentId": "service:prod-us-central/edge/api-gateway",
+      "kind": "slo_burn",
+      "severity": "critical",
+      "signalId": "alr-3"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-mtler1",
+      "title": "Expired certificate on auth-service",
+      "category": "tls-cert",
+      "componentId": "service:prod-us-central/identity/auth-service",
+      "confidence": 0.95,
+      "summary": "auth-service in prod-us-central presents a certificate its callers reject: it expired at 21:00:00 UTC. Every Transport Layer Security (TLS) connection to it fails, so callers return errors. cert-manager could not renew it because the issuer refused the request.",
+      "evidence": [
+        {
+          "signalId": "log-5",
+          "changeId": null,
+          "text": "31 TLS errors involve auth-service (reported by api-gateway, auth-service): \"…hentication handshake failed: tls: failed to verify certificate: x509: certificate has expired or is not yet valid: cu…\".",
+          "weight": 0.45,
+          "source": "logs",
+          "line": 5
+        },
+        {
+          "signalId": "alr-1",
+          "changeId": null,
+          "text": "Alert SSLCertificateExpired is firing for auth-service.",
+          "weight": 0.3,
+          "source": "alerts",
+          "line": 1
+        },
+        {
+          "signalId": null,
+          "changeId": null,
+          "text": "Certificate auth-service-mtls expired at 21:00:00 UTC (Not After).",
+          "weight": 0.3,
+          "source": "logs",
+          "line": 73
+        },
+        {
+          "signalId": "alr-4",
+          "changeId": null,
+          "text": "Alert AuthServiceTLSHandshakeErrors is firing for auth-service.",
+          "weight": 0.15,
+          "source": "alerts",
+          "line": 4
+        },
+        {
+          "signalId": null,
+          "changeId": null,
+          "text": "Renewal has been failing (27 failed attempts): \"Vault failed to sign certificate: Code: 403. Errors: permission denied\".",
+          "weight": 0.15,
+          "source": "logs",
+          "line": 66
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-us-central -n identity get certificate,certificaterequest",
+          "why": "Is the cert-manager Certificate Ready, and are renewal requests failing."
+        },
+        {
+          "cmd": "kubectl --context prod-us-central -n identity describe certificate auth-service-mtls",
+          "why": "Not After, Renewal Time, failed issuance attempts and the last error."
+        },
+        {
+          "cmd": "cmctl status certificate auth-service-mtls -n identity --context prod-us-central",
+          "why": "cert-manager's own summary of the certificate, its request and issuer."
+        },
+        {
+          "cmd": "kubectl --context prod-us-central -n identity get secret auth-service-mtls -o jsonpath='{.data.tls\\.crt}' | base64 -d | openssl x509 -noout -enddate -issuer",
+          "why": "The expiry date of the certificate actually being served (the Secret named in spec.secretName)."
+        },
+        {
+          "cmd": "kubectl --context prod-us-central -n cert-manager logs deploy/cert-manager --since=1h | grep auth-service-mtls",
+          "why": "Why renewal failed (issuer errors such as a Vault 403)."
+        },
+        {
+          "cmd": "certmanager_certificate_expiration_timestamp_seconds{name=\"auth-service-mtls\"} - time()",
+          "why": "Prometheus query: seconds until (negative: since) expiry."
+        }
+      ],
+      "rule": "certificate-expired",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-2h8bqv",
+      "title": "Helm release recommendations r18 broke recommendations",
+      "category": "bad-deploy",
+      "componentId": "service:prod-us-central/discovery/recommendations",
+      "confidence": 0.116,
+      "summary": "Helm release recommendations r17 → r18 changed 7 fields (0 high-risk changes); recommendations itself looks healthy.",
+      "evidence": [
+        {
+          "signalId": "hlm-6",
+          "changeId": null,
+          "text": "Helm release recommendations r17 → r18 rolled out at 18:02:39 UTC, chart recommendations-0.14.2 → recommendations-0.15.0.",
+          "weight": 0.08,
+          "source": "helm",
+          "line": 6
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1wj1a5n",
+          "text": "Also changed: recommendations image tag 3.4.1 → 3.5.0.",
+          "weight": 0.02,
+          "source": "helm",
+          "line": 35
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-zwzra6",
+          "text": "Also changed: env MODEL_VERSION: recs-2026-09-28 → recs-2026-10-04.",
+          "weight": 0.02,
+          "source": "helm",
+          "line": 44
+        }
+      ],
+      "against": [
+        {
+          "text": "recommendations shows no errors in the pasted evidence, and nothing that calls it is failing."
+        },
+        {
+          "text": "The first errors came 2 h 58 min after this deploy; a bad release usually fails within minutes."
+        }
+      ],
+      "nextChecks": [
+        {
+          "cmd": "helm history recommendations -n discovery --kube-context prod-us-central --max 5",
+          "why": "Which revision is live and when each one was deployed."
+        },
+        {
+          "cmd": "helm diff revision recommendations 17 18 -n discovery --kube-context prod-us-central",
+          "why": "Every manifest change between the last good and the current revision (helm-diff plugin)."
+        },
+        {
+          "cmd": "helm get values recommendations -n discovery --kube-context prod-us-central --revision 17",
+          "why": "The values the last good revision used."
+        },
+        {
+          "cmd": "kubectl --context prod-us-central -n discovery rollout history deployment/recommendations",
+          "why": "ReplicaSet revisions of the workload and when they rolled out."
+        }
+      ],
+      "rule": "deploy-correlation",
+      "relatedComponentIds": []
+    }
+  ],
+  "rollbacks": [
+    {
+      "id": "rb-1hno0fh",
+      "title": "Renew certificate auth-service-mtls and restart auth-service",
+      "kind": "roll-forward",
+      "commands": [
+        "cmctl renew auth-service-mtls -n identity --context prod-us-central",
+        "kubectl --context prod-us-central -n identity wait certificate/auth-service-mtls --for=condition=Ready --timeout=5m",
+        "kubectl --context prod-us-central -n identity rollout restart deployment/auth-service"
+      ],
+      "etaMinutes": 30,
+      "risk": "medium",
+      "recommended": true,
+      "fixes": [
+        "hyp-mtler1"
+      ],
+      "caveats": [
+        "cert-manager has failed to renew this certificate 27 times: \"Vault failed to sign certificate: Code: 403. Errors: permission denied\". Fix the issuer first (for a Vault issuer, the role or policy it signs with), or the renewal fails again.",
+        "Workloads that load the certificate only at start-up need the restart; mounted Secrets update after the kubelet sync (often a minute or more).",
+        "Rolling back a Helm release does not help: none of the pasted Helm changes touched this certificate."
+      ],
+      "prerequisites": [
+        "cmctl (the cert-manager command-line tool) is installed.",
+        "The issuer vault-internal-ca can sign again."
+      ],
+      "budgetSavedPct": 9.979
+    },
+    {
+      "id": "rb-ejlx1c",
+      "title": "Roll back Helm release recommendations to r17 in prod-us-central",
+      "kind": "helm-rollback",
+      "commands": [
+        "helm rollback recommendations 17 -n discovery --kube-context prod-us-central --wait --timeout 5m",
+        "kubectl --context prod-us-central -n discovery rollout status deployment/recommendations --timeout=5m"
+      ],
+      "etaMinutes": 6,
+      "risk": "low",
+      "recommended": false,
+      "fixes": [
+        "hyp-2h8bqv"
+      ],
+      "caveats": [
+        "Helm records the rollback as a new revision (r19) with the contents of r17; r18 stays in the history.",
+        "It reverts all of r18's template changes, not only the suspect one: recommendations image tag 3.4.1 → 3.5.0; env MODEL_VERSION: recs-2026-09-28 → recs-2026-10-04; env RECS_DIVERSITY_WEIGHT added (0.15) to recommendations; ConfigMap recommendations-flags popular_fallback_ttl_seconds: 300 → 600.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease recommendations -n discovery), or it will re-apply r18 within minutes."
+      ],
+      "prerequisites": [
+        "Access to kube-context prod-us-central with rights to change namespace discovery.",
+        "Check that r17 ran without problems before r18: helm history recommendations -n discovery --kube-context prod-us-central --max 5"
+      ],
+      "budgetSavedPct": null
+    }
+  ],
+  "budget": {
+    "sloTarget": 0.999,
+    "windowDays": 30,
+    "requestsPerMin": 3400,
+    "budgetSpentBeforePct": 12,
+    "errorRatio": 0.0479,
+    "errorRatioSource": "alert",
+    "burnRate": 47.9,
+    "incidentMinutes": 33.32,
+    "consumedPct": 3.694,
+    "remainingPct": 84.306,
+    "minutesToExhaustion": 760.34,
+    "badRequests": 5426,
+    "budgetRequests": 146880,
+    "alertRows": [
+      {
+        "severity": "Page",
+        "longWindow": "1 hour",
+        "shortWindow": "5 minutes",
+        "longMinutes": 60,
+        "shortMinutes": 5,
+        "consumedPctAtFire": 2,
+        "burnThreshold": 14.4,
+        "wouldFire": true,
+        "firesAfterMinutes": 18.04,
+        "firesInMinutes": 0,
+        "modelFiring": true,
+        "observedFiring": true,
+        "firing": true,
+        "firingSource": "alerts",
+        "state": "firing-observed",
+        "stateText": "Firing (in your alerts)"
+      },
+      {
+        "severity": "Page",
+        "longWindow": "6 hours",
+        "shortWindow": "30 minutes",
+        "longMinutes": 360,
+        "shortMinutes": 30,
+        "consumedPctAtFire": 5,
+        "burnThreshold": 6,
+        "wouldFire": true,
+        "firesAfterMinutes": 45.09,
+        "firesInMinutes": 11.77,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 12 min at this burn"
+      },
+      {
+        "severity": "Ticket",
+        "longWindow": "3 days",
+        "shortWindow": "6 hours",
+        "longMinutes": 4320,
+        "shortMinutes": 360,
+        "consumedPctAtFire": 10,
+        "burnThreshold": 1,
+        "wouldFire": true,
+        "firesAfterMinutes": 90.19,
+        "firesInMinutes": 56.87,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 57 min at this burn"
+      }
+    ],
+    "hasEvidence": true,
+    "observedBurnRate": 47.9,
+    "observedAlert": "ApiErrorBudgetBurn",
+    "observedSignalId": "alr-3",
+    "projection": [
+      {
+        "label": "Mitigate now",
+        "extraMinutes": 0,
+        "consumedPct": 3.694,
+        "remainingPct": 84.306
+      },
+      {
+        "label": "In 30 minutes",
+        "extraMinutes": 30,
+        "consumedPct": 7.0204,
+        "remainingPct": 80.9796
+      },
+      {
+        "label": "In 2 hours",
+        "extraMinutes": 120,
+        "consumedPct": 16.9995,
+        "remainingPct": 71.0005
+      }
+    ],
+    "series": [
+      {
+        "t": 0,
+        "remainingPct": 88
+      },
+      {
+        "t": 6.39,
+        "remainingPct": 87.2917
+      },
+      {
+        "t": 12.78,
+        "remainingPct": 86.5834
+      },
+      {
+        "t": 19.16,
+        "remainingPct": 85.8751
+      },
+      {
+        "t": 25.55,
+        "remainingPct": 85.1667
+      },
+      {
+        "t": 31.94,
+        "remainingPct": 84.4584
+      },
+      {
+        "t": 38.33,
+        "remainingPct": 83.7501
+      },
+      {
+        "t": 44.72,
+        "remainingPct": 83.0418
+      },
+      {
+        "t": 51.11,
+        "remainingPct": 82.3335
+      },
+      {
+        "t": 57.49,
+        "remainingPct": 81.6252
+      },
+      {
+        "t": 63.88,
+        "remainingPct": 80.9169
+      },
+      {
+        "t": 70.27,
+        "remainingPct": 80.2085
+      },
+      {
+        "t": 76.66,
+        "remainingPct": 79.5002
+      },
+      {
+        "t": 83.05,
+        "remainingPct": 78.7919
+      },
+      {
+        "t": 89.43,
+        "remainingPct": 78.0836
+      },
+      {
+        "t": 95.82,
+        "remainingPct": 77.3753
+      },
+      {
+        "t": 102.21,
+        "remainingPct": 76.667
+      },
+      {
+        "t": 108.6,
+        "remainingPct": 75.9587
+      },
+      {
+        "t": 114.99,
+        "remainingPct": 75.2504
+      },
+      {
+        "t": 121.37,
+        "remainingPct": 74.542
+      },
+      {
+        "t": 127.76,
+        "remainingPct": 73.8337
+      },
+      {
+        "t": 134.15,
+        "remainingPct": 73.1254
+      },
+      {
+        "t": 140.54,
+        "remainingPct": 72.4171
+      },
+      {
+        "t": 146.93,
+        "remainingPct": 71.7088
+      },
+      {
+        "t": 153.32,
+        "remainingPct": 71.0005
+      }
+    ],
+    "notes": [
+      "Error ratio from the burn-rate alert ApiErrorBudgetBurn.",
+      "Assumes steady traffic of 3,400 requests per minute and that the current error ratio has held since the first anomaly."
+    ],
+    "source": "https://sre.google/workbook/alerting-on-slos/"
+  },
+  "traits": {
+    "clusterCount": 1,
+    "clusters": [
+      "prod-us-central"
+    ],
+    "multiCluster": false,
+    "failingClusterCount": 1,
+    "highCardinalityLabels": [],
+    "logLinesPerMin": 0.5,
+    "signalsPerMin": 1.2,
+    "spanCount": 36,
+    "tracedServices": 6,
+    "untracedFailingComponents": [],
+    "errorTracesMissing": false,
+    "sources": {
+      "logs": true,
+      "traces": true,
+      "alerts": true,
+      "helm": true
+    },
+    "hasDeployTime": true
+  },
+  "warnings": [
+    "29 lines were not recognised and skipped.",
+    "Helm history times have no time zone; assumed -04:00."
+  ]
+}

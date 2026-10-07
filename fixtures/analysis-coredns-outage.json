@@ -1,0 +1,4273 @@
+{
+  "version": 1,
+  "generatedAt": 1791228660000,
+  "inputsPresent": {
+    "logs": true,
+    "traces": true,
+    "alerts": true,
+    "helm": true
+  },
+  "stats": {
+    "logs": {
+      "lines": 140,
+      "parsed": 132,
+      "skipped": 0,
+      "signals": 62,
+      "format": "plain text + kubectl --prefix + stern JSON + 3 more",
+      "tzAssumed": 6,
+      "warnings": [
+        "6 log times had no time zone; assumed Z.",
+        "klog/syslog times have no year; assumed 2026."
+      ]
+    },
+    "traces": {
+      "lines": 79,
+      "parsed": 79,
+      "skipped": 0,
+      "signals": 36,
+      "format": "span text",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "alerts": {
+      "lines": 6,
+      "parsed": 6,
+      "skipped": 0,
+      "signals": 6,
+      "format": "alert text",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "helm": {
+      "lines": 84,
+      "parsed": 83,
+      "skipped": 0,
+      "signals": 6,
+      "format": "helm history + helm diff",
+      "tzAssumed": 4,
+      "warnings": [
+        "Helm history times have no time zone; assumed Z."
+      ]
+    }
+  },
+  "window": {
+    "start": 1791226231590,
+    "end": 1791228660000,
+    "firstAnomaly": 1791227131590,
+    "now": 1791228660000
+  },
+  "headline": "Name lookups are failing across prod-eu-central: CoreDNS is crash-looping after Helm release coredns r14",
+  "severity": "SEV1",
+  "clusters": [
+    {
+      "name": "prod-eu-central",
+      "componentCount": 16,
+      "failing": 9,
+      "degraded": 0,
+      "status": "failing"
+    }
+  ],
+  "components": [
+    {
+      "id": "infra:prod-eu-central/kube-system/coredns",
+      "name": "coredns",
+      "type": "infra",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "kube-system",
+      "status": "root",
+      "impact": 0.95,
+      "userFacing": false,
+      "firstErrorTs": 1791227377000,
+      "lastErrorTs": 1791228660000,
+      "statusSince": 1791227377000,
+      "counts": {
+        "error": 20,
+        "warn": 12,
+        "info": 49
+      },
+      "kinds": [
+        "oom_killed",
+        "timeout",
+        "crash_loop",
+        "probe_failed",
+        "dns_failure",
+        "change",
+        "rollout",
+        "restart"
+      ],
+      "pods": [
+        "coredns-7c9d4b8f6d-5kq2w",
+        "coredns-7c9d4b8f6d-m8z4t",
+        "coredns-5f8d7c9b4d-j8wqv",
+        "coredns-5f8d7c9b4d-t2xbn"
+      ],
+      "release": "coredns",
+      "changeIds": [
+        "chg-2odgia",
+        "chg-1n7f5q7",
+        "chg-elrtrb",
+        "chg-1w25y12",
+        "chg-ams1rb"
+      ]
+    },
+    {
+      "id": "service:prod-eu-central/shop/storefront",
+      "name": "storefront",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.85,
+      "userFacing": true,
+      "firstErrorTs": 1791227131590,
+      "lastErrorTs": 1791228568083,
+      "statusSince": 1791227131590,
+      "counts": {
+        "error": 22,
+        "warn": 0,
+        "info": 2
+      },
+      "kinds": [
+        "span_error",
+        "dns_failure",
+        "slo_burn"
+      ],
+      "pods": [
+        "storefront-6c8b9d7f5-4kq2z",
+        "storefront-6c8b9d7f5-wd8tn"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/cart-api",
+      "name": "cart-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.78,
+      "userFacing": false,
+      "firstErrorTs": 1791227376217,
+      "lastErrorTs": 1791228641523,
+      "statusSince": 1791227376217,
+      "counts": {
+        "error": 12,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [
+        "dns_failure",
+        "span_error"
+      ],
+      "pods": [
+        "cart-api-7f6d9c8b5-2hq8x"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/checkout-api",
+      "name": "checkout-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.78,
+      "userFacing": false,
+      "firstErrorTs": 1791227131595,
+      "lastErrorTs": 1791228573170,
+      "statusSince": 1791227131595,
+      "counts": {
+        "error": 14,
+        "warn": 0,
+        "info": 3
+      },
+      "kinds": [
+        "span_error",
+        "dns_failure",
+        "http_5xx"
+      ],
+      "pods": [
+        "checkout-api-6b7f9d5c4-9tq2w"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/catalog-api",
+      "name": "catalog-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.76,
+      "userFacing": false,
+      "firstErrorTs": 1791227403921,
+      "lastErrorTs": 1791228464903,
+      "statusSince": 1791227403921,
+      "counts": {
+        "error": 6,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [
+        "dns_failure",
+        "span_error"
+      ],
+      "pods": [
+        "catalog-api-5b7c9d6f8-lx4pz"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/payments-api",
+      "name": "payments-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.76,
+      "userFacing": false,
+      "firstErrorTs": 1791227131669,
+      "lastErrorTs": 1791227652906,
+      "statusSince": 1791227131669,
+      "counts": {
+        "error": 5,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [
+        "dns_failure",
+        "span_error"
+      ],
+      "pods": [
+        "payments-api-84d9c7b6f5-mz5kd"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/search-api",
+      "name": "search-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.76,
+      "userFacing": false,
+      "firstErrorTs": 1791228014502,
+      "lastErrorTs": 1791228014508,
+      "statusSince": 1791228014502,
+      "counts": {
+        "error": 3,
+        "warn": 1,
+        "info": 4
+      },
+      "kinds": [
+        "dns_failure",
+        "error_generic",
+        "panic",
+        "restart"
+      ],
+      "pods": [
+        "search-api-84c7d9f6b5-wq2vd"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/inventory-api",
+      "name": "inventory-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.75,
+      "userFacing": false,
+      "firstErrorTs": 1791227829334,
+      "lastErrorTs": 1791227829334,
+      "statusSince": 1791227829334,
+      "counts": {
+        "error": 2,
+        "warn": 1,
+        "info": 3
+      },
+      "kinds": [
+        "dns_failure",
+        "panic"
+      ],
+      "pods": [
+        "inventory-api-7d5f8c9b6-r7v2n"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/notification-worker",
+      "name": "notification-worker",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.75,
+      "userFacing": false,
+      "firstErrorTs": 1791227208112,
+      "lastErrorTs": 1791227540770,
+      "statusSince": 1791227208112,
+      "counts": {
+        "error": 2,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [
+        "dns_failure"
+      ],
+      "pods": [
+        "notification-worker-6f9b8c7d5-ptx4s"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-eu-central/shop/cart-redis",
+      "name": "cart-redis",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [],
+      "pods": [
+        "cart-redis-0"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-eu-central/shop/catalog-db",
+      "name": "catalog-db",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "external:prod-eu-central/default/api.payments-gw.example.net",
+      "name": "api.payments-gw.example.net",
+      "type": "external",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "default",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "node:prod-eu-central//aks-system-27461938-vmss000000",
+      "name": "aks-system-27461938-vmss000000",
+      "type": "node",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "node:prod-eu-central//aks-system-27461938-vmss000001",
+      "name": "aks-system-27461938-vmss000001",
+      "type": "node",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/search-index",
+      "name": "search-index",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 1
+      },
+      "kinds": [],
+      "pods": [
+        "search-index-0"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-central/shop/warehouse-sync",
+      "name": "warehouse-sync",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-central",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "service:prod-eu-central/shop/storefront->service:prod-eu-central/shop/catalog-api",
+      "from": "service:prod-eu-central/shop/storefront",
+      "to": "service:prod-eu-central/shop/catalog-api",
+      "calls": 5,
+      "errors": 1,
+      "errorRate": 0.2,
+      "p95ms": 10007,
+      "status": "failing",
+      "firstErrorTs": 1791227389401,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/catalog-api->datastore:prod-eu-central/shop/catalog-db",
+      "from": "service:prod-eu-central/shop/catalog-api",
+      "to": "datastore:prod-eu-central/shop/catalog-db",
+      "calls": 4,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 7,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/catalog-api->service:prod-eu-central/shop/search-api",
+      "from": "service:prod-eu-central/shop/catalog-api",
+      "to": "service:prod-eu-central/shop/search-api",
+      "calls": 4,
+      "errors": 2,
+      "errorRate": 0.5,
+      "p95ms": 5003,
+      "status": "failing",
+      "firstErrorTs": 1791227403921,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/search-api->service:prod-eu-central/shop/search-index",
+      "from": "service:prod-eu-central/shop/search-api",
+      "to": "service:prod-eu-central/shop/search-index",
+      "calls": 2,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 71,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/storefront->service:prod-eu-central/shop/checkout-api",
+      "from": "service:prod-eu-central/shop/storefront",
+      "to": "service:prod-eu-central/shop/checkout-api",
+      "calls": 5,
+      "errors": 4,
+      "errorRate": 0.8,
+      "p95ms": 5079,
+      "status": "failing",
+      "firstErrorTs": 1791227131595,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/checkout-api->service:prod-eu-central/shop/inventory-api",
+      "from": "service:prod-eu-central/shop/checkout-api",
+      "to": "service:prod-eu-central/shop/inventory-api",
+      "calls": 5,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 55,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/checkout-api->service:prod-eu-central/shop/payments-api",
+      "from": "service:prod-eu-central/shop/checkout-api",
+      "to": "service:prod-eu-central/shop/payments-api",
+      "calls": 5,
+      "errors": 4,
+      "errorRate": 0.8,
+      "p95ms": 5004,
+      "status": "failing",
+      "firstErrorTs": 1791227131669,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/payments-api->external:prod-eu-central/default/api.payments-gw.example.net",
+      "from": "service:prod-eu-central/shop/payments-api",
+      "to": "external:prod-eu-central/default/api.payments-gw.example.net",
+      "calls": 2,
+      "errors": 1,
+      "errorRate": 0.5,
+      "p95ms": 271,
+      "status": "failing",
+      "firstErrorTs": 1791227131672,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/storefront->service:prod-eu-central/shop/cart-api",
+      "from": "service:prod-eu-central/shop/storefront",
+      "to": "service:prod-eu-central/shop/cart-api",
+      "calls": 5,
+      "errors": 4,
+      "errorRate": 0.8,
+      "p95ms": 10007,
+      "status": "failing",
+      "firstErrorTs": 1791227376217,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/cart-api->datastore:prod-eu-central/shop/cart-redis",
+      "from": "service:prod-eu-central/shop/cart-api",
+      "to": "datastore:prod-eu-central/shop/cart-redis",
+      "calls": 4,
+      "errors": 3,
+      "errorRate": 0.75,
+      "p95ms": 5003,
+      "status": "failing",
+      "firstErrorTs": 1791227376219,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-central/shop/payments-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/payments-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 3,
+      "errors": 3,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227131887,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/notification-worker->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/notification-worker",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 2,
+      "errors": 2,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227208112,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/cart-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/cart-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 6,
+      "errors": 6,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227381234,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/checkout-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/checkout-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 5,
+      "errors": 5,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227384120,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/storefront->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/storefront",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 3,
+      "errors": 3,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227399410,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/catalog-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/catalog-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 4,
+      "errors": 4,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227408944,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/inventory-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/inventory-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 1,
+      "errors": 1,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791227829334,
+      "source": "logs"
+    },
+    {
+      "id": "service:prod-eu-central/shop/search-api->infra:prod-eu-central/kube-system/coredns",
+      "from": "service:prod-eu-central/shop/search-api",
+      "to": "infra:prod-eu-central/kube-system/coredns",
+      "calls": 1,
+      "errors": 1,
+      "errorRate": null,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791228014508,
+      "source": "logs"
+    }
+  ],
+  "signals": [
+    {
+      "id": "hlm-7",
+      "source": "helm",
+      "line": 7,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Helm release coredns (kube-system) revision 13 → 14, chart coredns-1.39.2 → coredns-1.40.0, status deployed",
+      "raw": "14      \tMon Oct  5 19:01:52 2026\tdeployed  \tcoredns-1.40.0\t1.12.3     \tUpgrade complete",
+      "attrs": {
+        "isDeploy": true,
+        "release": "coredns",
+        "revision": 14,
+        "previousRevision": 13,
+        "status": "deployed",
+        "deployedAtSource": "helm-history"
+      }
+    },
+    {
+      "id": "hlm-22",
+      "source": "helm",
+      "line": 22,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "chart coredns-1.39.2 → coredns-1.40.0",
+      "raw": "+     helm.sh/chart: coredns-1.40.0",
+      "attrs": {
+        "changeId": "chg-2odgia",
+        "category": "chart",
+        "risk": "low",
+        "release": "coredns",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "coredns-1.39.2",
+        "after": "coredns-1.40.0",
+        "resourceKind": "ConfigMap",
+        "resourceName": "coredns",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-42",
+      "source": "helm",
+      "line": 42,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "ConfigMap coredns Corefile: forward . /etc/resolv.conf { → forward . 10.20.0.53 10.20.0.54 {",
+      "raw": "+         forward . 10.20.0.53 10.20.0.54 {",
+      "attrs": {
+        "changeId": "chg-1n7f5q7",
+        "category": "configmap",
+        "risk": "high",
+        "release": "coredns",
+        "field": "data.Corefile",
+        "before": "forward . /etc/resolv.conf {\nmax_concurrent 1000\n}\ncache 30",
+        "after": "forward . 10.20.0.53 10.20.0.54 {\npolicy sequential\n}",
+        "resourceKind": "ConfigMap",
+        "resourceName": "coredns",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-59",
+      "source": "helm",
+      "line": 59,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "app version 1.12.1 → 1.12.3",
+      "raw": "+     app.kubernetes.io/version: \"1.12.3\"",
+      "attrs": {
+        "changeId": "chg-elrtrb",
+        "category": "chart",
+        "risk": "low",
+        "release": "coredns",
+        "field": "metadata.labels.app.kubernetes.io/version",
+        "before": "1.12.1",
+        "after": "1.12.3",
+        "resourceKind": "Deployment",
+        "resourceName": "coredns",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-61",
+      "source": "helm",
+      "line": 61,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "chart coredns-1.39.2 → coredns-1.40.0",
+      "raw": "+     helm.sh/chart: coredns-1.40.0",
+      "attrs": {
+        "changeId": "chg-1w25y12",
+        "category": "chart",
+        "risk": "low",
+        "release": "coredns",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "coredns-1.39.2",
+        "after": "coredns-1.40.0",
+        "resourceKind": "Deployment",
+        "resourceName": "coredns",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-76",
+      "source": "helm",
+      "line": 76,
+      "ts": 1791226912000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "coredns image tag 1.12.1 → 1.12.3",
+      "raw": "+         image: \"registry.example.com/mirror/coredns/coredns:1.12.3\"",
+      "attrs": {
+        "changeId": "chg-ams1rb",
+        "category": "image",
+        "risk": "medium",
+        "release": "coredns",
+        "field": "spec.template.spec.containers[coredns].image",
+        "before": "registry.example.com/mirror/coredns/coredns:1.12.1",
+        "after": "registry.example.com/mirror/coredns/coredns:1.12.3",
+        "resourceKind": "Deployment",
+        "resourceName": "coredns",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "log-9",
+      "source": "logs",
+      "line": 9,
+      "ts": 1791226920000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set coredns-7c9d4b8f6d to 1",
+      "raw": "29m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-7c9d4b8f6d to 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/coredns",
+        "format": "kubectl events",
+        "replicaSet": "coredns-7c9d4b8f6d",
+        "replicas": 1,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1740000
+      }
+    },
+    {
+      "id": "log-10",
+      "source": "logs",
+      "line": 10,
+      "ts": 1791226920000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set coredns-5f8d7c9b4d to 1 from 2",
+      "raw": "29m         Normal    ScalingReplicaSet   deployment/coredns              Scaled down replica set coredns-5f8d7c9b4d to 1 from 2",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/coredns",
+        "format": "kubectl events",
+        "replicaSet": "coredns-5f8d7c9b4d",
+        "replicas": 1,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1740000
+      }
+    },
+    {
+      "id": "log-12",
+      "source": "logs",
+      "line": 12,
+      "ts": 1791226920000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "SuccessfulCreate: Created pod: coredns-7c9d4b8f6d-5kq2w",
+      "raw": "29m         Normal    SuccessfulCreate    replicaset/coredns-7c9d4b8f6d   Created pod: coredns-7c9d4b8f6d-5kq2w",
+      "attrs": {
+        "reason": "SuccessfulCreate",
+        "eventType": "Normal",
+        "object": "replicaset/coredns-7c9d4b8f6d",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "replicaSet": "coredns-7c9d4b8f6d",
+        "relative": true,
+        "ageMs": 1740000
+      }
+    },
+    {
+      "id": "log-15",
+      "source": "logs",
+      "line": 15,
+      "ts": 1791226980000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set coredns-7c9d4b8f6d to 2 from 1",
+      "raw": "28m         Normal    ScalingReplicaSet   deployment/coredns              Scaled up replica set coredns-7c9d4b8f6d to 2 from 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/coredns",
+        "format": "kubectl events",
+        "replicaSet": "coredns-7c9d4b8f6d",
+        "replicas": 2,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1680000
+      }
+    },
+    {
+      "id": "log-16",
+      "source": "logs",
+      "line": 16,
+      "ts": 1791226980000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "SuccessfulCreate: Created pod: coredns-7c9d4b8f6d-m8z4t",
+      "raw": "28m         Normal    SuccessfulCreate    replicaset/coredns-7c9d4b8f6d   Created pod: coredns-7c9d4b8f6d-m8z4t",
+      "attrs": {
+        "reason": "SuccessfulCreate",
+        "eventType": "Normal",
+        "object": "replicaset/coredns-7c9d4b8f6d",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "replicaSet": "coredns-7c9d4b8f6d",
+        "relative": true,
+        "ageMs": 1680000
+      }
+    },
+    {
+      "id": "log-19",
+      "source": "logs",
+      "line": 19,
+      "ts": 1791226980000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set coredns-5f8d7c9b4d to 0 from 1",
+      "raw": "28m         Normal    ScalingReplicaSet   deployment/coredns              Scaled down replica set coredns-5f8d7c9b4d to 0 from 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/coredns",
+        "format": "kubectl events",
+        "replicaSet": "coredns-5f8d7c9b4d",
+        "replicas": 0,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1680000
+      }
+    },
+    {
+      "id": "trc-21",
+      "source": "traces",
+      "line": 21,
+      "ts": 1791227131590,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-22",
+        "trc-23",
+        "trc-26",
+        "trc-27",
+        "trc-28"
+      ],
+      "text": "storefront: POST /checkout failed — upstream checkout-api responded 502",
+      "raw": "2026-10-05T19:05:31.590Z trace=5027e010cd8b3e1c span=7508346c parent=- service=storefront op=\"POST /checkout\" kind=server dur=391ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"upstream checkout-api responded 502\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "7508346c",
+        "op": "POST /checkout",
+        "durMs": 391,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 502,
+        "statusMessage": "upstream checkout-api responded 502",
+        "medianMs": 5094,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-22",
+      "source": "traces",
+      "line": 22,
+      "ts": 1791227131593,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-21",
+        "trc-23",
+        "trc-26",
+        "trc-27",
+        "trc-28"
+      ],
+      "text": "storefront: POST failed — HTTP 502",
+      "raw": "2026-10-05T19:05:31.593Z trace=5027e010cd8b3e1c span=91d6d1a3 parent=7508346c service=storefront op=\"POST\" kind=client dur=382ms status=ERROR code=502 peer=checkout-api cluster=prod-eu-central ns=shop error=\"HTTP 502\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "91d6d1a3",
+        "op": "POST",
+        "durMs": 382,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "7508346c",
+        "httpStatus": 502,
+        "statusMessage": "HTTP 502",
+        "peer": "checkout-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-23",
+      "source": "traces",
+      "line": 23,
+      "ts": 1791227131595,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-26",
+        "trc-27",
+        "trc-28"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment failed",
+      "raw": "2026-10-05T19:05:31.595Z trace=5027e010cd8b3e1c span=1df3005a parent=91d6d1a3 service=checkout-api op=\"POST /v1/checkout\" kind=server dur=374ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"payment failed\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "1df3005a",
+        "op": "POST /v1/checkout",
+        "durMs": 374,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "91d6d1a3",
+        "httpStatus": 502,
+        "statusMessage": "payment failed",
+        "medianMs": 5079
+      }
+    },
+    {
+      "id": "trc-26",
+      "source": "traces",
+      "line": 26,
+      "ts": 1791227131666,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-23",
+        "trc-27",
+        "trc-28"
+      ],
+      "text": "checkout-api: POST failed — HTTP 502",
+      "raw": "2026-10-05T19:05:31.666Z trace=5027e010cd8b3e1c span=4efa92c3 parent=1df3005a service=checkout-api op=\"POST\" kind=client dur=290ms status=ERROR code=502 peer=payments-api cluster=prod-eu-central ns=shop error=\"HTTP 502\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "4efa92c3",
+        "op": "POST",
+        "durMs": 290,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "1df3005a",
+        "httpStatus": 502,
+        "statusMessage": "HTTP 502",
+        "peer": "payments-api",
+        "medianMs": 177,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-27",
+      "source": "traces",
+      "line": 27,
+      "ts": 1791227131669,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-23",
+        "trc-26",
+        "trc-28"
+      ],
+      "text": "payments-api: POST /v1/charges failed — charge request failed",
+      "raw": "2026-10-05T19:05:31.669Z trace=5027e010cd8b3e1c span=d276af3f parent=4efa92c3 service=payments-api op=\"POST /v1/charges\" kind=server dur=284ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"charge request failed\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "d276af3f",
+        "op": "POST /v1/charges",
+        "durMs": 284,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "4efa92c3",
+        "httpStatus": 502,
+        "statusMessage": "charge request failed",
+        "medianMs": 284
+      }
+    },
+    {
+      "id": "trc-28",
+      "source": "traces",
+      "line": 28,
+      "ts": 1791227131672,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-23",
+        "trc-26",
+        "trc-27"
+      ],
+      "text": "payments-api: POST failed — dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving",
+      "raw": "2026-10-05T19:05:31.672Z trace=5027e010cd8b3e1c span=0135478f parent=d276af3f service=payments-api op=\"POST\" kind=client dur=4ms status=ERROR peer=api.payments-gw.example.net cluster=prod-eu-central ns=shop error=\"dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving\"",
+      "attrs": {
+        "traceId": "5027e010cd8b3e1c",
+        "spanId": "0135478f",
+        "op": "POST",
+        "durMs": 4,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "d276af3f",
+        "statusMessage": "dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving",
+        "peer": "api.payments-gw.example.net",
+        "targetId": "external:prod-eu-central/default/api.payments-gw.example.net",
+        "medianMs": 137.5,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-87",
+      "source": "logs",
+      "line": 87,
+      "ts": 1791227131887,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "relatedIds": [],
+      "text": "charge request failed: Post \"https://api.payments-gw.example.net/v2/charges\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving (HTTP 502)",
+      "raw": "payments-api-84d9c7b6f5-mz5kd payments-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:05:31.887Z\",\"caller\":\"gateway/client.go:77\",\"msg\":\"charge request failed\",\"error\":\"Post \\\"https://api.payments-gw.example.net/v2/charges\\\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "payments-api-84d9c7b6f5-mz5kd",
+        "container": "payments-api",
+        "status": 502,
+        "target": "api.payments-gw.example.net",
+        "targetId": "external:prod-eu-central/default/api.payments-gw.example.net"
+      }
+    },
+    {
+      "id": "log-88",
+      "source": "logs",
+      "line": 88,
+      "ts": 1791227208112,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/notification-worker",
+      "relatedIds": [],
+      "text": "send failed, will retry: getaddrinfo EAI_AGAIN smtp-relay.example.net",
+      "raw": "notification-worker-6f9b8c7d5-ptx4s notification-worker {\"level\":\"error\",\"time\":\"2026-10-05T19:06:48.112Z\",\"service\":\"notification-worker\",\"msg\":\"send failed, will retry\",\"err\":{\"type\":\"Error\",\"message\":\"getaddrinfo EAI_AGAIN smtp-relay.example.net\",\"code\":\"EAI_AGAIN\",\"syscall\":\"getaddrinfo\",\"hostname\":\"smtp-relay.example.net\"},\"attempt\":1}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "notification-worker-6f9b8c7d5-ptx4s",
+        "container": "notification-worker"
+      }
+    },
+    {
+      "id": "log-89",
+      "source": "logs",
+      "line": 89,
+      "ts": 1791227275402,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "relatedIds": [],
+      "text": "charge request failed: Post \"https://api.payments-gw.example.net/v2/charges\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving (HTTP 502)",
+      "raw": "payments-api-84d9c7b6f5-mz5kd payments-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:07:55.402Z\",\"caller\":\"gateway/client.go:77\",\"msg\":\"charge request failed\",\"error\":\"Post \\\"https://api.payments-gw.example.net/v2/charges\\\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "payments-api-84d9c7b6f5-mz5kd",
+        "container": "payments-api",
+        "status": 502,
+        "target": "api.payments-gw.example.net",
+        "targetId": "external:prod-eu-central/default/api.payments-gw.example.net"
+      }
+    },
+    {
+      "id": "trc-29",
+      "source": "traces",
+      "line": 29,
+      "ts": 1791227376213,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-30",
+        "trc-31",
+        "trc-32"
+      ],
+      "text": "storefront: POST /cart/items failed — upstream cart-api responded 500",
+      "raw": "2026-10-05T19:09:36.213Z trace=c83ec179bd9834cf span=dd5fc4c0 parent=- service=storefront op=\"POST /cart/items\" kind=server dur=5032ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"upstream cart-api responded 500\"",
+      "attrs": {
+        "traceId": "c83ec179bd9834cf",
+        "spanId": "dd5fc4c0",
+        "op": "POST /cart/items",
+        "durMs": 5032,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 500,
+        "statusMessage": "upstream cart-api responded 500",
+        "medianMs": 5032,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-30",
+      "source": "traces",
+      "line": 30,
+      "ts": 1791227376215,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-29",
+        "trc-31",
+        "trc-32"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "2026-10-05T19:09:36.215Z trace=c83ec179bd9834cf span=7348eccf parent=dd5fc4c0 service=storefront op=\"POST\" kind=client dur=5027ms status=ERROR code=500 peer=cart-api cluster=prod-eu-central ns=shop error=\"HTTP 500\"",
+      "attrs": {
+        "traceId": "c83ec179bd9834cf",
+        "spanId": "7348eccf",
+        "op": "POST",
+        "durMs": 5027,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "dd5fc4c0",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "cart-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-31",
+      "source": "traces",
+      "line": 31,
+      "ts": 1791227376217,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-29",
+        "trc-30",
+        "trc-32"
+      ],
+      "text": "cart-api: POST /v1/carts/{id}/items failed — redis HSET failed",
+      "raw": "2026-10-05T19:09:36.217Z trace=c83ec179bd9834cf span=d7e61dbe parent=7348eccf service=cart-api op=\"POST /v1/carts/{id}/items\" kind=server dur=5021ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"redis HSET failed\"",
+      "attrs": {
+        "traceId": "c83ec179bd9834cf",
+        "spanId": "d7e61dbe",
+        "op": "POST /v1/carts/{id}/items",
+        "durMs": 5021,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "7348eccf",
+        "httpStatus": 500,
+        "statusMessage": "redis HSET failed",
+        "medianMs": 5021
+      }
+    },
+    {
+      "id": "trc-32",
+      "source": "traces",
+      "line": 32,
+      "ts": 1791227376219,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-29",
+        "trc-30",
+        "trc-31"
+      ],
+      "text": "cart-api: HSET failed — dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:42607->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:09:36.219Z trace=c83ec179bd9834cf span=0c887463 parent=d7e61dbe service=cart-api op=\"HSET\" kind=client dur=5003ms status=ERROR peer=cart-redis db.system=redis cluster=prod-eu-central ns=shop error=\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:42607->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "c83ec179bd9834cf",
+        "spanId": "0c887463",
+        "op": "HSET",
+        "durMs": 5003,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "d7e61dbe",
+        "statusMessage": "dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:42607->10.96.0.10:53: i/o timeout",
+        "peer": "cart-redis",
+        "dbSystem": "redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis",
+        "medianMs": 5003,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-78",
+      "source": "logs",
+      "line": 78,
+      "ts": 1791227377000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "raw": "Oct 05 19:09:37 aks-system-27461938-vmss000000 kernel: coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000000",
+        "node": "aks-system-27461938-vmss000000",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-79",
+      "source": "logs",
+      "line": 79,
+      "ts": 1791227377000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Memory cgroup out of memory: Killed process 416746 (coredns) total-vm:1346107kB, anon-rss:172770kB, file-rss:31102kB, shmem-rss:0kB, UID:65532 pgtables:595kB oom_score_adj:992",
+      "raw": "Oct 05 19:09:37 aks-system-27461938-vmss000000 kernel: Memory cgroup out of memory: Killed process 416746 (coredns) total-vm:1346107kB, anon-rss:172770kB, file-rss:31102kB, shmem-rss:0kB, UID:65532 pgtables:595kB oom_score_adj:992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000000",
+        "node": "aks-system-27461938-vmss000000",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "trc-33",
+      "source": "traces",
+      "line": 33,
+      "ts": 1791227379050,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-34",
+        "trc-35",
+        "trc-38"
+      ],
+      "text": "storefront: POST /checkout failed — upstream checkout-api responded 502",
+      "raw": "2026-10-05T19:09:39.050Z trace=825fe638b28615b5 span=b5dbaa4a parent=- service=storefront op=\"POST /checkout\" kind=server dur=5094ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"upstream checkout-api responded 502\"",
+      "attrs": {
+        "traceId": "825fe638b28615b5",
+        "spanId": "b5dbaa4a",
+        "op": "POST /checkout",
+        "durMs": 5094,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 502,
+        "statusMessage": "upstream checkout-api responded 502",
+        "medianMs": 5094,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-34",
+      "source": "traces",
+      "line": 34,
+      "ts": 1791227379053,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-33",
+        "trc-35",
+        "trc-38"
+      ],
+      "text": "storefront: POST failed — HTTP 502",
+      "raw": "2026-10-05T19:09:39.053Z trace=825fe638b28615b5 span=0cee021f parent=b5dbaa4a service=storefront op=\"POST\" kind=client dur=5086ms status=ERROR code=502 peer=checkout-api cluster=prod-eu-central ns=shop error=\"HTTP 502\"",
+      "attrs": {
+        "traceId": "825fe638b28615b5",
+        "spanId": "0cee021f",
+        "op": "POST",
+        "durMs": 5086,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "b5dbaa4a",
+        "httpStatus": 502,
+        "statusMessage": "HTTP 502",
+        "peer": "checkout-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-35",
+      "source": "traces",
+      "line": 35,
+      "ts": 1791227379055,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-33",
+        "trc-34",
+        "trc-38"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment failed",
+      "raw": "2026-10-05T19:09:39.055Z trace=825fe638b28615b5 span=784770dd parent=0cee021f service=checkout-api op=\"POST /v1/checkout\" kind=server dur=5079ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"payment failed\"",
+      "attrs": {
+        "traceId": "825fe638b28615b5",
+        "spanId": "784770dd",
+        "op": "POST /v1/checkout",
+        "durMs": 5079,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "0cee021f",
+        "httpStatus": 502,
+        "statusMessage": "payment failed",
+        "medianMs": 5079
+      }
+    },
+    {
+      "id": "trc-38",
+      "source": "traces",
+      "line": 38,
+      "ts": 1791227379126,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-33",
+        "trc-34",
+        "trc-35"
+      ],
+      "text": "checkout-api: POST failed — dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:46305->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:09:39.126Z trace=825fe638b28615b5 span=f09ec146 parent=784770dd service=checkout-api op=\"POST\" kind=client dur=5004ms status=ERROR peer=payments-api cluster=prod-eu-central ns=shop error=\"dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:46305->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "825fe638b28615b5",
+        "spanId": "f09ec146",
+        "op": "POST",
+        "durMs": 5004,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "784770dd",
+        "statusMessage": "dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:46305->10.96.0.10:53: i/o timeout",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api",
+        "slow": true,
+        "medianMs": 177,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-90",
+      "source": "logs",
+      "line": 90,
+      "ts": 1791227381234,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HGETALL failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:45765->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791227381.233865,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HGETALL failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:45765->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "log-91",
+      "source": "logs",
+      "line": 91,
+      "ts": 1791227384120,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payments call failed: Post \"http://payments-api.shop.svc.cluster.local:8080/v1/charges\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:42521->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "checkout-api-6b7f9d5c4-9tq2w checkout-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:09:44.120Z\",\"caller\":\"checkout/handler.go:141\",\"msg\":\"payments call failed\",\"error\":\"Post \\\"http://payments-api.shop.svc.cluster.local:8080/v1/charges\\\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:42521->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6b7f9d5c4-9tq2w",
+        "container": "checkout-api",
+        "status": 502,
+        "target": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api"
+      }
+    },
+    {
+      "id": "trc-39",
+      "source": "traces",
+      "line": 39,
+      "ts": 1791227389398,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-40"
+      ],
+      "text": "storefront: GET /products/:id failed — upstream timeout",
+      "raw": "2026-10-05T19:09:49.398Z trace=6d5717d37a0d5551 span=b0ad9114 parent=- service=storefront op=\"GET /products/:id\" kind=server dur=10014ms status=ERROR code=504 cluster=prod-eu-central ns=shop error=\"upstream timeout\"",
+      "attrs": {
+        "traceId": "6d5717d37a0d5551",
+        "spanId": "b0ad9114",
+        "op": "GET /products/:id",
+        "durMs": 10014,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 504,
+        "statusMessage": "upstream timeout",
+        "medianMs": 5161
+      }
+    },
+    {
+      "id": "trc-40",
+      "source": "traces",
+      "line": 40,
+      "ts": 1791227389401,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-39"
+      ],
+      "text": "storefront: GET failed — getaddrinfo EAI_AGAIN catalog-api.shop.svc.cluster.local",
+      "raw": "2026-10-05T19:09:49.401Z trace=6d5717d37a0d5551 span=00497df3 parent=b0ad9114 service=storefront op=\"GET\" kind=client dur=10007ms status=ERROR peer=catalog-api cluster=prod-eu-central ns=shop error=\"getaddrinfo EAI_AGAIN catalog-api.shop.svc.cluster.local\"",
+      "attrs": {
+        "traceId": "6d5717d37a0d5551",
+        "spanId": "00497df3",
+        "op": "GET",
+        "durMs": 10007,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "b0ad9114",
+        "statusMessage": "getaddrinfo EAI_AGAIN catalog-api.shop.svc.cluster.local",
+        "peer": "catalog-api",
+        "targetId": "service:prod-eu-central/shop/catalog-api",
+        "medianMs": 5149,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-92",
+      "source": "logs",
+      "line": 92,
+      "ts": 1791227399410,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [],
+      "text": "upstream request failed: getaddrinfo EAI_AGAIN catalog-api.shop.svc.cluster.local (HTTP 504)",
+      "raw": "storefront-6c8b9d7f5-4kq2z storefront {\"level\":\"error\",\"time\":\"2026-10-05T19:09:59.410Z\",\"service\":\"storefront\",\"msg\":\"upstream request failed\",\"upstream\":\"catalog-api\",\"path\":\"/products/SKU-118204\",\"status\":504,\"latency_ms\":10012,\"err\":\"getaddrinfo EAI_AGAIN catalog-api.shop.svc.cluster.local\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "storefront-6c8b9d7f5-4kq2z",
+        "container": "storefront",
+        "status": 504,
+        "latencyMs": 10012,
+        "targetHost": "catalog-api",
+        "target": "catalog-api",
+        "targetId": "service:prod-eu-central/shop/catalog-api"
+      }
+    },
+    {
+      "id": "trc-45",
+      "source": "traces",
+      "line": 45,
+      "ts": 1791227403921,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "catalog-api: GET failed — dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:33673->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:10:03.921Z trace=dec0ca4d8d83c285 span=66444a69 parent=ff7ad477 service=catalog-api op=\"GET\" kind=client dur=5003ms status=ERROR peer=search-api cluster=prod-eu-central ns=shop error=\"dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:33673->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "dec0ca4d8d83c285",
+        "spanId": "66444a69",
+        "op": "GET",
+        "durMs": 5003,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "ff7ad477",
+        "statusMessage": "dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:33673->10.96.0.10:53: i/o timeout",
+        "peer": "search-api",
+        "targetId": "service:prod-eu-central/shop/search-api",
+        "medianMs": 2547.5,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-80",
+      "source": "logs",
+      "line": 80,
+      "ts": 1791227404000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "raw": "Oct 05 19:10:04 aks-system-27461938-vmss000001 kernel: coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000001",
+        "node": "aks-system-27461938-vmss000001",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-81",
+      "source": "logs",
+      "line": 81,
+      "ts": 1791227404000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Memory cgroup out of memory: Killed process 417935 (coredns) total-vm:1298076kB, anon-rss:172057kB, file-rss:31096kB, shmem-rss:0kB, UID:65532 pgtables:605kB oom_score_adj:992",
+      "raw": "Oct 05 19:10:04 aks-system-27461938-vmss000001 kernel: Memory cgroup out of memory: Killed process 417935 (coredns) total-vm:1298076kB, anon-rss:172057kB, file-rss:31096kB, shmem-rss:0kB, UID:65532 pgtables:605kB oom_score_adj:992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000001",
+        "node": "aks-system-27461938-vmss000001",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-93",
+      "source": "logs",
+      "line": 93,
+      "ts": 1791227408944,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "related products lookup failed: Get \"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-118195\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:32990->10.96.0.10:53: i/o timeout",
+      "raw": "catalog-api-5b7c9d6f8-lx4pz catalog-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:10:08.944Z\",\"caller\":\"related/client.go:49\",\"msg\":\"related products lookup failed\",\"error\":\"Get \\\"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-118195\\\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:32990->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "catalog-api-5b7c9d6f8-lx4pz",
+        "container": "catalog-api",
+        "target": "search-api",
+        "targetId": "service:prod-eu-central/shop/search-api"
+      }
+    },
+    {
+      "id": "log-94",
+      "source": "logs",
+      "line": 94,
+      "ts": 1791227429311,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HSET failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:57770->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791227429.310886,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HSET failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:57770->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "trc-46",
+      "source": "traces",
+      "line": 46,
+      "ts": 1791227453623,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-47"
+      ],
+      "text": "storefront: POST /cart/items failed — upstream timeout",
+      "raw": "2026-10-05T19:10:53.623Z trace=0fbc3482a6d93567 span=86deabf6 parent=- service=storefront op=\"POST /cart/items\" kind=server dur=10014ms status=ERROR code=504 cluster=prod-eu-central ns=shop error=\"upstream timeout\"",
+      "attrs": {
+        "traceId": "0fbc3482a6d93567",
+        "spanId": "86deabf6",
+        "op": "POST /cart/items",
+        "durMs": 10014,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 504,
+        "statusMessage": "upstream timeout",
+        "medianMs": 5032
+      }
+    },
+    {
+      "id": "trc-47",
+      "source": "traces",
+      "line": 47,
+      "ts": 1791227453626,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-46"
+      ],
+      "text": "storefront: POST failed — getaddrinfo EAI_AGAIN cart-api.shop.svc.cluster.local",
+      "raw": "2026-10-05T19:10:53.626Z trace=0fbc3482a6d93567 span=8cbc8730 parent=86deabf6 service=storefront op=\"POST\" kind=client dur=10007ms status=ERROR peer=cart-api cluster=prod-eu-central ns=shop error=\"getaddrinfo EAI_AGAIN cart-api.shop.svc.cluster.local\"",
+      "attrs": {
+        "traceId": "0fbc3482a6d93567",
+        "spanId": "8cbc8730",
+        "op": "POST",
+        "durMs": 10007,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "86deabf6",
+        "statusMessage": "getaddrinfo EAI_AGAIN cart-api.shop.svc.cluster.local",
+        "peer": "cart-api",
+        "targetId": "service:prod-eu-central/shop/cart-api",
+        "medianMs": 5027,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-82",
+      "source": "logs",
+      "line": 82,
+      "ts": 1791227457000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "raw": "Oct 05 19:10:57 aks-system-27461938-vmss000000 kernel: coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000000",
+        "node": "aks-system-27461938-vmss000000",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-83",
+      "source": "logs",
+      "line": 83,
+      "ts": 1791227457000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Memory cgroup out of memory: Killed process 419372 (coredns) total-vm:1318078kB, anon-rss:172375kB, file-rss:30283kB, shmem-rss:0kB, UID:65532 pgtables:602kB oom_score_adj:992",
+      "raw": "Oct 05 19:10:57 aks-system-27461938-vmss000000 kernel: Memory cgroup out of memory: Killed process 419372 (coredns) total-vm:1318078kB, anon-rss:172375kB, file-rss:30283kB, shmem-rss:0kB, UID:65532 pgtables:602kB oom_score_adj:992",
+      "attrs": {
+        "format": "syslog",
+        "host": "aks-system-27461938-vmss000000",
+        "node": "aks-system-27461938-vmss000000",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-95",
+      "source": "logs",
+      "line": 95,
+      "ts": 1791227463640,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [],
+      "text": "upstream request failed: getaddrinfo EAI_AGAIN cart-api.shop.svc.cluster.local (HTTP 502)",
+      "raw": "storefront-6c8b9d7f5-4kq2z storefront {\"level\":\"error\",\"time\":\"2026-10-05T19:11:03.640Z\",\"service\":\"storefront\",\"msg\":\"upstream request failed\",\"upstream\":\"cart-api\",\"path\":\"/cart/items\",\"status\":502,\"latency_ms\":10006,\"err\":\"getaddrinfo EAI_AGAIN cart-api.shop.svc.cluster.local\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "storefront-6c8b9d7f5-4kq2z",
+        "container": "storefront",
+        "status": 502,
+        "latencyMs": 10006,
+        "targetHost": "cart-api",
+        "target": "cart-api",
+        "targetId": "service:prod-eu-central/shop/cart-api"
+      }
+    },
+    {
+      "id": "log-96",
+      "source": "logs",
+      "line": 96,
+      "ts": 1791227472020,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "inventory reservation failed: Post \"http://inventory-api.shop.svc.cluster.local:8080/v1/reservations\": dial tcp: lookup inventory-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:57549->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "checkout-api-6b7f9d5c4-9tq2w checkout-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:11:12.020Z\",\"caller\":\"checkout/handler.go:141\",\"msg\":\"inventory reservation failed\",\"error\":\"Post \\\"http://inventory-api.shop.svc.cluster.local:8080/v1/reservations\\\": dial tcp: lookup inventory-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:57549->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6b7f9d5c4-9tq2w",
+        "container": "checkout-api",
+        "status": 502,
+        "target": "inventory-api",
+        "targetId": "service:prod-eu-central/shop/inventory-api"
+      }
+    },
+    {
+      "id": "log-97",
+      "source": "logs",
+      "line": 97,
+      "ts": 1791227540770,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/notification-worker",
+      "relatedIds": [],
+      "text": "send failed, will retry: getaddrinfo EAI_AGAIN smtp-relay.example.net",
+      "raw": "notification-worker-6f9b8c7d5-ptx4s notification-worker {\"level\":\"error\",\"time\":\"2026-10-05T19:12:20.770Z\",\"service\":\"notification-worker\",\"msg\":\"send failed, will retry\",\"err\":{\"type\":\"Error\",\"message\":\"getaddrinfo EAI_AGAIN smtp-relay.example.net\",\"code\":\"EAI_AGAIN\",\"syscall\":\"getaddrinfo\",\"hostname\":\"smtp-relay.example.net\"},\"attempt\":4}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "notification-worker-6f9b8c7d5-ptx4s",
+        "container": "notification-worker"
+      }
+    },
+    {
+      "id": "trc-48",
+      "source": "traces",
+      "line": 48,
+      "ts": 1791227612531,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-49",
+        "trc-50",
+        "trc-51"
+      ],
+      "text": "storefront: POST /cart/items failed — upstream cart-api responded 500",
+      "raw": "2026-10-05T19:13:32.531Z trace=729ea3a8af1b83ac span=0cf75ff5 parent=- service=storefront op=\"POST /cart/items\" kind=server dur=5032ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"upstream cart-api responded 500\"",
+      "attrs": {
+        "traceId": "729ea3a8af1b83ac",
+        "spanId": "0cf75ff5",
+        "op": "POST /cart/items",
+        "durMs": 5032,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 500,
+        "statusMessage": "upstream cart-api responded 500",
+        "medianMs": 5032,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-49",
+      "source": "traces",
+      "line": 49,
+      "ts": 1791227612533,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-48",
+        "trc-50",
+        "trc-51"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "2026-10-05T19:13:32.533Z trace=729ea3a8af1b83ac span=2dee1101 parent=0cf75ff5 service=storefront op=\"POST\" kind=client dur=5027ms status=ERROR code=500 peer=cart-api cluster=prod-eu-central ns=shop error=\"HTTP 500\"",
+      "attrs": {
+        "traceId": "729ea3a8af1b83ac",
+        "spanId": "2dee1101",
+        "op": "POST",
+        "durMs": 5027,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "0cf75ff5",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "cart-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-50",
+      "source": "traces",
+      "line": 50,
+      "ts": 1791227612535,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-48",
+        "trc-49",
+        "trc-51"
+      ],
+      "text": "cart-api: POST /v1/carts/{id}/items failed — redis HSET failed",
+      "raw": "2026-10-05T19:13:32.535Z trace=729ea3a8af1b83ac span=86cdaded parent=2dee1101 service=cart-api op=\"POST /v1/carts/{id}/items\" kind=server dur=5021ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"redis HSET failed\"",
+      "attrs": {
+        "traceId": "729ea3a8af1b83ac",
+        "spanId": "86cdaded",
+        "op": "POST /v1/carts/{id}/items",
+        "durMs": 5021,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "2dee1101",
+        "httpStatus": 500,
+        "statusMessage": "redis HSET failed",
+        "medianMs": 5021
+      }
+    },
+    {
+      "id": "trc-51",
+      "source": "traces",
+      "line": 51,
+      "ts": 1791227612537,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-48",
+        "trc-49",
+        "trc-50"
+      ],
+      "text": "cart-api: HSET failed — dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:46637->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:13:32.537Z trace=729ea3a8af1b83ac span=72b81333 parent=86cdaded service=cart-api op=\"HSET\" kind=client dur=5003ms status=ERROR peer=cart-redis db.system=redis cluster=prod-eu-central ns=shop error=\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:46637->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "729ea3a8af1b83ac",
+        "spanId": "72b81333",
+        "op": "HSET",
+        "durMs": 5003,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "86cdaded",
+        "statusMessage": "dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:46637->10.96.0.10:53: i/o timeout",
+        "peer": "cart-redis",
+        "dbSystem": "redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis",
+        "medianMs": 5003,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-98",
+      "source": "logs",
+      "line": 98,
+      "ts": 1791227617552,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HGETALL failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:38969->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791227617.551868,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HGETALL failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:38969->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "log-99",
+      "source": "logs",
+      "line": 99,
+      "ts": 1791227652906,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "relatedIds": [],
+      "text": "charge request failed: Post \"https://api.payments-gw.example.net/v2/charges\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: read udp 10.244.3.52:45001->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "payments-api-84d9c7b6f5-mz5kd payments-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:14:12.906Z\",\"caller\":\"gateway/client.go:77\",\"msg\":\"charge request failed\",\"error\":\"Post \\\"https://api.payments-gw.example.net/v2/charges\\\": dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: read udp 10.244.3.52:45001->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "payments-api-84d9c7b6f5-mz5kd",
+        "container": "payments-api",
+        "status": 502,
+        "target": "api.payments-gw.example.net",
+        "targetId": "external:prod-eu-central/default/api.payments-gw.example.net"
+      }
+    },
+    {
+      "id": "alr-2",
+      "source": "alerts",
+      "line": 2,
+      "ts": 1791227702000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "dns_failure",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "CoreDNSForwardLatencyHigh firing — coredns (kube-system)",
+      "raw": "2026-10-05T19:15:02Z FIRING critical CoreDNSForwardLatencyHigh service=coredns namespace=kube-system cluster=prod-eu-central to=dns://10.20.0.53:53",
+      "attrs": {
+        "alertname": "CoreDNSForwardLatencyHigh",
+        "status": "firing",
+        "alertKind": "dns_failure",
+        "labels": {
+          "alertname": "CoreDNSForwardLatencyHigh",
+          "service": "coredns",
+          "namespace": "kube-system",
+          "cluster": "prod-eu-central",
+          "to": "dns://10.20.0.53:53",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical"
+      }
+    },
+    {
+      "id": "log-101",
+      "source": "logs",
+      "line": 101,
+      "ts": 1791227800118,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "product query failed: failed to connect to `host=catalog-db.shop.svc.cluster.local user=catalog database=catalog`: hostname resolving error (lookup catalog-db.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:60529->10.96.0.10:53: i/o timeout)",
+      "raw": "catalog-api-5b7c9d6f8-lx4pz catalog-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:16:40.118Z\",\"caller\":\"store/pg.go:58\",\"msg\":\"product query failed\",\"error\":\"failed to connect to `host=catalog-db.shop.svc.cluster.local user=catalog database=catalog`: hostname resolving error (lookup catalog-db.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:60529->10.96.0.10:53: i/o timeout)\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "catalog-api-5b7c9d6f8-lx4pz",
+        "container": "catalog-api",
+        "target": "catalog-db",
+        "targetId": "datastore:prod-eu-central/shop/catalog-db"
+      }
+    },
+    {
+      "id": "log-114",
+      "source": "logs",
+      "line": 114,
+      "ts": 1791227829334,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-eu-central/shop/inventory-api",
+      "relatedIds": [],
+      "text": "ERROR 1 --- [inventory-api] [nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on GET request for \"http://warehouse-sync.shop.svc.cluster.local:8080/v2/stock/SKU-204117\": warehouse-sync.shop.svc.cluster.lo…",
+      "raw": "[pod/inventory-api-7d5f8c9b6-r7v2n/inventory-api] 2026-10-05T19:17:09.334+00:00 ERROR 1 --- [inventory-api] [nio-8080-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.web.client.ResourceAccessException: I/O error on GET request for \"http://warehouse-sync.shop.svc.cluster.local:8080/v2/stock/SKU-204117\": warehouse-sync.shop.svc.cluster.local] with root cause",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "inventory-api-7d5f8c9b6-r7v2n",
+        "container": "inventory-api"
+      }
+    },
+    {
+      "id": "log-115",
+      "source": "logs",
+      "line": 115,
+      "ts": 1791227829334,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/inventory-api",
+      "relatedIds": [],
+      "text": "java.net.UnknownHostException: warehouse-sync.shop.svc.cluster.local: Temporary failure in name resolution",
+      "raw": "[pod/inventory-api-7d5f8c9b6-r7v2n/inventory-api] java.net.UnknownHostException: warehouse-sync.shop.svc.cluster.local: Temporary failure in name resolution",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "inventory-api-7d5f8c9b6-r7v2n",
+        "container": "inventory-api",
+        "tsCarried": true,
+        "target": "warehouse-sync",
+        "targetId": "service:prod-eu-central/shop/warehouse-sync"
+      }
+    },
+    {
+      "id": "alr-3",
+      "source": "alerts",
+      "line": 3,
+      "ts": 1791227865000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "CheckoutHighErrorRate firing — checkout-api (shop)",
+      "raw": "2026-10-05T19:17:45Z FIRING critical CheckoutHighErrorRate service=checkout-api namespace=shop cluster=prod-eu-central",
+      "attrs": {
+        "alertname": "CheckoutHighErrorRate",
+        "status": "firing",
+        "alertKind": "http_5xx",
+        "labels": {
+          "alertname": "CheckoutHighErrorRate",
+          "service": "checkout-api",
+          "namespace": "shop",
+          "cluster": "prod-eu-central",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical"
+      }
+    },
+    {
+      "id": "trc-59",
+      "source": "traces",
+      "line": 59,
+      "ts": 1791227896644,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-60",
+        "trc-61",
+        "trc-64"
+      ],
+      "text": "storefront: POST /checkout failed — upstream checkout-api responded 502",
+      "raw": "2026-10-05T19:18:16.644Z trace=83535f021ea0d090 span=42b4d2b8 parent=- service=storefront op=\"POST /checkout\" kind=server dur=5094ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"upstream checkout-api responded 502\"",
+      "attrs": {
+        "traceId": "83535f021ea0d090",
+        "spanId": "42b4d2b8",
+        "op": "POST /checkout",
+        "durMs": 5094,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 502,
+        "statusMessage": "upstream checkout-api responded 502",
+        "medianMs": 5094,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-60",
+      "source": "traces",
+      "line": 60,
+      "ts": 1791227896647,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-59",
+        "trc-61",
+        "trc-64"
+      ],
+      "text": "storefront: POST failed — HTTP 502",
+      "raw": "2026-10-05T19:18:16.647Z trace=83535f021ea0d090 span=2f314a12 parent=42b4d2b8 service=storefront op=\"POST\" kind=client dur=5086ms status=ERROR code=502 peer=checkout-api cluster=prod-eu-central ns=shop error=\"HTTP 502\"",
+      "attrs": {
+        "traceId": "83535f021ea0d090",
+        "spanId": "2f314a12",
+        "op": "POST",
+        "durMs": 5086,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "42b4d2b8",
+        "httpStatus": 502,
+        "statusMessage": "HTTP 502",
+        "peer": "checkout-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-61",
+      "source": "traces",
+      "line": 61,
+      "ts": 1791227896649,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-59",
+        "trc-60",
+        "trc-64"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment failed",
+      "raw": "2026-10-05T19:18:16.649Z trace=83535f021ea0d090 span=52adeb19 parent=2f314a12 service=checkout-api op=\"POST /v1/checkout\" kind=server dur=5079ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"payment failed\"",
+      "attrs": {
+        "traceId": "83535f021ea0d090",
+        "spanId": "52adeb19",
+        "op": "POST /v1/checkout",
+        "durMs": 5079,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "2f314a12",
+        "httpStatus": 502,
+        "statusMessage": "payment failed",
+        "medianMs": 5079
+      }
+    },
+    {
+      "id": "trc-64",
+      "source": "traces",
+      "line": 64,
+      "ts": 1791227896720,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-59",
+        "trc-60",
+        "trc-61"
+      ],
+      "text": "checkout-api: POST failed — dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:43516->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:18:16.720Z trace=83535f021ea0d090 span=70fdfe0d parent=52adeb19 service=checkout-api op=\"POST\" kind=client dur=5004ms status=ERROR peer=payments-api cluster=prod-eu-central ns=shop error=\"dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:43516->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "83535f021ea0d090",
+        "spanId": "70fdfe0d",
+        "op": "POST",
+        "durMs": 5004,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "52adeb19",
+        "statusMessage": "dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:43516->10.96.0.10:53: i/o timeout",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api",
+        "slow": true,
+        "medianMs": 177,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-102",
+      "source": "logs",
+      "line": 102,
+      "ts": 1791227901734,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payments call failed: Post \"http://payments-api.shop.svc.cluster.local:8080/v1/charges\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:48729->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "checkout-api-6b7f9d5c4-9tq2w checkout-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:18:21.734Z\",\"caller\":\"checkout/handler.go:141\",\"msg\":\"payments call failed\",\"error\":\"Post \\\"http://payments-api.shop.svc.cluster.local:8080/v1/charges\\\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:48729->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6b7f9d5c4-9tq2w",
+        "container": "checkout-api",
+        "status": 502,
+        "target": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-103",
+      "source": "logs",
+      "line": 103,
+      "ts": 1791227995020,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HGETALL failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:34989->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791227995.020132,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HGETALL failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:34989->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "log-120",
+      "source": "logs",
+      "line": 120,
+      "ts": 1791228014502,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "error_generic",
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "relatedIds": [],
+      "text": "[2026-10-05 19:20:14 +0000] [12] [ERROR] Error handling request /v1/related?sku=SKU-173057",
+      "raw": "[pod/search-api-84c7d9f6b5-wq2vd/search-api] 2026-10-05T19:20:14.502899569Z [2026-10-05 19:20:14 +0000] [12] [ERROR] Error handling request /v1/related?sku=SKU-173057",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "search-api-84c7d9f6b5-wq2vd",
+        "container": "search-api"
+      }
+    },
+    {
+      "id": "log-121",
+      "source": "logs",
+      "line": 121,
+      "ts": 1791228014503,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "panic",
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "relatedIds": [],
+      "text": "Traceback (most recent call last):",
+      "raw": "[pod/search-api-84c7d9f6b5-wq2vd/search-api] 2026-10-05T19:20:14.503469535Z Traceback (most recent call last):",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "search-api-84c7d9f6b5-wq2vd",
+        "container": "search-api"
+      }
+    },
+    {
+      "id": "log-126",
+      "source": "logs",
+      "line": 126,
+      "ts": 1791228014508,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "relatedIds": [],
+      "text": "requests.exceptions.ConnectionError: HTTPConnectionPool(host='search-index.shop.svc.cluster.local', port=9200): Max retries exceeded with url: /products/_search (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x7f3a2c1b8d90>: Failed to resolve 'search-index.shop.svc.cluster.local' ([Errno -3] Temporary failure in name resolution)\"))",
+      "raw": "[pod/search-api-84c7d9f6b5-wq2vd/search-api] 2026-10-05T19:20:14.508170318Z requests.exceptions.ConnectionError: HTTPConnectionPool(host='search-index.shop.svc.cluster.local', port=9200): Max retries exceeded with url: /products/_search (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x7f3a2c1b8d90>: Failed to resolve 'search-index.shop.svc.cluster.local' ([Errno -3] Temporary failure in name resolution)\"))",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "search-api-84c7d9f6b5-wq2vd",
+        "container": "search-api",
+        "target": "search-index",
+        "targetId": "service:prod-eu-central/shop/search-index"
+      }
+    },
+    {
+      "id": "trc-69",
+      "source": "traces",
+      "line": 69,
+      "ts": 1791228104375,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "catalog-api: GET failed — dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:60430->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:21:44.375Z trace=9bd07f80631c0b48 span=155b26c2 parent=6ceb9492 service=catalog-api op=\"GET\" kind=client dur=5003ms status=ERROR peer=search-api cluster=prod-eu-central ns=shop error=\"dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:60430->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "9bd07f80631c0b48",
+        "spanId": "155b26c2",
+        "op": "GET",
+        "durMs": 5003,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "6ceb9492",
+        "statusMessage": "dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:60430->10.96.0.10:53: i/o timeout",
+        "peer": "search-api",
+        "targetId": "service:prod-eu-central/shop/search-api",
+        "medianMs": 2547.5,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-104",
+      "source": "logs",
+      "line": 104,
+      "ts": 1791228109388,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "related products lookup failed: Get \"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-126062\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:52092->10.96.0.10:53: i/o timeout",
+      "raw": "catalog-api-5b7c9d6f8-lx4pz catalog-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:21:49.388Z\",\"caller\":\"related/client.go:49\",\"msg\":\"related products lookup failed\",\"error\":\"Get \\\"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-126062\\\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:52092->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "catalog-api-5b7c9d6f8-lx4pz",
+        "container": "catalog-api",
+        "target": "search-api",
+        "targetId": "service:prod-eu-central/shop/search-api"
+      }
+    },
+    {
+      "id": "log-137",
+      "source": "logs",
+      "line": 137,
+      "ts": 1791228161000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "restart",
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "relatedIds": [],
+      "text": "Pod search-api-84c7d9f6b5-wq2vd is Running (2 restarts)",
+      "raw": "search-api-84c7d9f6b5-wq2vd           1/1     Running   2 (8m19s ago)   9d",
+      "attrs": {
+        "pod": "search-api-84c7d9f6b5-wq2vd",
+        "podStatus": "Running",
+        "restarts": 2,
+        "ready": "1/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 777600000,
+        "relative": true,
+        "ageMs": 499000
+      }
+    },
+    {
+      "id": "alr-4",
+      "source": "alerts",
+      "line": 4,
+      "ts": 1791228168000,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "slo_burn",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [],
+      "text": "StorefrontErrorBudgetBurn firing — storefront (shop) (burn rate 62×)",
+      "raw": "2026-10-05T19:22:48Z FIRING critical StorefrontErrorBudgetBurn service=storefront namespace=shop cluster=prod-eu-central slo=storefront-availability burn_rate=62.0 error_ratio=0.031 long_window=1h short_window=5m",
+      "attrs": {
+        "alertname": "StorefrontErrorBudgetBurn",
+        "status": "firing",
+        "alertKind": "slo_burn",
+        "labels": {
+          "alertname": "StorefrontErrorBudgetBurn",
+          "service": "storefront",
+          "namespace": "shop",
+          "cluster": "prod-eu-central",
+          "slo": "storefront-availability",
+          "burn_rate": "62.0",
+          "error_ratio": "0.031",
+          "long_window": "1h",
+          "short_window": "5m",
+          "severity": "critical"
+        },
+        "format": "alert text",
+        "severityLabel": "critical",
+        "burnRate": 62,
+        "errorRatio": 0.031,
+        "window": "1h",
+        "longWindowMinutes": 60
+      }
+    },
+    {
+      "id": "log-105",
+      "source": "logs",
+      "line": 105,
+      "ts": 1791228210612,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payments call failed: Post \"http://payments-api.shop.svc.cluster.local:8080/v1/charges\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:46521->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "checkout-api-6b7f9d5c4-9tq2w checkout-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:23:30.612Z\",\"caller\":\"checkout/handler.go:141\",\"msg\":\"payments call failed\",\"error\":\"Post \\\"http://payments-api.shop.svc.cluster.local:8080/v1/charges\\\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:46521->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6b7f9d5c4-9tq2w",
+        "container": "checkout-api",
+        "status": 502,
+        "target": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-106",
+      "source": "logs",
+      "line": 106,
+      "ts": 1791228292091,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [],
+      "text": "upstream request failed: getaddrinfo EAI_AGAIN checkout-api.shop.svc.cluster.local (HTTP 502)",
+      "raw": "storefront-6c8b9d7f5-4kq2z storefront {\"level\":\"error\",\"time\":\"2026-10-05T19:24:52.091Z\",\"service\":\"storefront\",\"msg\":\"upstream request failed\",\"upstream\":\"checkout-api\",\"path\":\"/checkout\",\"status\":502,\"latency_ms\":10009,\"err\":\"getaddrinfo EAI_AGAIN checkout-api.shop.svc.cluster.local\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "storefront-6c8b9d7f5-4kq2z",
+        "container": "storefront",
+        "status": 502,
+        "latencyMs": 10009,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-central/shop/checkout-api"
+      }
+    },
+    {
+      "id": "alr-5",
+      "source": "alerts",
+      "line": 5,
+      "ts": 1791228313000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "KubePodCrashLooping firing — coredns (kube-system)",
+      "raw": "ALERT KubePodCrashLooping{cluster=\"prod-eu-central\",container=\"coredns\",namespace=\"kube-system\",pod=\"coredns-7c9d4b8f6d-5kq2w\",severity=\"warning\"} firing since 2026-10-05T19:25:13Z",
+      "attrs": {
+        "alertname": "KubePodCrashLooping",
+        "status": "firing",
+        "alertKind": "crash_loop",
+        "labels": {
+          "alertname": "KubePodCrashLooping",
+          "cluster": "prod-eu-central",
+          "container": "coredns",
+          "namespace": "kube-system",
+          "pod": "coredns-7c9d4b8f6d-5kq2w",
+          "severity": "warning"
+        },
+        "format": "alert text",
+        "severityLabel": "warning",
+        "pod": "coredns-7c9d4b8f6d-5kq2w"
+      }
+    },
+    {
+      "id": "alr-6",
+      "source": "alerts",
+      "line": 6,
+      "ts": 1791228324000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "KubePodCrashLooping firing — coredns (kube-system)",
+      "raw": "ALERT KubePodCrashLooping{cluster=\"prod-eu-central\",container=\"coredns\",namespace=\"kube-system\",pod=\"coredns-7c9d4b8f6d-m8z4t\",severity=\"warning\"} firing since 2026-10-05T19:25:24Z",
+      "attrs": {
+        "alertname": "KubePodCrashLooping",
+        "status": "firing",
+        "alertKind": "crash_loop",
+        "labels": {
+          "alertname": "KubePodCrashLooping",
+          "cluster": "prod-eu-central",
+          "container": "coredns",
+          "namespace": "kube-system",
+          "pod": "coredns-7c9d4b8f6d-m8z4t",
+          "severity": "warning"
+        },
+        "format": "alert text",
+        "severityLabel": "warning",
+        "pod": "coredns-7c9d4b8f6d-m8z4t"
+      }
+    },
+    {
+      "id": "log-22",
+      "source": "logs",
+      "line": 22,
+      "ts": 1791228334000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Started: Started container coredns",
+      "raw": "5m26s       Normal    Started             pod/coredns-7c9d4b8f6d-m8z4t    Started container coredns",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "object": "pod/coredns-7c9d4b8f6d-m8z4t",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "relative": true,
+        "ageMs": 326000
+      }
+    },
+    {
+      "id": "log-24",
+      "source": "logs",
+      "line": 24,
+      "ts": 1791228337000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Started: Started container coredns",
+      "raw": "5m23s       Normal    Started             pod/coredns-7c9d4b8f6d-5kq2w    Started container coredns",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "object": "pod/coredns-7c9d4b8f6d-5kq2w",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "relative": true,
+        "ageMs": 323000
+      }
+    },
+    {
+      "id": "log-42",
+      "source": "logs",
+      "line": 42,
+      "ts": 1791228337380,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Reason:       CrashLoopBackOff",
+      "raw": "      Reason:       CrashLoopBackOff",
+      "attrs": {
+        "format": "plain text",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "tsCarried": true
+      }
+    },
+    {
+      "id": "log-44",
+      "source": "logs",
+      "line": 44,
+      "ts": 1791228337380,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Reason:       OOMKilled",
+      "raw": "      Reason:       OOMKilled",
+      "attrs": {
+        "format": "plain text",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "tsCarried": true
+      }
+    },
+    {
+      "id": "log-45",
+      "source": "logs",
+      "line": 45,
+      "ts": 1791228337380,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Exit Code:    137",
+      "raw": "      Exit Code:    137",
+      "attrs": {
+        "format": "plain text",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "tsCarried": true
+      }
+    },
+    {
+      "id": "log-66",
+      "source": "logs",
+      "line": 66,
+      "ts": 1791228344437,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 api.payments-gw.example.net. A: read udp 10.244.0.15:51542->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:44.437939322Z [ERROR] plugin/errors: 2 api.payments-gw.example.net. A: read udp 10.244.0.15:51542->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-67",
+      "source": "logs",
+      "line": 67,
+      "ts": 1791228347337,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 smtp-relay.example.net. AAAA: read udp 10.244.0.15:43454->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:47.337287386Z [ERROR] plugin/errors: 2 smtp-relay.example.net. AAAA: read udp 10.244.0.15:43454->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-68",
+      "source": "logs",
+      "line": 68,
+      "ts": 1791228349737,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 api.payments-gw.example.net. AAAA: read udp 10.244.0.15:40497->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:49.737912536Z [ERROR] plugin/errors: 2 api.payments-gw.example.net. AAAA: read udp 10.244.0.15:40497->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-70",
+      "source": "logs",
+      "line": 70,
+      "ts": 1791228352927,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 login.identity-provider.example.net. A: read udp 10.244.0.15:39138->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:52.927384543Z [ERROR] plugin/errors: 2 login.identity-provider.example.net. A: read udp 10.244.0.15:39138->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-71",
+      "source": "logs",
+      "line": 71,
+      "ts": 1791228355151,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 smtp-relay.example.net. A: read udp 10.244.0.15:53254->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:55.151698287Z [ERROR] plugin/errors: 2 smtp-relay.example.net. A: read udp 10.244.0.15:53254->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-72",
+      "source": "logs",
+      "line": 72,
+      "ts": 1791228359826,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 metrics-ingest.example.net. A: read udp 10.244.0.15:51459->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:25:59.826089665Z [ERROR] plugin/errors: 2 metrics-ingest.example.net. A: read udp 10.244.0.15:51459->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "trc-70",
+      "source": "traces",
+      "line": 70,
+      "ts": 1791228365227,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-71",
+        "trc-72",
+        "trc-73"
+      ],
+      "text": "storefront: POST /cart/items failed — upstream cart-api responded 500",
+      "raw": "2026-10-05T19:26:05.227Z trace=af7e8de2b360e0cc span=147aacbd parent=- service=storefront op=\"POST /cart/items\" kind=server dur=5032ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"upstream cart-api responded 500\"",
+      "attrs": {
+        "traceId": "af7e8de2b360e0cc",
+        "spanId": "147aacbd",
+        "op": "POST /cart/items",
+        "durMs": 5032,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 500,
+        "statusMessage": "upstream cart-api responded 500",
+        "medianMs": 5032,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-71",
+      "source": "traces",
+      "line": 71,
+      "ts": 1791228365229,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-70",
+        "trc-72",
+        "trc-73"
+      ],
+      "text": "storefront: POST failed — HTTP 500",
+      "raw": "2026-10-05T19:26:05.229Z trace=af7e8de2b360e0cc span=45467983 parent=147aacbd service=storefront op=\"POST\" kind=client dur=5027ms status=ERROR code=500 peer=cart-api cluster=prod-eu-central ns=shop error=\"HTTP 500\"",
+      "attrs": {
+        "traceId": "af7e8de2b360e0cc",
+        "spanId": "45467983",
+        "op": "POST",
+        "durMs": 5027,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "147aacbd",
+        "httpStatus": 500,
+        "statusMessage": "HTTP 500",
+        "peer": "cart-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-72",
+      "source": "traces",
+      "line": 72,
+      "ts": 1791228365231,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-70",
+        "trc-71",
+        "trc-73"
+      ],
+      "text": "cart-api: POST /v1/carts/{id}/items failed — redis HSET failed",
+      "raw": "2026-10-05T19:26:05.231Z trace=af7e8de2b360e0cc span=0300834c parent=45467983 service=cart-api op=\"POST /v1/carts/{id}/items\" kind=server dur=5021ms status=ERROR code=500 cluster=prod-eu-central ns=shop error=\"redis HSET failed\"",
+      "attrs": {
+        "traceId": "af7e8de2b360e0cc",
+        "spanId": "0300834c",
+        "op": "POST /v1/carts/{id}/items",
+        "durMs": 5021,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "45467983",
+        "httpStatus": 500,
+        "statusMessage": "redis HSET failed",
+        "medianMs": 5021
+      }
+    },
+    {
+      "id": "trc-73",
+      "source": "traces",
+      "line": 73,
+      "ts": 1791228365233,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [
+        "trc-70",
+        "trc-71",
+        "trc-72"
+      ],
+      "text": "cart-api: HSET failed — dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:58916->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:26:05.233Z trace=af7e8de2b360e0cc span=00406067 parent=0300834c service=cart-api op=\"HSET\" kind=client dur=5003ms status=ERROR peer=cart-redis db.system=redis cluster=prod-eu-central ns=shop error=\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:58916->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "af7e8de2b360e0cc",
+        "spanId": "00406067",
+        "op": "HSET",
+        "durMs": 5003,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "0300834c",
+        "statusMessage": "dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:58916->10.96.0.10:53: i/o timeout",
+        "peer": "cart-redis",
+        "dbSystem": "redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis",
+        "medianMs": 5003,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-107",
+      "source": "logs",
+      "line": 107,
+      "ts": 1791228370247,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HSET failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:35494->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791228370.247211,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HSET failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:35494->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "log-73",
+      "source": "logs",
+      "line": 73,
+      "ts": 1791228386000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "W1005 19:26:26.000117       1 reflector.go:561] pkg/mod/k8s.io/client-go@v0.33.1/tools/cache/reflector.go:251: failed to list *v1.EndpointSlice: Get \"https://10.96.0.1:443/apis/discovery.k8s.io/v1/endpointslices?limit=500&resourceVersion=0\": context deadline exceeded",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:26:26.000495222Z W1005 19:26:26.000117       1 reflector.go:561] pkg/mod/k8s.io/client-go@v0.33.1/tools/cache/reflector.go:251: failed to list *v1.EndpointSlice: Get \"https://10.96.0.1:443/apis/discovery.k8s.io/v1/endpointslices?limit=500&resourceVersion=0\": context deadline exceeded",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-25",
+      "source": "logs",
+      "line": 25,
+      "ts": 1791228389000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Unhealthy: Liveness probe failed: Get \"http://10.244.1.12:8080/health\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "4m31s       Warning   Unhealthy           pod/coredns-7c9d4b8f6d-m8z4t    Liveness probe failed: Get \"http://10.244.1.12:8080/health\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-m8z4t",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "relative": true,
+        "ageMs": 271000
+      }
+    },
+    {
+      "id": "log-26",
+      "source": "logs",
+      "line": 26,
+      "ts": 1791228394000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "4m26s       Warning   Unhealthy           pod/coredns-7c9d4b8f6d-m8z4t    Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-m8z4t",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "relative": true,
+        "ageMs": 266000
+      }
+    },
+    {
+      "id": "log-5",
+      "source": "logs",
+      "line": 5,
+      "ts": 1791228398000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Pod coredns-7c9d4b8f6d-m8z4t is CrashLoopBackOff (6 restarts)",
+      "raw": "coredns-7c9d4b8f6d-m8z4t   0/1     CrashLoopBackOff   6 (4m22s ago)   28m   10.244.1.12   aks-system-27461938-vmss000001   <none>           <none>",
+      "attrs": {
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "node": "aks-system-27461938-vmss000001",
+        "podAgeMs": 1680000,
+        "relative": true,
+        "ageMs": 262000
+      }
+    },
+    {
+      "id": "log-27",
+      "source": "logs",
+      "line": 27,
+      "ts": 1791228398000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Unhealthy: Liveness probe failed: Get \"http://10.244.0.15:8080/health\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "4m22s       Warning   Unhealthy           pod/coredns-7c9d4b8f6d-5kq2w    Liveness probe failed: Get \"http://10.244.0.15:8080/health\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-5kq2w",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "relative": true,
+        "ageMs": 262000
+      }
+    },
+    {
+      "id": "log-28",
+      "source": "logs",
+      "line": 28,
+      "ts": 1791228403000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "raw": "4m17s       Warning   Unhealthy           pod/coredns-7c9d4b8f6d-5kq2w    Readiness probe failed: HTTP probe failed with statuscode: 503",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-5kq2w",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "relative": true,
+        "ageMs": 257000
+      }
+    },
+    {
+      "id": "log-75",
+      "source": "logs",
+      "line": 75,
+      "ts": 1791228403000,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "timeout",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "[ERROR] plugin/errors: 2 api.payments-gw.example.net. A: read udp 10.244.0.15:48768->10.20.0.53:53: i/o timeout",
+      "raw": "[pod/coredns-7c9d4b8f6d-5kq2w/coredns] 2026-10-05T19:26:43.000781261Z [ERROR] plugin/errors: 2 api.payments-gw.example.net. A: read udp 10.244.0.15:48768->10.20.0.53:53: i/o timeout",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "level": "error",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "container": "coredns"
+      }
+    },
+    {
+      "id": "log-4",
+      "source": "logs",
+      "line": 4,
+      "ts": 1791228407000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "Pod coredns-7c9d4b8f6d-5kq2w is CrashLoopBackOff (6 restarts)",
+      "raw": "coredns-7c9d4b8f6d-5kq2w   0/1     CrashLoopBackOff   6 (4m13s ago)   29m   10.244.0.15   aks-system-27461938-vmss000000   <none>           <none>",
+      "attrs": {
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "node": "aks-system-27461938-vmss000000",
+        "podAgeMs": 1740000,
+        "relative": true,
+        "ageMs": 253000
+      }
+    },
+    {
+      "id": "log-108",
+      "source": "logs",
+      "line": 108,
+      "ts": 1791228464903,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "relatedIds": [],
+      "text": "related products lookup failed: Get \"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-126062\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:58252->10.96.0.10:53: i/o timeout",
+      "raw": "catalog-api-5b7c9d6f8-lx4pz catalog-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:27:44.903Z\",\"caller\":\"related/client.go:49\",\"msg\":\"related products lookup failed\",\"error\":\"Get \\\"http://search-api.shop.svc.cluster.local:8080/v1/related?sku=SKU-126062\\\": dial tcp: lookup search-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.2.34:58252->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "catalog-api-5b7c9d6f8-lx4pz",
+        "container": "catalog-api",
+        "target": "search-api",
+        "targetId": "service:prod-eu-central/shop/search-api"
+      }
+    },
+    {
+      "id": "trc-74",
+      "source": "traces",
+      "line": 74,
+      "ts": 1791228568080,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-75",
+        "trc-76",
+        "trc-79"
+      ],
+      "text": "storefront: POST /checkout failed — upstream checkout-api responded 502",
+      "raw": "2026-10-05T19:29:28.080Z trace=619d0f2c69685b9a span=cdbd9d86 parent=- service=storefront op=\"POST /checkout\" kind=server dur=5094ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"upstream checkout-api responded 502\"",
+      "attrs": {
+        "traceId": "619d0f2c69685b9a",
+        "spanId": "cdbd9d86",
+        "op": "POST /checkout",
+        "durMs": 5094,
+        "spanKind": "server",
+        "format": "span text",
+        "httpStatus": 502,
+        "statusMessage": "upstream checkout-api responded 502",
+        "medianMs": 5094,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-75",
+      "source": "traces",
+      "line": 75,
+      "ts": 1791228568083,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "relatedIds": [
+        "trc-74",
+        "trc-76",
+        "trc-79"
+      ],
+      "text": "storefront: POST failed — HTTP 502",
+      "raw": "2026-10-05T19:29:28.083Z trace=619d0f2c69685b9a span=07707593 parent=cdbd9d86 service=storefront op=\"POST\" kind=client dur=5086ms status=ERROR code=502 peer=checkout-api cluster=prod-eu-central ns=shop error=\"HTTP 502\"",
+      "attrs": {
+        "traceId": "619d0f2c69685b9a",
+        "spanId": "07707593",
+        "op": "POST",
+        "durMs": 5086,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "cdbd9d86",
+        "httpStatus": 502,
+        "statusMessage": "HTTP 502",
+        "peer": "checkout-api",
+        "medianMs": 5027,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-76",
+      "source": "traces",
+      "line": 76,
+      "ts": 1791228568085,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-74",
+        "trc-75",
+        "trc-79"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment failed",
+      "raw": "2026-10-05T19:29:28.085Z trace=619d0f2c69685b9a span=0b0c19b8 parent=07707593 service=checkout-api op=\"POST /v1/checkout\" kind=server dur=5079ms status=ERROR code=502 cluster=prod-eu-central ns=shop error=\"payment failed\"",
+      "attrs": {
+        "traceId": "619d0f2c69685b9a",
+        "spanId": "0b0c19b8",
+        "op": "POST /v1/checkout",
+        "durMs": 5079,
+        "spanKind": "server",
+        "format": "span text",
+        "parentId": "07707593",
+        "httpStatus": 502,
+        "statusMessage": "payment failed",
+        "medianMs": 5079
+      }
+    },
+    {
+      "id": "trc-79",
+      "source": "traces",
+      "line": 79,
+      "ts": 1791228568156,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [
+        "trc-74",
+        "trc-75",
+        "trc-76"
+      ],
+      "text": "checkout-api: POST failed — dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:47389->10.96.0.10:53: i/o timeout",
+      "raw": "2026-10-05T19:29:28.156Z trace=619d0f2c69685b9a span=2da1fdd2 parent=0b0c19b8 service=checkout-api op=\"POST\" kind=client dur=5004ms status=ERROR peer=payments-api cluster=prod-eu-central ns=shop error=\"dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:47389->10.96.0.10:53: i/o timeout\"",
+      "attrs": {
+        "traceId": "619d0f2c69685b9a",
+        "spanId": "2da1fdd2",
+        "op": "POST",
+        "durMs": 5004,
+        "spanKind": "client",
+        "format": "span text",
+        "parentId": "0b0c19b8",
+        "statusMessage": "dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:47389->10.96.0.10:53: i/o timeout",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api",
+        "slow": true,
+        "medianMs": 177,
+        "causeKind": "dns_failure"
+      }
+    },
+    {
+      "id": "log-109",
+      "source": "logs",
+      "line": 109,
+      "ts": 1791228573170,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payments call failed: Post \"http://payments-api.shop.svc.cluster.local:8080/v1/charges\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:52494->10.96.0.10:53: i/o timeout (HTTP 502)",
+      "raw": "checkout-api-6b7f9d5c4-9tq2w checkout-api {\"level\":\"error\",\"ts\":\"2026-10-05T19:29:33.170Z\",\"caller\":\"checkout/handler.go:141\",\"msg\":\"payments call failed\",\"error\":\"Post \\\"http://payments-api.shop.svc.cluster.local:8080/v1/charges\\\": dial tcp: lookup payments-api.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.4.41:52494->10.96.0.10:53: i/o timeout\",\"status\":502}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6b7f9d5c4-9tq2w",
+        "container": "checkout-api",
+        "status": 502,
+        "target": "payments-api",
+        "targetId": "service:prod-eu-central/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-29",
+      "source": "logs",
+      "line": 29,
+      "ts": 1791228620000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container coredns in pod coredns-7c9d4b8f6d-m8z4t_kube-system(b44a3d56-65b6-4f12-8400-3c8f66e5fe82)",
+      "raw": "40s         Warning   BackOff             pod/coredns-7c9d4b8f6d-m8z4t    Back-off restarting failed container coredns in pod coredns-7c9d4b8f6d-m8z4t_kube-system(b44a3d56-65b6-4f12-8400-3c8f66e5fe82)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-m8z4t",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-m8z4t",
+        "relative": true,
+        "ageMs": 40000
+      }
+    },
+    {
+      "id": "log-30",
+      "source": "logs",
+      "line": 30,
+      "ts": 1791228623000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container coredns in pod coredns-7c9d4b8f6d-5kq2w_kube-system(4fd4ed0b-b2f8-48f2-9b2c-bd3487106c41)",
+      "raw": "37s         Warning   BackOff             pod/coredns-7c9d4b8f6d-5kq2w    Back-off restarting failed container coredns in pod coredns-7c9d4b8f6d-5kq2w_kube-system(4fd4ed0b-b2f8-48f2-9b2c-bd3487106c41)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/coredns-7c9d4b8f6d-5kq2w",
+        "format": "kubectl events",
+        "pod": "coredns-7c9d4b8f6d-5kq2w",
+        "relative": true,
+        "ageMs": 37000
+      }
+    },
+    {
+      "id": "log-110",
+      "source": "logs",
+      "line": 110,
+      "ts": 1791228641523,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "dns_failure",
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "relatedIds": [],
+      "text": "redis HGETALL failed: dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:44651->10.96.0.10:53: i/o timeout",
+      "raw": "cart-api-7f6d9c8b5-2hq8x cart-api {\"level\":\"error\",\"ts\":1791228641.5229762,\"caller\":\"store/redis.go:64\",\"msg\":\"redis HGETALL failed\",\"error\":\"dial tcp: lookup cart-redis.shop.svc.cluster.local on 10.96.0.10:53: read udp 10.244.3.17:44651->10.96.0.10:53: i/o timeout\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "cart-api-7f6d9c8b5-2hq8x",
+        "container": "cart-api",
+        "target": "cart-redis",
+        "targetId": "datastore:prod-eu-central/shop/cart-redis"
+      }
+    },
+    {
+      "id": "alr-1",
+      "source": "alerts",
+      "line": 1,
+      "ts": 1791228660000,
+      "tsInferred": true,
+      "severity": "critical",
+      "kind": "dns_failure",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "relatedIds": [],
+      "text": "CoreDNSForwardErrorsHigh firing — coredns (kube-system)",
+      "raw": "[FIRING:1] CoreDNSForwardErrorsHigh (coredns kube-system prod-eu-central critical)",
+      "attrs": {
+        "alertname": "CoreDNSForwardErrorsHigh",
+        "status": "firing",
+        "alertKind": "dns_failure",
+        "labels": {
+          "alertname": "CoreDNSForwardErrorsHigh",
+          "cluster": "prod-eu-central",
+          "severity": "critical",
+          "namespace": "coredns",
+          "service": "kube-system"
+        },
+        "format": "alert text",
+        "severityLabel": "critical",
+        "relative": true,
+        "ageMs": 0,
+        "tsUnknown": true
+      }
+    }
+  ],
+  "changes": [
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "resourceKind": "ConfigMap",
+      "resourceName": "coredns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "cluster": "prod-eu-central",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "coredns-1.39.2",
+      "after": "coredns-1.40.0",
+      "changeType": "changed",
+      "line": 22,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart coredns-1.39.2 → coredns-1.40.0",
+      "id": "chg-2odgia",
+      "raw": "+     helm.sh/chart: coredns-1.40.0",
+      "signalId": "hlm-22"
+    },
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "resourceKind": "ConfigMap",
+      "resourceName": "coredns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "cluster": "prod-eu-central",
+      "field": "data.Corefile",
+      "before": "forward . /etc/resolv.conf {\nmax_concurrent 1000\n}\ncache 30",
+      "after": "forward . 10.20.0.53 10.20.0.54 {\npolicy sequential\n}",
+      "changeType": "changed",
+      "line": 42,
+      "category": "configmap",
+      "risk": "high",
+      "summary": "ConfigMap coredns Corefile: forward . /etc/resolv.conf { → forward . 10.20.0.53 10.20.0.54 {",
+      "id": "chg-1n7f5q7",
+      "raw": "+         forward . 10.20.0.53 10.20.0.54 {",
+      "signalId": "hlm-42"
+    },
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "resourceKind": "Deployment",
+      "resourceName": "coredns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "cluster": "prod-eu-central",
+      "field": "metadata.labels.app.kubernetes.io/version",
+      "before": "1.12.1",
+      "after": "1.12.3",
+      "changeType": "changed",
+      "line": 59,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 1.12.1 → 1.12.3",
+      "id": "chg-elrtrb",
+      "raw": "+     app.kubernetes.io/version: \"1.12.3\"",
+      "signalId": "hlm-59"
+    },
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "resourceKind": "Deployment",
+      "resourceName": "coredns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "cluster": "prod-eu-central",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "coredns-1.39.2",
+      "after": "coredns-1.40.0",
+      "changeType": "changed",
+      "line": 61,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart coredns-1.39.2 → coredns-1.40.0",
+      "id": "chg-1w25y12",
+      "raw": "+     helm.sh/chart: coredns-1.40.0",
+      "signalId": "hlm-61"
+    },
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "resourceKind": "Deployment",
+      "resourceName": "coredns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "cluster": "prod-eu-central",
+      "field": "spec.template.spec.containers[coredns].image",
+      "before": "registry.example.com/mirror/coredns/coredns:1.12.1",
+      "after": "registry.example.com/mirror/coredns/coredns:1.12.3",
+      "changeType": "changed",
+      "line": 76,
+      "category": "image",
+      "risk": "medium",
+      "summary": "coredns image tag 1.12.1 → 1.12.3",
+      "id": "chg-ams1rb",
+      "raw": "+         image: \"registry.example.com/mirror/coredns/coredns:1.12.3\"",
+      "signalId": "hlm-76"
+    }
+  ],
+  "deploy": {
+    "release": "coredns",
+    "namespace": "kube-system",
+    "revision": 14,
+    "previousRevision": 13,
+    "chartFrom": "coredns-1.39.2",
+    "chartTo": "coredns-1.40.0",
+    "appFrom": "1.12.1",
+    "appTo": "1.12.3",
+    "deployedAt": 1791226912000,
+    "deployedAtSource": "helm-history",
+    "tsInferred": true,
+    "cluster": "prod-eu-central",
+    "clusterKnown": true,
+    "status": "deployed",
+    "description": "Upgrade complete",
+    "line": 7,
+    "changeCount": 5,
+    "componentId": "infra:prod-eu-central/kube-system/coredns",
+    "signalId": "hlm-7"
+  },
+  "deploys": [
+    {
+      "release": "coredns",
+      "namespace": "kube-system",
+      "revision": 14,
+      "previousRevision": 13,
+      "chartFrom": "coredns-1.39.2",
+      "chartTo": "coredns-1.40.0",
+      "appFrom": "1.12.1",
+      "appTo": "1.12.3",
+      "deployedAt": 1791226912000,
+      "deployedAtSource": "helm-history",
+      "tsInferred": true,
+      "cluster": "prod-eu-central",
+      "clusterKnown": true,
+      "status": "deployed",
+      "description": "Upgrade complete",
+      "line": 7,
+      "changeCount": 5,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "signalId": "hlm-7"
+    }
+  ],
+  "timeline": [
+    {
+      "ts": 1791226912000,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "change",
+      "severity": "info",
+      "signalId": "hlm-7"
+    },
+    {
+      "ts": 1791227131590,
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-21"
+    },
+    {
+      "ts": 1791227131595,
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-23"
+    },
+    {
+      "ts": 1791227131669,
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-27"
+    },
+    {
+      "ts": 1791227131887,
+      "componentId": "service:prod-eu-central/shop/payments-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-87"
+    },
+    {
+      "ts": 1791227208112,
+      "componentId": "service:prod-eu-central/shop/notification-worker",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-88"
+    },
+    {
+      "ts": 1791227376217,
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-31"
+    },
+    {
+      "ts": 1791227377000,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "oom_killed",
+      "severity": "error",
+      "signalId": "log-78"
+    },
+    {
+      "ts": 1791227381234,
+      "componentId": "service:prod-eu-central/shop/cart-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-90"
+    },
+    {
+      "ts": 1791227384120,
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-91"
+    },
+    {
+      "ts": 1791227399410,
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-92"
+    },
+    {
+      "ts": 1791227403921,
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-45"
+    },
+    {
+      "ts": 1791227408944,
+      "componentId": "service:prod-eu-central/shop/catalog-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-93"
+    },
+    {
+      "ts": 1791227702000,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "dns_failure",
+      "severity": "critical",
+      "signalId": "alr-2"
+    },
+    {
+      "ts": 1791227829334,
+      "componentId": "service:prod-eu-central/shop/inventory-api",
+      "kind": "panic",
+      "severity": "error",
+      "signalId": "log-114"
+    },
+    {
+      "ts": 1791227829334,
+      "componentId": "service:prod-eu-central/shop/inventory-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-115"
+    },
+    {
+      "ts": 1791227865000,
+      "componentId": "service:prod-eu-central/shop/checkout-api",
+      "kind": "http_5xx",
+      "severity": "critical",
+      "signalId": "alr-3"
+    },
+    {
+      "ts": 1791228014502,
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "kind": "error_generic",
+      "severity": "error",
+      "signalId": "log-120"
+    },
+    {
+      "ts": 1791228014503,
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "kind": "panic",
+      "severity": "error",
+      "signalId": "log-121"
+    },
+    {
+      "ts": 1791228014508,
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "kind": "dns_failure",
+      "severity": "error",
+      "signalId": "log-126"
+    },
+    {
+      "ts": 1791228161000,
+      "componentId": "service:prod-eu-central/shop/search-api",
+      "kind": "restart",
+      "severity": "warn",
+      "signalId": "log-137"
+    },
+    {
+      "ts": 1791228168000,
+      "componentId": "service:prod-eu-central/shop/storefront",
+      "kind": "slo_burn",
+      "severity": "critical",
+      "signalId": "alr-4"
+    },
+    {
+      "ts": 1791228313000,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "crash_loop",
+      "severity": "warn",
+      "signalId": "alr-5"
+    },
+    {
+      "ts": 1791228344437,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "timeout",
+      "severity": "error",
+      "signalId": "log-66"
+    },
+    {
+      "ts": 1791228389000,
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "kind": "probe_failed",
+      "severity": "warn",
+      "signalId": "log-25"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-1i1nmlg",
+      "title": "Cluster name lookups (Domain Name System, DNS) fail: CoreDNS is failing in prod-eu-central",
+      "category": "dns",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "confidence": 0.95,
+      "summary": "Services in prod-eu-central cannot resolve names (8 services affected). CoreDNS is itself failing after its configuration changed, so every call that needs a lookup fails or times out.",
+      "evidence": [
+        {
+          "signalId": "trc-28",
+          "changeId": null,
+          "text": "Name lookups fail in 8 services (payments-api, notification-worker, cart-api, checkout-api, storefront, catalog-api, …), 38 errors, first at 19:05:31 UTC: \"…— dial tcp: lookup api.payments-gw.example.net on 10.96.0.10:53: server misbehaving\".",
+          "weight": 0.55,
+          "source": "traces",
+          "line": 28
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1n7f5q7",
+          "text": "The CoreDNS configuration changed: ConfigMap coredns Corefile: forward . /etc/resolv.conf { → forward . 10.20.0.53 10.20.0.54 {.",
+          "weight": 0.35,
+          "source": "helm",
+          "line": 42
+        },
+        {
+          "signalId": "log-78",
+          "changeId": null,
+          "text": "CoreDNS itself is failing (killed for running out of memory, failing name lookups, crash-looping, timing out; 22 signals).",
+          "weight": 0.3,
+          "source": "logs",
+          "line": 78
+        },
+        {
+          "signalId": "alr-1",
+          "changeId": null,
+          "text": "Alert CoreDNSForwardErrorsHigh is firing.",
+          "weight": 0.2,
+          "source": "alerts",
+          "line": 1
+        },
+        {
+          "signalId": "log-88",
+          "changeId": null,
+          "text": "Lookups also fail from notification-worker at 19:06:48 UTC: \"…getaddrinfo EAI_AGAIN smtp-relay.example.net\".",
+          "weight": 0.15,
+          "source": "logs",
+          "line": 88
+        },
+        {
+          "signalId": "log-79",
+          "changeId": null,
+          "text": "CoreDNS pods are killed for running out of memory 8 times, so lookups time out while they restart.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 79
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system get pods -l k8s-app=kube-dns -o wide",
+          "why": "Are the CoreDNS pods running and ready, and on which nodes."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system logs -l k8s-app=kube-dns --tail=50 --prefix",
+          "why": "CoreDNS errors: upstream timeouts, SERVFAIL, plugin errors."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system get configmap coredns -o yaml",
+          "why": "The Corefile in effect (forward targets, cache, policy)."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central run dns-check --rm -it --restart=Never --image=busybox:1.36 -- nslookup kubernetes.default.svc.cluster.local",
+          "why": "A clean test lookup from a fresh pod."
+        },
+        {
+          "cmd": "sum by (rcode) (rate(coredns_dns_responses_total[5m]))",
+          "why": "Prometheus query: DNS answers by response code (SERVFAIL rising?)."
+        },
+        {
+          "cmd": "histogram_quantile(0.99, sum by (le) (rate(coredns_dns_request_duration_seconds_bucket[5m])))",
+          "why": "Prometheus query: 99th percentile lookup time."
+        },
+        {
+          "cmd": "helm diff revision coredns 13 14 -n kube-system --kube-context prod-eu-central",
+          "why": "What the CoreDNS release changed."
+        }
+      ],
+      "rule": "cluster-dns-failing",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-1uk49el",
+      "title": "Helm release coredns r14 broke coredns",
+      "category": "bad-deploy",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "confidence": 0.75,
+      "summary": "Helm release coredns r13 → r14 changed 5 fields (1 high-risk change) shortly before coredns started failing.",
+      "evidence": [
+        {
+          "signalId": "log-78",
+          "changeId": null,
+          "text": "coredns first failed 7 min 45 s after the deploy: \"coredns invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=992\".",
+          "weight": 0.3,
+          "source": "logs",
+          "line": 78
+        },
+        {
+          "signalId": "hlm-7",
+          "changeId": null,
+          "text": "Helm release coredns r13 → r14 rolled out at 19:01:52 UTC, chart coredns-1.39.2 → coredns-1.40.0.",
+          "weight": 0.2,
+          "source": "helm",
+          "line": 7
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1n7f5q7",
+          "text": "High-risk change in this release: ConfigMap coredns Corefile: forward . /etc/resolv.conf { → forward . 10.20.0.53 10.20.0.54 {.",
+          "weight": 0.15,
+          "source": "helm",
+          "line": 42
+        },
+        {
+          "signalId": "log-9",
+          "changeId": null,
+          "text": "Kubernetes rolled out a new ReplicaSet (coredns-7c9d4b8f6d) for coredns.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 9
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-ams1rb",
+          "text": "Also changed: coredns image tag 1.12.1 → 1.12.3.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 76
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "helm history coredns -n kube-system --kube-context prod-eu-central --max 5",
+          "why": "Which revision is live and when each one was deployed."
+        },
+        {
+          "cmd": "helm diff revision coredns 13 14 -n kube-system --kube-context prod-eu-central",
+          "why": "Every manifest change between the last good and the current revision (helm-diff plugin)."
+        },
+        {
+          "cmd": "helm get values coredns -n kube-system --kube-context prod-eu-central --revision 13",
+          "why": "The values the last good revision used."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system rollout history deployment/coredns",
+          "why": "ReplicaSet revisions of the workload and when they rolled out."
+        }
+      ],
+      "rule": "deploy-correlation",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-frjw7q",
+      "title": "coredns is running out of memory",
+      "category": "resource-limits",
+      "componentId": "infra:prod-eu-central/kube-system/coredns",
+      "confidence": 0.679,
+      "summary": "coredns in prod-eu-central keeps exceeding its memory limit and is killed for running out of memory (OOMKilled), then restarted.",
+      "evidence": [
+        {
+          "signalId": "log-78",
+          "changeId": null,
+          "text": "coredns containers were killed for running out of memory (OOMKilled, 8 records from Kubernetes and the kernel, first at 19:09:37 UTC), 6 restarts so far.",
+          "weight": 0.5,
+          "source": "logs",
+          "line": 78
+        },
+        {
+          "signalId": "alr-5",
+          "changeId": null,
+          "text": "Kubernetes reports CrashLoopBackOff for coredns 7 times — the kill-restart cycle after each out-of-memory kill.",
+          "weight": 0.15,
+          "source": "alerts",
+          "line": 5
+        },
+        {
+          "signalId": "log-79",
+          "changeId": null,
+          "text": "The kernel's out-of-memory killer on 2 nodes killed the coredns process 6 times.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 79
+        }
+      ],
+      "against": [
+        {
+          "text": "No memory limit change for coredns in the pasted Helm diff; memory use may have grown on its own (traffic, a leak, a larger data set)."
+        }
+      ],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system describe pod coredns-7c9d4b8f6d-5kq2w",
+          "why": "Last State, Reason (OOMKilled), Exit Code 137 and the memory limit of each container."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system top pod coredns-7c9d4b8f6d-5kq2w --containers",
+          "why": "Current memory use against the limit (needs metrics-server)."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-central -n kube-system get events --field-selector involvedObject.name=coredns-7c9d4b8f6d-5kq2w --sort-by=.lastTimestamp",
+          "why": "When the kills and back-offs started for this pod."
+        },
+        {
+          "cmd": "max by (pod) (container_memory_working_set_bytes{namespace=\"kube-system\", pod=~\"coredns-.*\", container=\"coredns\"})",
+          "why": "Prometheus query: working-set memory per pod — the number the OOM killer compares with the limit."
+        },
+        {
+          "cmd": "sum by (pod) (increase(kube_pod_container_status_restarts_total{namespace=\"kube-system\", pod=~\"coredns-.*\"}[30m]))",
+          "why": "Prometheus query: restarts per pod over the incident."
+        },
+        {
+          "cmd": "helm get values coredns -n kube-system --kube-context prod-eu-central --revision 13",
+          "why": "The resources the last good revision ran with."
+        }
+      ],
+      "rule": "oom-killed",
+      "relatedComponentIds": []
+    }
+  ],
+  "rollbacks": [
+    {
+      "id": "rb-5k6sdc",
+      "title": "Roll back Helm release coredns to r13 in prod-eu-central",
+      "kind": "helm-rollback",
+      "commands": [
+        "helm rollback coredns 13 -n kube-system --kube-context prod-eu-central --wait --timeout 5m",
+        "kubectl --context prod-eu-central -n kube-system rollout status deployment/coredns --timeout=5m"
+      ],
+      "etaMinutes": 6,
+      "risk": "low",
+      "recommended": true,
+      "fixes": [
+        "hyp-1i1nmlg",
+        "hyp-1uk49el"
+      ],
+      "caveats": [
+        "Helm records the rollback as a new revision (r15) with the contents of r13; r14 stays in the history.",
+        "It reverts all of r14's template changes, not only the suspect one: ConfigMap coredns Corefile: forward . /etc/resolv.conf { → forward . 10.20.0.53 10.20.0.54 {; coredns image tag 1.12.1 → 1.12.3.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease coredns -n kube-system), or it will re-apply r14 within minutes."
+      ],
+      "prerequisites": [
+        "Access to kube-context prod-eu-central with rights to change namespace kube-system.",
+        "Check that r13 ran without problems before r14: helm history coredns -n kube-system --kube-context prod-eu-central --max 5"
+      ],
+      "budgetSavedPct": 17.53
+    },
+    {
+      "id": "rb-6fakck",
+      "title": "Restore ConfigMap coredns from r13",
+      "kind": "config-revert",
+      "commands": [
+        "helm get manifest coredns --revision 13 -n kube-system --kube-context prod-eu-central | yq 'select(.kind == \"ConfigMap\" and .metadata.name == \"coredns\")' | kubectl --context prod-eu-central -n kube-system apply -f -",
+        "kubectl --context prod-eu-central -n kube-system rollout restart deployment/coredns"
+      ],
+      "etaMinutes": 5,
+      "risk": "low",
+      "recommended": false,
+      "fixes": [
+        "hyp-1i1nmlg"
+      ],
+      "caveats": [
+        "Pods read ConfigMap values given as environment variables only at start-up, hence the restart; mounted files update after the kubelet sync (often a minute or more).",
+        "If the Corefile uses the reload plugin, CoreDNS also picks up the restored file once the kubelet syncs it; the restart applies it at once and clears the crash loop.",
+        "The node names look like Azure Kubernetes Service (AKS), where CoreDNS is a managed add-on: change it through the coredns-custom ConfigMap, because edits to the coredns ConfigMap and Deployment are reconciled away.",
+        "The next helm upgrade applies the new value again unless the chart values change too.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease coredns -n kube-system), or it will revert this change within minutes."
+      ],
+      "prerequisites": [
+        "yq v4 (mikefarah/yq) on your PATH."
+      ],
+      "budgetSavedPct": 17.684
+    }
+  ],
+  "budget": {
+    "sloTarget": 0.9995,
+    "windowDays": 28,
+    "requestsPerMin": 2600,
+    "budgetSpentBeforePct": 22,
+    "errorRatio": 0.031,
+    "errorRatioSource": "alert",
+    "burnRate": 62,
+    "incidentMinutes": 25.47,
+    "consumedPct": 3.9171,
+    "remainingPct": 74.0829,
+    "minutesToExhaustion": 481.78,
+    "badRequests": 2053,
+    "budgetRequests": 52416,
+    "alertRows": [
+      {
+        "severity": "Page",
+        "longWindow": "1 hour",
+        "shortWindow": "5 minutes",
+        "longMinutes": 60,
+        "shortMinutes": 5,
+        "consumedPctAtFire": 2,
+        "burnThreshold": 13.44,
+        "wouldFire": true,
+        "firesAfterMinutes": 13.01,
+        "firesInMinutes": 0,
+        "modelFiring": true,
+        "observedFiring": true,
+        "firing": true,
+        "firingSource": "alerts",
+        "state": "firing-observed",
+        "stateText": "Firing (in your alerts)"
+      },
+      {
+        "severity": "Page",
+        "longWindow": "6 hours",
+        "shortWindow": "30 minutes",
+        "longMinutes": 360,
+        "shortMinutes": 30,
+        "consumedPctAtFire": 5,
+        "burnThreshold": 5.6,
+        "wouldFire": true,
+        "firesAfterMinutes": 32.52,
+        "firesInMinutes": 7.05,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 7 min at this burn"
+      },
+      {
+        "severity": "Ticket",
+        "longWindow": "3 days",
+        "shortWindow": "6 hours",
+        "longMinutes": 4320,
+        "shortMinutes": 360,
+        "consumedPctAtFire": 10,
+        "burnThreshold": 0.9333,
+        "wouldFire": true,
+        "firesAfterMinutes": 65.03,
+        "firesInMinutes": 39.56,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 40 min at this burn"
+      }
+    ],
+    "hasEvidence": true,
+    "observedBurnRate": 62,
+    "observedAlert": "StorefrontErrorBudgetBurn",
+    "observedSignalId": "alr-4",
+    "projection": [
+      {
+        "label": "Mitigate now",
+        "extraMinutes": 0,
+        "consumedPct": 3.9171,
+        "remainingPct": 74.0829
+      },
+      {
+        "label": "In 30 minutes",
+        "extraMinutes": 30,
+        "consumedPct": 8.5302,
+        "remainingPct": 69.4698
+      },
+      {
+        "label": "In 2 hours",
+        "extraMinutes": 120,
+        "consumedPct": 22.3694,
+        "remainingPct": 55.6306
+      }
+    ],
+    "series": [
+      {
+        "t": 0,
+        "remainingPct": 78
+      },
+      {
+        "t": 6.06,
+        "remainingPct": 77.0679
+      },
+      {
+        "t": 12.12,
+        "remainingPct": 76.1359
+      },
+      {
+        "t": 18.18,
+        "remainingPct": 75.2038
+      },
+      {
+        "t": 24.25,
+        "remainingPct": 74.2718
+      },
+      {
+        "t": 30.31,
+        "remainingPct": 73.3397
+      },
+      {
+        "t": 36.37,
+        "remainingPct": 72.4076
+      },
+      {
+        "t": 42.43,
+        "remainingPct": 71.4756
+      },
+      {
+        "t": 48.49,
+        "remainingPct": 70.5435
+      },
+      {
+        "t": 54.55,
+        "remainingPct": 69.6115
+      },
+      {
+        "t": 60.61,
+        "remainingPct": 68.6794
+      },
+      {
+        "t": 66.68,
+        "remainingPct": 67.7473
+      },
+      {
+        "t": 72.74,
+        "remainingPct": 66.8153
+      },
+      {
+        "t": 78.8,
+        "remainingPct": 65.8832
+      },
+      {
+        "t": 84.86,
+        "remainingPct": 64.9512
+      },
+      {
+        "t": 90.92,
+        "remainingPct": 64.0191
+      },
+      {
+        "t": 96.98,
+        "remainingPct": 63.087
+      },
+      {
+        "t": 103.04,
+        "remainingPct": 62.155
+      },
+      {
+        "t": 109.11,
+        "remainingPct": 61.2229
+      },
+      {
+        "t": 115.17,
+        "remainingPct": 60.2909
+      },
+      {
+        "t": 121.23,
+        "remainingPct": 59.3588
+      },
+      {
+        "t": 127.29,
+        "remainingPct": 58.4267
+      },
+      {
+        "t": 133.35,
+        "remainingPct": 57.4947
+      },
+      {
+        "t": 139.41,
+        "remainingPct": 56.5626
+      },
+      {
+        "t": 145.47,
+        "remainingPct": 55.6306
+      }
+    ],
+    "notes": [
+      "Error ratio from the burn-rate alert StorefrontErrorBudgetBurn.",
+      "Assumes steady traffic of 2,600 requests per minute and that the current error ratio has held since the first anomaly."
+    ],
+    "source": "https://sre.google/workbook/alerting-on-slos/"
+  },
+  "traits": {
+    "clusterCount": 1,
+    "clusters": [
+      "prod-eu-central"
+    ],
+    "multiCluster": false,
+    "failingClusterCount": 1,
+    "highCardinalityLabels": [
+      "pod"
+    ],
+    "logLinesPerMin": 4.7,
+    "signalsPerMin": 2.7,
+    "spanCount": 78,
+    "tracedServices": 7,
+    "untracedFailingComponents": [
+      "infra:prod-eu-central/kube-system/coredns",
+      "service:prod-eu-central/shop/notification-worker"
+    ],
+    "errorTracesMissing": false,
+    "sources": {
+      "logs": true,
+      "traces": true,
+      "alerts": true,
+      "helm": true
+    },
+    "hasDeployTime": true
+  },
+  "warnings": [
+    "6 log times had no time zone; assumed Z.",
+    "klog/syslog times have no year; assumed 2026.",
+    "Helm history times have no time zone; assumed Z."
+  ]
+}

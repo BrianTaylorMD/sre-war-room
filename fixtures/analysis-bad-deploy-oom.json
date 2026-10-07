@@ -1,0 +1,3844 @@
+{
+  "version": 1,
+  "generatedAt": 1791238320000,
+  "inputsPresent": {
+    "logs": true,
+    "traces": true,
+    "alerts": true,
+    "helm": true
+  },
+  "stats": {
+    "logs": {
+      "lines": 172,
+      "parsed": 164,
+      "skipped": 0,
+      "signals": 57,
+      "format": "kubectl describe + kubectl events + stern JSON + 4 more",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "traces": {
+      "lines": 237,
+      "parsed": 237,
+      "skipped": 0,
+      "signals": 21,
+      "format": "OTLP JSON",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "alerts": {
+      "lines": 133,
+      "parsed": 133,
+      "skipped": 0,
+      "signals": 5,
+      "format": "Alertmanager webhook JSON",
+      "tzAssumed": 0,
+      "warnings": []
+    },
+    "helm": {
+      "lines": 100,
+      "parsed": 99,
+      "skipped": 0,
+      "signals": 10,
+      "format": "helm history + helm diff",
+      "tzAssumed": 5,
+      "warnings": [
+        "Helm history times have no time zone; assumed +02:00."
+      ]
+    }
+  },
+  "window": {
+    "start": 1791236090109,
+    "end": 1791238320000,
+    "firstAnomaly": 1791236990109,
+    "now": 1791238320000
+  },
+  "headline": "payments-api in prod-eu-west is crash-looping after Helm release payments r42",
+  "severity": "SEV1",
+  "clusters": [
+    {
+      "name": "prod-eu-west",
+      "componentCount": 9,
+      "failing": 4,
+      "degraded": 0,
+      "status": "failing"
+    },
+    {
+      "name": "prod-us-east",
+      "componentCount": 5,
+      "failing": 0,
+      "degraded": 0,
+      "status": "healthy"
+    }
+  ],
+  "components": [
+    {
+      "id": "service:prod-eu-west/shop/payments-api",
+      "name": "payments-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "shop",
+      "status": "root",
+      "impact": 0.92,
+      "userFacing": false,
+      "firstErrorTs": 1791237000000,
+      "lastErrorTs": 1791238320000,
+      "statusSince": 1791237000000,
+      "counts": {
+        "error": 9,
+        "warn": 16,
+        "info": 44
+      },
+      "kinds": [
+        "crash_loop",
+        "oom_killed",
+        "probe_failed",
+        "span_slow",
+        "change",
+        "rollout",
+        "restart"
+      ],
+      "pods": [
+        "payments-api-5c8d7f9b4d-h7x2q",
+        "payments-api-5c8d7f9b4d-q9tmw",
+        "payments-api-5c8d7f9b4d-zl4rk",
+        "payments-api-7d9f8b6c5-x2k4p",
+        "payments-api-7d9f8b6c5-bv8hn",
+        "payments-api-7d9f8b6c5-m5wqs"
+      ],
+      "release": "payments",
+      "changeIds": [
+        "chg-z9xyto",
+        "chg-u6406t",
+        "chg-1kzwyu1",
+        "chg-1ylpz25",
+        "chg-grvik2",
+        "chg-18q4xhf",
+        "chg-ijsp6h",
+        "chg-1khvnt3",
+        "chg-vsxx1t"
+      ]
+    },
+    {
+      "id": "service:prod-eu-west/shop/frontend",
+      "name": "frontend",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.83,
+      "userFacing": true,
+      "firstErrorTs": 1791236990109,
+      "lastErrorTs": 1791238298873,
+      "statusSince": 1791236990109,
+      "counts": {
+        "error": 14,
+        "warn": 2,
+        "info": 2
+      },
+      "kinds": [
+        "span_error",
+        "http_5xx",
+        "span_slow",
+        "slo_burn"
+      ],
+      "pods": [
+        "frontend-7b5d9c6f84-8jkpl",
+        "frontend-7b5d9c6f84-tq7mz"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "name": "ingress-nginx-controller",
+      "type": "service",
+      "role": "ingress",
+      "cluster": "prod-eu-west",
+      "namespace": "ingress-nginx",
+      "status": "failing",
+      "impact": 0.81,
+      "userFacing": true,
+      "firstErrorTs": 1791237897764,
+      "lastErrorTs": 1791238298889,
+      "statusSince": 1791237897764,
+      "counts": {
+        "error": 3,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [
+        "http_5xx"
+      ],
+      "pods": [
+        "ingress-nginx-controller-6c9f8d4b7-7mlxz"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-eu-west/shop/checkout-api",
+      "name": "checkout-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "shop",
+      "status": "failing",
+      "impact": 0.8,
+      "userFacing": false,
+      "firstErrorTs": 1791236990115,
+      "lastErrorTs": 1791238298859,
+      "statusSince": 1791236990115,
+      "counts": {
+        "error": 28,
+        "warn": 3,
+        "info": 10
+      },
+      "kinds": [
+        "conn_refused",
+        "span_error",
+        "http_5xx",
+        "span_slow"
+      ],
+      "pods": [
+        "checkout-api-6f9c8d7b5-4wq8z",
+        "checkout-api-6f9c8d7b5-r2xvn"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-eu-west/shop/checkout",
+      "name": "checkout",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-eu-west/shop/payments",
+      "name": "payments",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-us-east/shop/checkout",
+      "name": "checkout",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "datastore:prod-us-east/shop/payments",
+      "name": "payments",
+      "type": "datastore",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "node:prod-eu-west//aks-apps-38291746-vmss000002",
+      "name": "aks-apps-38291746-vmss000002",
+      "type": "node",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "node:prod-eu-west//aks-apps-38291746-vmss000004",
+      "name": "aks-apps-38291746-vmss000004",
+      "type": "node",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "node:prod-eu-west//aks-apps-38291746-vmss000007",
+      "name": "aks-apps-38291746-vmss000007",
+      "type": "node",
+      "role": null,
+      "cluster": "prod-eu-west",
+      "namespace": "",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "kinds": [],
+      "pods": [],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-east/shop/checkout-api",
+      "name": "checkout-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 2
+      },
+      "kinds": [],
+      "pods": [
+        "checkout-api-58d6c9f7b4-n4wzb",
+        "checkout-api-58d6c9f7b4-vq7lh"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-east/shop/frontend",
+      "name": "frontend",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": true,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 2
+      },
+      "kinds": [],
+      "pods": [
+        "frontend-7b5d9c6f84-xk2vd",
+        "frontend-7b5d9c6f84-zb6nf"
+      ],
+      "release": null,
+      "changeIds": []
+    },
+    {
+      "id": "service:prod-us-east/shop/payments-api",
+      "name": "payments-api",
+      "type": "service",
+      "role": null,
+      "cluster": "prod-us-east",
+      "namespace": "shop",
+      "status": "healthy",
+      "impact": 0,
+      "userFacing": false,
+      "firstErrorTs": null,
+      "lastErrorTs": null,
+      "statusSince": null,
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 6
+      },
+      "kinds": [],
+      "pods": [
+        "payments-api-7d9f8b6c5-c2hbm",
+        "payments-api-7d9f8b6c5-g4ntd",
+        "payments-api-7d9f8b6c5-w8rxs"
+      ],
+      "release": null,
+      "changeIds": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "service:prod-eu-west/shop/frontend->service:prod-eu-west/shop/checkout-api",
+      "from": "service:prod-eu-west/shop/frontend",
+      "to": "service:prod-eu-west/shop/checkout-api",
+      "calls": 6,
+      "errors": 4,
+      "errorRate": 0.6667,
+      "p95ms": 2908.2,
+      "status": "failing",
+      "firstErrorTs": 1791236990115,
+      "source": "both"
+    },
+    {
+      "id": "service:prod-eu-west/shop/checkout-api->service:prod-eu-west/shop/payments-api",
+      "from": "service:prod-eu-west/shop/checkout-api",
+      "to": "service:prod-eu-west/shop/payments-api",
+      "calls": 6,
+      "errors": 4,
+      "errorRate": 0.6667,
+      "p95ms": 2870.1,
+      "status": "failing",
+      "firstErrorTs": 1791236990127,
+      "source": "both"
+    },
+    {
+      "id": "service:prod-eu-west/shop/checkout-api->datastore:prod-eu-west/shop/checkout",
+      "from": "service:prod-eu-west/shop/checkout-api",
+      "to": "datastore:prod-eu-west/shop/checkout",
+      "calls": 6,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 9.2,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-west/shop/payments-api->datastore:prod-eu-west/shop/payments",
+      "from": "service:prod-eu-west/shop/payments-api",
+      "to": "datastore:prod-eu-west/shop/payments",
+      "calls": 2,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 8.1,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/shop/frontend->service:prod-us-east/shop/checkout-api",
+      "from": "service:prod-us-east/shop/frontend",
+      "to": "service:prod-us-east/shop/checkout-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 154.4,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/shop/checkout-api->datastore:prod-us-east/shop/checkout",
+      "from": "service:prod-us-east/shop/checkout-api",
+      "to": "datastore:prod-us-east/shop/checkout",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 5.2,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/shop/checkout-api->service:prod-us-east/shop/payments-api",
+      "from": "service:prod-us-east/shop/checkout-api",
+      "to": "service:prod-us-east/shop/payments-api",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 123.5,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-us-east/shop/payments-api->datastore:prod-us-east/shop/payments",
+      "from": "service:prod-us-east/shop/payments-api",
+      "to": "datastore:prod-us-east/shop/payments",
+      "calls": 1,
+      "errors": 0,
+      "errorRate": 0,
+      "p95ms": 6.8,
+      "status": "ok",
+      "firstErrorTs": null,
+      "source": "traces"
+    },
+    {
+      "id": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller->service:prod-eu-west/shop/frontend",
+      "from": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "to": "service:prod-eu-west/shop/frontend",
+      "calls": 3,
+      "errors": 3,
+      "errorRate": 1,
+      "p95ms": null,
+      "status": "failing",
+      "firstErrorTs": 1791237897764,
+      "source": "logs"
+    }
+  ],
+  "signals": [
+    {
+      "id": "hlm-8",
+      "source": "helm",
+      "line": 8,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Helm release payments (shop) revision 41 → 42, chart payments-1.8.2 → payments-1.9.0, status deployed",
+      "raw": "42      \tMon Oct  5 23:47:03 2026\tdeployed  \tpayments-1.9.0\t2.14.0     \tUpgrade complete",
+      "attrs": {
+        "isDeploy": true,
+        "release": "payments",
+        "revision": 42,
+        "previousRevision": 41,
+        "status": "deployed",
+        "deployedAtSource": "helm-history"
+      }
+    },
+    {
+      "id": "hlm-21",
+      "source": "helm",
+      "line": 21,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "app version 2.13.4 → 2.14.0",
+      "raw": "+     app.kubernetes.io/version: \"2.14.0\"",
+      "attrs": {
+        "changeId": "chg-z9xyto",
+        "category": "chart",
+        "risk": "low",
+        "release": "payments",
+        "field": "metadata.labels.app.kubernetes.io/version",
+        "before": "2.13.4",
+        "after": "2.14.0",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-24",
+      "source": "helm",
+      "line": 24,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "chart payments-1.8.2 → payments-1.9.0",
+      "raw": "+     helm.sh/chart: payments-1.9.0",
+      "attrs": {
+        "changeId": "chg-u6406t",
+        "category": "chart",
+        "risk": "low",
+        "release": "payments",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "payments-1.8.2",
+        "after": "payments-1.9.0",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-43",
+      "source": "helm",
+      "line": 43,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "app version 2.13.4 → 2.14.0",
+      "raw": "+         app.kubernetes.io/version: \"2.14.0\"",
+      "attrs": {
+        "changeId": "chg-1kzwyu1",
+        "category": "chart",
+        "risk": "low",
+        "release": "payments",
+        "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+        "before": "2.13.4",
+        "after": "2.14.0",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-52",
+      "source": "helm",
+      "line": 52,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "payments-api image tag 2.13.4 → 2.14.0",
+      "raw": "+           image: \"registry.example.com/shop/payments-api:2.14.0\"",
+      "attrs": {
+        "changeId": "chg-1ylpz25",
+        "category": "image",
+        "risk": "medium",
+        "release": "payments",
+        "field": "spec.template.spec.containers[payments-api].image",
+        "before": "registry.example.com/shop/payments-api:2.13.4",
+        "after": "registry.example.com/shop/payments-api:2.14.0",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-63",
+      "source": "helm",
+      "line": 63,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "env PAYMENTS_CACHE_WARMUP added (true) to payments-api",
+      "raw": "+             - name: PAYMENTS_CACHE_WARMUP",
+      "attrs": {
+        "changeId": "chg-grvik2",
+        "category": "env",
+        "risk": "medium",
+        "release": "payments",
+        "field": "spec.template.spec.containers[payments-api].env[PAYMENTS_CACHE_WARMUP]",
+        "before": null,
+        "after": "true",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "added"
+      }
+    },
+    {
+      "id": "hlm-65",
+      "source": "helm",
+      "line": 65,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "env PAYMENTS_CACHE_WARMUP_ENTRIES added (1200000) to payments-api",
+      "raw": "+             - name: PAYMENTS_CACHE_WARMUP_ENTRIES",
+      "attrs": {
+        "changeId": "chg-18q4xhf",
+        "category": "env",
+        "risk": "medium",
+        "release": "payments",
+        "field": "spec.template.spec.containers[payments-api].env[PAYMENTS_CACHE_WARMUP_ENTRIES]",
+        "before": null,
+        "after": "1200000",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "added"
+      }
+    },
+    {
+      "id": "hlm-71",
+      "source": "helm",
+      "line": 71,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "payments-api memory request 512Mi → 256Mi",
+      "raw": "+               memory: 256Mi",
+      "attrs": {
+        "changeId": "chg-ijsp6h",
+        "category": "resources",
+        "risk": "medium",
+        "release": "payments",
+        "field": "spec.template.spec.containers[payments-api].resources.requests.memory",
+        "before": "512Mi",
+        "after": "256Mi",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-75",
+      "source": "helm",
+      "line": 75,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "payments-api memory limit 512Mi → 256Mi",
+      "raw": "+               memory: 256Mi",
+      "attrs": {
+        "changeId": "chg-1khvnt3",
+        "category": "resources",
+        "risk": "high",
+        "release": "payments",
+        "field": "spec.template.spec.containers[payments-api].resources.limits.memory",
+        "before": "512Mi",
+        "after": "256Mi",
+        "resourceKind": "Deployment",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "hlm-99",
+      "source": "helm",
+      "line": 99,
+      "ts": 1791236823000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "change",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "chart payments-1.8.2 → payments-1.9.0",
+      "raw": "+     helm.sh/chart: payments-1.9.0",
+      "attrs": {
+        "changeId": "chg-vsxx1t",
+        "category": "chart",
+        "risk": "low",
+        "release": "payments",
+        "field": "metadata.labels.helm.sh/chart",
+        "before": "payments-1.8.2",
+        "after": "payments-1.9.0",
+        "resourceKind": "ServiceMonitor",
+        "resourceName": "payments-api",
+        "changeType": "changed"
+      }
+    },
+    {
+      "id": "log-14",
+      "source": "logs",
+      "line": 14,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set payments-api-5c8d7f9b4d to 1",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled up replica set payments-api-5c8d7f9b4d to 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "replicas": 1,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-15",
+      "source": "logs",
+      "line": 15,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "SuccessfulCreate: Created pod: payments-api-5c8d7f9b4d-h7x2q",
+      "raw": "24m         Normal    SuccessfulCreate    replicaset/payments-api-5c8d7f9b4d   Created pod: payments-api-5c8d7f9b4d-h7x2q",
+      "attrs": {
+        "reason": "SuccessfulCreate",
+        "eventType": "Normal",
+        "object": "replicaset/payments-api-5c8d7f9b4d",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-18",
+      "source": "logs",
+      "line": 18,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set payments-api-7d9f8b6c5 to 2 from 3",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled down replica set payments-api-7d9f8b6c5 to 2 from 3",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-7d9f8b6c5",
+        "replicas": 2,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-20",
+      "source": "logs",
+      "line": 20,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set payments-api-5c8d7f9b4d to 2 from 1",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled up replica set payments-api-5c8d7f9b4d to 2 from 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "replicas": 2,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-21",
+      "source": "logs",
+      "line": 21,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "SuccessfulCreate: Created pod: payments-api-5c8d7f9b4d-q9tmw",
+      "raw": "24m         Normal    SuccessfulCreate    replicaset/payments-api-5c8d7f9b4d   Created pod: payments-api-5c8d7f9b4d-q9tmw",
+      "attrs": {
+        "reason": "SuccessfulCreate",
+        "eventType": "Normal",
+        "object": "replicaset/payments-api-5c8d7f9b4d",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-q9tmw",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-24",
+      "source": "logs",
+      "line": 24,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set payments-api-7d9f8b6c5 to 1 from 2",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled down replica set payments-api-7d9f8b6c5 to 1 from 2",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-7d9f8b6c5",
+        "replicas": 1,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-26",
+      "source": "logs",
+      "line": 26,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled up replica set payments-api-5c8d7f9b4d to 3 from 2",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled up replica set payments-api-5c8d7f9b4d to 3 from 2",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "replicas": 3,
+        "direction": "up",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-27",
+      "source": "logs",
+      "line": 27,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "SuccessfulCreate: Created pod: payments-api-5c8d7f9b4d-zl4rk",
+      "raw": "24m         Normal    SuccessfulCreate    replicaset/payments-api-5c8d7f9b4d   Created pod: payments-api-5c8d7f9b4d-zl4rk",
+      "attrs": {
+        "reason": "SuccessfulCreate",
+        "eventType": "Normal",
+        "object": "replicaset/payments-api-5c8d7f9b4d",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-zl4rk",
+        "replicaSet": "payments-api-5c8d7f9b4d",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-30",
+      "source": "logs",
+      "line": 30,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "rollout",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "ScalingReplicaSet: Scaled down replica set payments-api-7d9f8b6c5 to 0 from 1",
+      "raw": "24m         Normal    ScalingReplicaSet   deployment/payments-api              Scaled down replica set payments-api-7d9f8b6c5 to 0 from 1",
+      "attrs": {
+        "reason": "ScalingReplicaSet",
+        "eventType": "Normal",
+        "object": "deployment/payments-api",
+        "format": "kubectl events",
+        "replicaSet": "payments-api-7d9f8b6c5",
+        "replicas": 0,
+        "direction": "down",
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "log-102",
+      "source": "logs",
+      "line": 102,
+      "ts": 1791236880000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Started: Started container payments-api",
+      "raw": "  Normal   Started    4m3s (x7 over 24m)    kubelet            Started container payments-api",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "from": "kubelet",
+        "format": "kubectl describe",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "count": 7,
+        "relative": true,
+        "ageMs": 1440000
+      }
+    },
+    {
+      "id": "trc-100",
+      "source": "traces",
+      "line": 100,
+      "ts": 1791236971402,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "span_slow",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-101",
+        "trc-122",
+        "trc-123",
+        "trc-154"
+      ],
+      "text": "frontend: POST /api/checkout slow — took 2.9 s (typical 145 ms)",
+      "raw": "frontend POST /api/checkout trace=a519e4c8b76e57dd9b57d5366ecbd563 span=a5af61d723c01af3",
+      "attrs": {
+        "traceId": "a519e4c8b76e57dd9b57d5366ecbd563",
+        "spanId": "a5af61d723c01af3",
+        "op": "POST /api/checkout",
+        "durMs": 2923.3,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 200,
+        "slow": true,
+        "medianMs": 145.5
+      }
+    },
+    {
+      "id": "trc-101",
+      "source": "traces",
+      "line": 101,
+      "ts": 1791236971406,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "span_slow",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-100",
+        "trc-122",
+        "trc-123",
+        "trc-154"
+      ],
+      "text": "frontend: POST slow — took 2.9 s (typical 137 ms)",
+      "raw": "frontend POST trace=a519e4c8b76e57dd9b57d5366ecbd563 span=a4b5b609d2aa74bd",
+      "attrs": {
+        "traceId": "a519e4c8b76e57dd9b57d5366ecbd563",
+        "spanId": "a4b5b609d2aa74bd",
+        "op": "POST",
+        "durMs": 2912.7,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "a5af61d723c01af3",
+        "httpStatus": 200,
+        "peer": "checkout-api",
+        "slow": true,
+        "medianMs": 137.3
+      }
+    },
+    {
+      "id": "trc-122",
+      "source": "traces",
+      "line": 122,
+      "ts": 1791236971408,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "span_slow",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-100",
+        "trc-101",
+        "trc-123",
+        "trc-154"
+      ],
+      "text": "checkout-api: POST /v1/checkout slow — took 2.9 s (typical 132 ms)",
+      "raw": "checkout-api POST /v1/checkout trace=a519e4c8b76e57dd9b57d5366ecbd563 span=8700b0ffad2b75f6",
+      "attrs": {
+        "traceId": "a519e4c8b76e57dd9b57d5366ecbd563",
+        "spanId": "8700b0ffad2b75f6",
+        "op": "POST /v1/checkout",
+        "durMs": 2908.2,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "a4b5b609d2aa74bd",
+        "httpStatus": 200,
+        "slow": true,
+        "medianMs": 132.1
+      }
+    },
+    {
+      "id": "trc-123",
+      "source": "traces",
+      "line": 123,
+      "ts": 1791236971421,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "span_slow",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-100",
+        "trc-101",
+        "trc-122",
+        "trc-154"
+      ],
+      "text": "checkout-api: POST slow — took 2.9 s (typical 110 ms)",
+      "raw": "checkout-api POST trace=a519e4c8b76e57dd9b57d5366ecbd563 span=d5a8c3d0d069bbf0",
+      "attrs": {
+        "traceId": "a519e4c8b76e57dd9b57d5366ecbd563",
+        "spanId": "d5a8c3d0d069bbf0",
+        "op": "POST",
+        "durMs": 2878.9,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "8700b0ffad2b75f6",
+        "httpStatus": 200,
+        "peer": "payments-api",
+        "slow": true,
+        "medianMs": 109.7
+      }
+    },
+    {
+      "id": "trc-154",
+      "source": "traces",
+      "line": 154,
+      "ts": 1791236971423,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "span_slow",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [
+        "trc-100",
+        "trc-101",
+        "trc-122",
+        "trc-123"
+      ],
+      "text": "payments-api: POST /v1/authorize slow — took 2.9 s (typical 124 ms)",
+      "raw": "payments-api POST /v1/authorize trace=a519e4c8b76e57dd9b57d5366ecbd563 span=46460458f9ba33a3",
+      "attrs": {
+        "traceId": "a519e4c8b76e57dd9b57d5366ecbd563",
+        "spanId": "46460458f9ba33a3",
+        "op": "POST /v1/authorize",
+        "durMs": 2870.1,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "d5a8c3d0d069bbf0",
+        "httpStatus": 200,
+        "slow": true,
+        "medianMs": 123.5
+      }
+    },
+    {
+      "id": "trc-19",
+      "source": "traces",
+      "line": 19,
+      "ts": 1791236990109,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-20",
+        "trc-45",
+        "trc-46"
+      ],
+      "text": "frontend: POST /api/checkout failed — checkout-api responded 503",
+      "raw": "frontend POST /api/checkout trace=299f7d3f4c350e1620c78612fabeab0d span=0ae7729e971f767a",
+      "attrs": {
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "spanId": "0ae7729e971f767a",
+        "op": "POST /api/checkout",
+        "durMs": 1976.6,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "checkout-api responded 503",
+        "slow": true,
+        "medianMs": 145.5,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-20",
+      "source": "traces",
+      "line": 20,
+      "ts": 1791236990112,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-19",
+        "trc-45",
+        "trc-46"
+      ],
+      "text": "frontend: POST failed — HTTP 503",
+      "raw": "frontend POST trace=299f7d3f4c350e1620c78612fabeab0d span=0d37c233de8b09a9",
+      "attrs": {
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "spanId": "0d37c233de8b09a9",
+        "op": "POST",
+        "durMs": 1967,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "0ae7729e971f767a",
+        "httpStatus": 503,
+        "statusMessage": "HTTP 503",
+        "peer": "checkout-api",
+        "slow": true,
+        "medianMs": 137.3,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-45",
+      "source": "traces",
+      "line": 45,
+      "ts": 1791236990115,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-19",
+        "trc-20",
+        "trc-46"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment authorization failed",
+      "raw": "checkout-api POST /v1/checkout trace=299f7d3f4c350e1620c78612fabeab0d span=bf14f8973c68ab3b",
+      "attrs": {
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "spanId": "bf14f8973c68ab3b",
+        "op": "POST /v1/checkout",
+        "durMs": 1963.5,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "0d37c233de8b09a9",
+        "httpStatus": 503,
+        "statusMessage": "payment authorization failed",
+        "slow": true,
+        "medianMs": 132.1
+      }
+    },
+    {
+      "id": "trc-46",
+      "source": "traces",
+      "line": 46,
+      "ts": 1791236990127,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-19",
+        "trc-20",
+        "trc-45"
+      ],
+      "text": "checkout-api: POST failed — read ECONNRESET",
+      "raw": "checkout-api POST trace=299f7d3f4c350e1620c78612fabeab0d span=4fccb753bd5734a9",
+      "attrs": {
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "spanId": "4fccb753bd5734a9",
+        "op": "POST",
+        "durMs": 1931.1,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "bf14f8973c68ab3b",
+        "statusMessage": "read ECONNRESET",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api",
+        "slow": true,
+        "medianMs": 109.7
+      }
+    },
+    {
+      "id": "log-121",
+      "source": "logs",
+      "line": 121,
+      "ts": 1791236992099,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: read ECONNRESET (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:49:52.099+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_SCDZR9\",\"upstream\":\"payments-api\",\"error\":\"read ECONNRESET\",\"status\":503,\"latency_ms\":1964,\"trace_id\":\"299f7d3f4c350e1620c78612fabeab0d\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "status": 503,
+        "latencyMs": 1964,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-148",
+      "source": "logs",
+      "line": 148,
+      "ts": 1791236992119,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "checkout failed (HTTP 503)",
+      "raw": "[pod/frontend-7b5d9c6f84-8jkpl/frontend] {\"level\":\"warn\",\"time\":\"2026-10-05T23:49:52.119+02:00\",\"pid\":1,\"hostname\":\"frontend-7b5d9c6f84-8jkpl\",\"service\":\"frontend\",\"msg\":\"checkout failed\",\"path\":\"/api/checkout\",\"upstream\":\"checkout-api\",\"status\":503,\"latency_ms\":1989,\"trace_id\":\"299f7d3f4c350e1620c78612fabeab0d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "frontend-7b5d9c6f84-8jkpl",
+        "container": "frontend",
+        "traceId": "299f7d3f4c350e1620c78612fabeab0d",
+        "status": 503,
+        "latencyMs": 1989,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-west/shop/checkout-api"
+      }
+    },
+    {
+      "id": "log-47",
+      "source": "logs",
+      "line": 47,
+      "ts": 1791237000000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "OOMKilling: Memory cgroup out of memory: Killed process 29629 (payments-api) total-vm:1918527kB, anon-rss:258394kB, file-rss:11675kB, shmem-rss:0kB, UID:10001 pgtables:784kB oom_score_adj:985",
+      "raw": "default     22m         Warning   OOMKilling   node/aks-apps-38291746-vmss000004   Memory cgroup out of memory: Killed process 29629 (payments-api) total-vm:1918527kB, anon-rss:258394kB, file-rss:11675kB, shmem-rss:0kB, UID:10001 pgtables:784kB oom_score_adj:985",
+      "attrs": {
+        "reason": "OOMKilling",
+        "eventType": "Warning",
+        "object": "node/aks-apps-38291746-vmss000004",
+        "format": "kubectl events",
+        "relative": true,
+        "ageMs": 1320000,
+        "node": "aks-apps-38291746-vmss000004",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-103",
+      "source": "logs",
+      "line": 103,
+      "ts": 1791237000000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: Get \"http://10.244.3.27:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "  Warning  Unhealthy  2m31s (x13 over 22m)  kubelet            Readiness probe failed: Get \"http://10.244.3.27:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "from": "kubelet",
+        "format": "kubectl describe",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "count": 13,
+        "relative": true,
+        "ageMs": 1320000
+      }
+    },
+    {
+      "id": "log-104",
+      "source": "logs",
+      "line": 104,
+      "ts": 1791237000000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-h7x2q_shop(2415af9d-a521-4a8d-a87c-f894a817c898)",
+      "raw": "  Warning  BackOff    21s (x31 over 22m)    kubelet            Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-h7x2q_shop(2415af9d-a521-4a8d-a87c-f894a817c898)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "from": "kubelet",
+        "format": "kubectl describe",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "count": 31,
+        "relative": true,
+        "ageMs": 1320000
+      }
+    },
+    {
+      "id": "log-122",
+      "source": "logs",
+      "line": 122,
+      "ts": 1791237009120,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: socket hang up (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:50:09.120+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_MC4NFX\",\"upstream\":\"payments-api\",\"error\":\"socket hang up\",\"status\":503,\"latency_ms\":1288,\"trace_id\":\"32a9e9346756a54823fc751f1ebddc42\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "32a9e9346756a54823fc751f1ebddc42",
+        "status": 503,
+        "latencyMs": 1288,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-123",
+      "source": "logs",
+      "line": 123,
+      "ts": 1791237016031,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: timeout of 2000ms exceeded (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:50:16.031+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_8KQLSJ\",\"upstream\":\"payments-api\",\"error\":\"timeout of 2000ms exceeded\",\"status\":503,\"latency_ms\":2018,\"trace_id\":\"54d8e467cccb793141f28cda7840e327\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "54d8e467cccb793141f28cda7840e327",
+        "status": 503,
+        "latencyMs": 2018,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-149",
+      "source": "logs",
+      "line": 149,
+      "ts": 1791237016052,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "checkout failed (HTTP 503)",
+      "raw": "[pod/frontend-7b5d9c6f84-tq7mz/frontend] {\"level\":\"warn\",\"time\":\"2026-10-05T23:50:16.052+02:00\",\"pid\":1,\"hostname\":\"frontend-7b5d9c6f84-tq7mz\",\"service\":\"frontend\",\"msg\":\"checkout failed\",\"path\":\"/api/checkout\",\"upstream\":\"checkout-api\",\"status\":503,\"latency_ms\":2049}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "frontend-7b5d9c6f84-tq7mz",
+        "container": "frontend",
+        "status": 503,
+        "latencyMs": 2049,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-west/shop/checkout-api"
+      }
+    },
+    {
+      "id": "alr-8",
+      "source": "alerts",
+      "line": 8,
+      "ts": 1791237021418,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "KubeContainerOOMKilled firing — payments-api (shop): Container was OOMKilled.",
+      "raw": "{\"labels\":{\"cluster\":\"prod-eu-west\",\"namespace\":\"shop\",\"prometheus\":\"monitoring/kube-prometheus-stack-prometheus\",\"alertname\":\"KubeContainerOOMKilled\",\"container\":\"payments-api\",\"pod\":\"payments-api-5c8d7f9b4d-h7x2q\",\"severity\":\"warning\"},\"annotations\":{\"summary\":\"Container was OOMKilled.\",\"description\":\"Container payments-api in pod shop/payments-api-5c8d7f9b4d-h7x2q was OOMKilled 1 time in the last 5 minutes.\",\"runbook_url\":\"https://runbooks.example.com/kubernetes/kubecontaineroomkilled\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T21:50:21.418Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "KubeContainerOOMKilled",
+        "status": "firing",
+        "alertKind": "oom_killed",
+        "labels": {
+          "cluster": "prod-eu-west",
+          "namespace": "shop",
+          "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+          "alertname": "KubeContainerOOMKilled",
+          "container": "payments-api",
+          "pod": "payments-api-5c8d7f9b4d-h7x2q",
+          "severity": "warning"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "warning",
+        "annotations": {
+          "summary": "Container was OOMKilled.",
+          "description": "Container payments-api in pod shop/payments-api-5c8d7f9b4d-h7x2q was OOMKilled 1 time in the last 5 minutes.",
+          "runbook_url": "https://runbooks.example.com/kubernetes/kubecontaineroomkilled"
+        },
+        "runbook": "https://runbooks.example.com/kubernetes/kubecontaineroomkilled",
+        "fingerprint": "b2634901454f3092",
+        "startsAt": 1791237021418,
+        "pod": "payments-api-5c8d7f9b4d-h7x2q"
+      }
+    },
+    {
+      "id": "log-48",
+      "source": "logs",
+      "line": 48,
+      "ts": 1791237060000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "OOMKilling: Memory cgroup out of memory: Killed process 30806 (payments-api) total-vm:1926414kB, anon-rss:258642kB, file-rss:12684kB, shmem-rss:0kB, UID:10001 pgtables:827kB oom_score_adj:985",
+      "raw": "default     21m         Warning   OOMKilling   node/aks-apps-38291746-vmss000002   Memory cgroup out of memory: Killed process 30806 (payments-api) total-vm:1926414kB, anon-rss:258642kB, file-rss:12684kB, shmem-rss:0kB, UID:10001 pgtables:827kB oom_score_adj:985",
+      "attrs": {
+        "reason": "OOMKilling",
+        "eventType": "Warning",
+        "object": "node/aks-apps-38291746-vmss000002",
+        "format": "kubectl events",
+        "relative": true,
+        "ageMs": 1260000,
+        "node": "aks-apps-38291746-vmss000002",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-49",
+      "source": "logs",
+      "line": 49,
+      "ts": 1791237060000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "OOMKilling: Memory cgroup out of memory: Killed process 32659 (payments-api) total-vm:1905060kB, anon-rss:257385kB, file-rss:10775kB, shmem-rss:0kB, UID:10001 pgtables:826kB oom_score_adj:985",
+      "raw": "default     21m         Warning   OOMKilling   node/aks-apps-38291746-vmss000007   Memory cgroup out of memory: Killed process 32659 (payments-api) total-vm:1905060kB, anon-rss:257385kB, file-rss:10775kB, shmem-rss:0kB, UID:10001 pgtables:826kB oom_score_adj:985",
+      "attrs": {
+        "reason": "OOMKilling",
+        "eventType": "Warning",
+        "object": "node/aks-apps-38291746-vmss000007",
+        "format": "kubectl events",
+        "relative": true,
+        "ageMs": 1260000,
+        "node": "aks-apps-38291746-vmss000007",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "log-50",
+      "source": "logs",
+      "line": 50,
+      "ts": 1791237120000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "OOMKilling: Memory cgroup out of memory: Killed process 34416 (payments-api) total-vm:1939873kB, anon-rss:257341kB, file-rss:11888kB, shmem-rss:0kB, UID:10001 pgtables:791kB oom_score_adj:985",
+      "raw": "default     20m         Warning   OOMKilling   node/aks-apps-38291746-vmss000004   Memory cgroup out of memory: Killed process 34416 (payments-api) total-vm:1939873kB, anon-rss:257341kB, file-rss:11888kB, shmem-rss:0kB, UID:10001 pgtables:791kB oom_score_adj:985",
+      "attrs": {
+        "reason": "OOMKilling",
+        "eventType": "Warning",
+        "object": "node/aks-apps-38291746-vmss000004",
+        "format": "kubectl events",
+        "relative": true,
+        "ageMs": 1200000,
+        "node": "aks-apps-38291746-vmss000004",
+        "reattributedFromNode": true
+      }
+    },
+    {
+      "id": "alr-29",
+      "source": "alerts",
+      "line": 29,
+      "ts": 1791237231207,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "CheckoutApiHighErrorRate firing — checkout-api (shop): checkout-api 5xx ratio above 5% for 3 minutes.",
+      "raw": "{\"labels\":{\"cluster\":\"prod-eu-west\",\"namespace\":\"shop\",\"prometheus\":\"monitoring/kube-prometheus-stack-prometheus\",\"alertname\":\"CheckoutApiHighErrorRate\",\"service\":\"checkout-api\",\"severity\":\"critical\",\"team\":\"payments\"},\"annotations\":{\"summary\":\"checkout-api 5xx ratio above 5% for 3 minutes.\",\"description\":\"31.4% of checkout-api requests returned 5xx over the last 5 minutes.\",\"runbook_url\":\"https://runbooks.example.com/shop/checkout-api-errors\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T21:53:51.207Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "CheckoutApiHighErrorRate",
+        "status": "firing",
+        "alertKind": "http_5xx",
+        "labels": {
+          "cluster": "prod-eu-west",
+          "namespace": "shop",
+          "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+          "alertname": "CheckoutApiHighErrorRate",
+          "service": "checkout-api",
+          "severity": "critical",
+          "team": "payments"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "checkout-api 5xx ratio above 5% for 3 minutes.",
+          "description": "31.4% of checkout-api requests returned 5xx over the last 5 minutes.",
+          "runbook_url": "https://runbooks.example.com/shop/checkout-api-errors"
+        },
+        "runbook": "https://runbooks.example.com/shop/checkout-api-errors",
+        "fingerprint": "103c679770c21883",
+        "startsAt": 1791237231207
+      }
+    },
+    {
+      "id": "trc-21",
+      "source": "traces",
+      "line": 21,
+      "ts": 1791237250543,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-22",
+        "trc-124",
+        "trc-125"
+      ],
+      "text": "frontend: POST /api/checkout failed — checkout-api responded 503",
+      "raw": "frontend POST /api/checkout trace=9cca576488d4a08d954aa629381328b8 span=51b7c8c0431d4c00",
+      "attrs": {
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "spanId": "51b7c8c0431d4c00",
+        "op": "POST /api/checkout",
+        "durMs": 39,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "checkout-api responded 503",
+        "medianMs": 145.5,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-22",
+      "source": "traces",
+      "line": 22,
+      "ts": 1791237250546,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-21",
+        "trc-124",
+        "trc-125"
+      ],
+      "text": "frontend: POST failed — HTTP 503",
+      "raw": "frontend POST trace=9cca576488d4a08d954aa629381328b8 span=dfbf7a72af474d74",
+      "attrs": {
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "spanId": "dfbf7a72af474d74",
+        "op": "POST",
+        "durMs": 29.9,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "51b7c8c0431d4c00",
+        "httpStatus": 503,
+        "statusMessage": "HTTP 503",
+        "peer": "checkout-api",
+        "medianMs": 137.3,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-124",
+      "source": "traces",
+      "line": 124,
+      "ts": 1791237250547,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-125"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment authorization failed",
+      "raw": "checkout-api POST /v1/checkout trace=9cca576488d4a08d954aa629381328b8 span=502f9d2fc0ec7753",
+      "attrs": {
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "spanId": "502f9d2fc0ec7753",
+        "op": "POST /v1/checkout",
+        "durMs": 28.6,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "dfbf7a72af474d74",
+        "httpStatus": 503,
+        "statusMessage": "payment authorization failed",
+        "medianMs": 132.1
+      }
+    },
+    {
+      "id": "trc-125",
+      "source": "traces",
+      "line": 125,
+      "ts": 1791237250561,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-21",
+        "trc-22",
+        "trc-124"
+      ],
+      "text": "checkout-api: POST failed — connect ECONNREFUSED 10.0.142.17:8080",
+      "raw": "checkout-api POST trace=9cca576488d4a08d954aa629381328b8 span=7fcabde1167d274e",
+      "attrs": {
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "spanId": "7fcabde1167d274e",
+        "op": "POST",
+        "durMs": 4.9,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "502f9d2fc0ec7753",
+        "statusMessage": "connect ECONNREFUSED 10.0.142.17:8080",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api",
+        "medianMs": 109.7,
+        "causeKind": "conn_refused"
+      }
+    },
+    {
+      "id": "log-126",
+      "source": "logs",
+      "line": 126,
+      "ts": 1791237250572,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:54:10.572+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_VPLC75\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":2,\"trace_id\":\"9cca576488d4a08d954aa629381328b8\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "status": 503,
+        "latencyMs": 2,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-150",
+      "source": "logs",
+      "line": 150,
+      "ts": 1791237250586,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "checkout failed (HTTP 503)",
+      "raw": "[pod/frontend-7b5d9c6f84-8jkpl/frontend] {\"level\":\"warn\",\"time\":\"2026-10-05T23:54:10.586+02:00\",\"pid\":1,\"hostname\":\"frontend-7b5d9c6f84-8jkpl\",\"service\":\"frontend\",\"msg\":\"checkout failed\",\"path\":\"/api/checkout\",\"upstream\":\"checkout-api\",\"status\":503,\"latency_ms\":29,\"trace_id\":\"9cca576488d4a08d954aa629381328b8\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "frontend-7b5d9c6f84-8jkpl",
+        "container": "frontend",
+        "traceId": "9cca576488d4a08d954aa629381328b8",
+        "status": 503,
+        "latencyMs": 29,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-west/shop/checkout-api"
+      }
+    },
+    {
+      "id": "log-128",
+      "source": "logs",
+      "line": 128,
+      "ts": 1791237326202,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: timeout of 2000ms exceeded (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:55:26.202+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_N86MPR\",\"upstream\":\"payments-api\",\"error\":\"timeout of 2000ms exceeded\",\"status\":503,\"latency_ms\":2018,\"trace_id\":\"cd97bbe528c0754499ec24bdae996e19\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "cd97bbe528c0754499ec24bdae996e19",
+        "status": 503,
+        "latencyMs": 2018,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-129",
+      "source": "logs",
+      "line": 129,
+      "ts": 1791237399124,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:56:39.124+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_7H7K4N\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":2,\"trace_id\":\"40e6899ff41260833a07fb4e5e26728c\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "40e6899ff41260833a07fb4e5e26728c",
+        "status": 503,
+        "latencyMs": 2,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-131",
+      "source": "logs",
+      "line": 131,
+      "ts": 1791237513149,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: timeout of 2000ms exceeded (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:58:33.149+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_QZWT2T\",\"upstream\":\"payments-api\",\"error\":\"timeout of 2000ms exceeded\",\"status\":503,\"latency_ms\":2018,\"trace_id\":\"2fb1fc12d3af47eb515d520adbdeb670\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "2fb1fc12d3af47eb515d520adbdeb670",
+        "status": 503,
+        "latencyMs": 2018,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-132",
+      "source": "logs",
+      "line": 132,
+      "ts": 1791237588998,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-05T23:59:48.998+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_C89ZVV\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":5,\"trace_id\":\"9423f9ed90ac10e1f6d31d8b3f93b05e\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "9423f9ed90ac10e1f6d31d8b3f93b05e",
+        "status": 503,
+        "latencyMs": 5,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-133",
+      "source": "logs",
+      "line": 133,
+      "ts": 1791237628142,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:00:28.142+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_GM965S\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":8,\"trace_id\":\"53753737ff37e6d570b19b718cc855fb\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "53753737ff37e6d570b19b718cc855fb",
+        "status": 503,
+        "latencyMs": 8,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-134",
+      "source": "logs",
+      "line": 134,
+      "ts": 1791237670180,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:01:10.180+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_RJSWCN\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":8,\"trace_id\":\"f9eb9fe698001c49268132a77c9ee94d\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "f9eb9fe698001c49268132a77c9ee94d",
+        "status": 503,
+        "latencyMs": 8,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-135",
+      "source": "logs",
+      "line": 135,
+      "ts": 1791237749953,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: timeout of 2000ms exceeded (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:02:29.953+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_D6VBPF\",\"upstream\":\"payments-api\",\"error\":\"timeout of 2000ms exceeded\",\"status\":503,\"latency_ms\":2018,\"trace_id\":\"d61b386279738c0cef0f70eabfc8fb87\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "d61b386279738c0cef0f70eabfc8fb87",
+        "status": 503,
+        "latencyMs": 2018,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-137",
+      "source": "logs",
+      "line": 137,
+      "ts": 1791237859029,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:04:19.029+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_BPBCMV\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":5,\"trace_id\":\"32f7376ee6882bdcf826b678c685ad80\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "32f7376ee6882bdcf826b678c685ad80",
+        "status": 503,
+        "latencyMs": 5,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "trc-102",
+      "source": "traces",
+      "line": 102,
+      "ts": 1791237897704,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-47",
+        "trc-48",
+        "trc-103"
+      ],
+      "text": "frontend: POST /api/checkout failed — checkout-api responded 503",
+      "raw": "frontend POST /api/checkout trace=43df985d19f2e1f210c0034a6675f46d span=edf50e9e6587acaf",
+      "attrs": {
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "spanId": "edf50e9e6587acaf",
+        "op": "POST /api/checkout",
+        "durMs": 47.8,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "checkout-api responded 503",
+        "medianMs": 145.5,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-103",
+      "source": "traces",
+      "line": 103,
+      "ts": 1791237897708,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-47",
+        "trc-48",
+        "trc-102"
+      ],
+      "text": "frontend: POST failed — HTTP 503",
+      "raw": "frontend POST trace=43df985d19f2e1f210c0034a6675f46d span=6bd7751d9291deb9",
+      "attrs": {
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "spanId": "6bd7751d9291deb9",
+        "op": "POST",
+        "durMs": 38.3,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "edf50e9e6587acaf",
+        "httpStatus": 503,
+        "statusMessage": "HTTP 503",
+        "peer": "checkout-api",
+        "medianMs": 137.3,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-47",
+      "source": "traces",
+      "line": 47,
+      "ts": 1791237897710,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-48",
+        "trc-102",
+        "trc-103"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment authorization failed",
+      "raw": "checkout-api POST /v1/checkout trace=43df985d19f2e1f210c0034a6675f46d span=b3b1ecd93c689caf",
+      "attrs": {
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "spanId": "b3b1ecd93c689caf",
+        "op": "POST /v1/checkout",
+        "durMs": 32.6,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "6bd7751d9291deb9",
+        "httpStatus": 503,
+        "statusMessage": "payment authorization failed",
+        "medianMs": 132.1
+      }
+    },
+    {
+      "id": "trc-48",
+      "source": "traces",
+      "line": 48,
+      "ts": 1791237897722,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-47",
+        "trc-102",
+        "trc-103"
+      ],
+      "text": "checkout-api: POST failed — connect ECONNREFUSED 10.0.142.17:8080",
+      "raw": "checkout-api POST trace=43df985d19f2e1f210c0034a6675f46d span=842252f3cae0d233",
+      "attrs": {
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "spanId": "842252f3cae0d233",
+        "op": "POST",
+        "durMs": 4.8,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "b3b1ecd93c689caf",
+        "statusMessage": "connect ECONNREFUSED 10.0.142.17:8080",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api",
+        "medianMs": 109.7,
+        "causeKind": "conn_refused"
+      }
+    },
+    {
+      "id": "log-138",
+      "source": "logs",
+      "line": 138,
+      "ts": 1791237897734,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-4wq8z checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:04:57.734+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_TX4HVM\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":4,\"trace_id\":\"43df985d19f2e1f210c0034a6675f46d\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-4wq8z",
+        "container": "checkout-api",
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "status": 503,
+        "latencyMs": 4,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-151",
+      "source": "logs",
+      "line": 151,
+      "ts": 1791237897748,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "checkout failed (HTTP 503)",
+      "raw": "[pod/frontend-7b5d9c6f84-tq7mz/frontend] {\"level\":\"warn\",\"time\":\"2026-10-06T00:04:57.748+02:00\",\"pid\":1,\"hostname\":\"frontend-7b5d9c6f84-tq7mz\",\"service\":\"frontend\",\"msg\":\"checkout failed\",\"path\":\"/api/checkout\",\"upstream\":\"checkout-api\",\"status\":503,\"latency_ms\":27,\"trace_id\":\"43df985d19f2e1f210c0034a6675f46d\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "frontend-7b5d9c6f84-tq7mz",
+        "container": "frontend",
+        "traceId": "43df985d19f2e1f210c0034a6675f46d",
+        "status": 503,
+        "latencyMs": 27,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-west/shop/checkout-api"
+      }
+    },
+    {
+      "id": "log-155",
+      "source": "logs",
+      "line": 155,
+      "ts": 1791237897764,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "relatedIds": [],
+      "text": "10.224.0.37 - - [05/Oct/2026:22:04:57 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 628 0.025 [shop-frontend-3000] [] 10.244.1.8:3000 87 0.025 503 fa44081918d16948066f14e7ba70ee25",
+      "raw": "[pod/ingress-nginx-controller-6c9f8d4b7-7mlxz/controller] 2026-10-05T22:04:57.764907358Z 10.224.0.37 - - [05/Oct/2026:22:04:57 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 628 0.025 [shop-frontend-3000] [] 10.244.1.8:3000 87 0.025 503 fa44081918d16948066f14e7ba70ee25",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "ingress-nginx-controller-6c9f8d4b7-7mlxz",
+        "container": "controller"
+      }
+    },
+    {
+      "id": "alr-75",
+      "source": "alerts",
+      "line": 75,
+      "ts": 1791237904000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "KubePodCrashLooping firing — payments-api (shop): Pod is crash looping.",
+      "raw": "{\"labels\":{\"cluster\":\"prod-eu-west\",\"namespace\":\"shop\",\"prometheus\":\"monitoring/kube-prometheus-stack-prometheus\",\"alertname\":\"KubePodCrashLooping\",\"container\":\"payments-api\",\"job\":\"kube-state-metrics\",\"pod\":\"payments-api-5c8d7f9b4d-h7x2q\",\"reason\":\"CrashLoopBackOff\",\"severity\":\"warning\"},\"annotations\":{\"summary\":\"Pod is crash looping.\",\"description\":\"Pod shop/payments-api-5c8d7f9b4d-h7x2q (payments-api) is in waiting state (reason: \\\"CrashLoopBackOff\\\").\",\"runbook_url\":\"https://runbooks.example.com/kubernetes/kubepodcrashlooping\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:05:04.000Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "KubePodCrashLooping",
+        "status": "firing",
+        "alertKind": "crash_loop",
+        "labels": {
+          "cluster": "prod-eu-west",
+          "namespace": "shop",
+          "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+          "alertname": "KubePodCrashLooping",
+          "container": "payments-api",
+          "job": "kube-state-metrics",
+          "pod": "payments-api-5c8d7f9b4d-h7x2q",
+          "reason": "CrashLoopBackOff",
+          "severity": "warning"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "warning",
+        "annotations": {
+          "summary": "Pod is crash looping.",
+          "description": "Pod shop/payments-api-5c8d7f9b4d-h7x2q (payments-api) is in waiting state (reason: \"CrashLoopBackOff\").",
+          "runbook_url": "https://runbooks.example.com/kubernetes/kubepodcrashlooping"
+        },
+        "runbook": "https://runbooks.example.com/kubernetes/kubepodcrashlooping",
+        "fingerprint": "cdc40125c933a70b",
+        "startsAt": 1791237904000,
+        "pod": "payments-api-5c8d7f9b4d-h7x2q"
+      }
+    },
+    {
+      "id": "log-139",
+      "source": "logs",
+      "line": 139,
+      "ts": 1791237932981,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:05:32.981+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_9G4SWL\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":3,\"trace_id\":\"85eafc8bbca0810a099e42ecb7a6a558\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "85eafc8bbca0810a099e42ecb7a6a558",
+        "status": 503,
+        "latencyMs": 3,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "alr-98",
+      "source": "alerts",
+      "line": 98,
+      "ts": 1791237939000,
+      "tsInferred": false,
+      "severity": "warn",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "KubePodCrashLooping firing — payments-api (shop): Pod is crash looping.",
+      "raw": "{\"labels\":{\"cluster\":\"prod-eu-west\",\"namespace\":\"shop\",\"prometheus\":\"monitoring/kube-prometheus-stack-prometheus\",\"alertname\":\"KubePodCrashLooping\",\"container\":\"payments-api\",\"job\":\"kube-state-metrics\",\"pod\":\"payments-api-5c8d7f9b4d-zl4rk\",\"reason\":\"CrashLoopBackOff\",\"severity\":\"warning\"},\"annotations\":{\"summary\":\"Pod is crash looping.\",\"description\":\"Pod shop/payments-api-5c8d7f9b4d-zl4rk (payments-api) is in waiting state (reason: \\\"CrashLoopBackOff\\\").\",\"runbook_url\":\"https://runbooks.example.com/kubernetes/kubepodcrashlooping\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:05:39.000Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "KubePodCrashLooping",
+        "status": "firing",
+        "alertKind": "crash_loop",
+        "labels": {
+          "cluster": "prod-eu-west",
+          "namespace": "shop",
+          "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+          "alertname": "KubePodCrashLooping",
+          "container": "payments-api",
+          "job": "kube-state-metrics",
+          "pod": "payments-api-5c8d7f9b4d-zl4rk",
+          "reason": "CrashLoopBackOff",
+          "severity": "warning"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "warning",
+        "annotations": {
+          "summary": "Pod is crash looping.",
+          "description": "Pod shop/payments-api-5c8d7f9b4d-zl4rk (payments-api) is in waiting state (reason: \"CrashLoopBackOff\").",
+          "runbook_url": "https://runbooks.example.com/kubernetes/kubepodcrashlooping"
+        },
+        "runbook": "https://runbooks.example.com/kubernetes/kubepodcrashlooping",
+        "fingerprint": "55b1fd639019ce30",
+        "startsAt": 1791237939000,
+        "pod": "payments-api-5c8d7f9b4d-zl4rk"
+      }
+    },
+    {
+      "id": "log-140",
+      "source": "logs",
+      "line": 140,
+      "ts": 1791237971674,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:06:11.674+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_JZ252P\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":8,\"trace_id\":\"b19c317b627ff54918018316e88935b9\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "b19c317b627ff54918018316e88935b9",
+        "status": 503,
+        "latencyMs": 8,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "alr-50",
+      "source": "alerts",
+      "line": 50,
+      "ts": 1791237971884,
+      "tsInferred": false,
+      "severity": "critical",
+      "kind": "slo_burn",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "ErrorBudgetBurn firing — frontend (shop): storefront-availability is burning its error budget 16.2x faster than sustainable. (burn rate 16.2×)",
+      "raw": "{\"labels\":{\"cluster\":\"prod-eu-west\",\"namespace\":\"shop\",\"prometheus\":\"monitoring/kube-prometheus-stack-prometheus\",\"alertname\":\"ErrorBudgetBurn\",\"long_window\":\"1h\",\"service\":\"frontend\",\"severity\":\"critical\",\"short_window\":\"5m\",\"slo\":\"storefront-availability\"},\"annotations\":{\"summary\":\"storefront-availability is burning its error budget 16.2x faster than sustainable.\",\"description\":\"1h burn rate 16.2 (5m: 21.7) against a 99.9% / 30-day objective; about 2.25% of the 30-day budget is spent per hour at this rate.\",\"burn_rate\":\"16.2\",\"error_ratio\":\"0.0162\",\"runbook_url\":\"https://runbooks.example.com/slo/error-budget-burn\"},\"status\":\"firing\",\"startsAt\":\"2026-10-05T22:06:11.884Z\",\"endsAt\":\"0001-01-01T00:00:00Z\"}",
+      "attrs": {
+        "alertname": "ErrorBudgetBurn",
+        "status": "firing",
+        "alertKind": "slo_burn",
+        "labels": {
+          "cluster": "prod-eu-west",
+          "namespace": "shop",
+          "prometheus": "monitoring/kube-prometheus-stack-prometheus",
+          "alertname": "ErrorBudgetBurn",
+          "long_window": "1h",
+          "service": "frontend",
+          "severity": "critical",
+          "short_window": "5m",
+          "slo": "storefront-availability"
+        },
+        "format": "Alertmanager webhook JSON",
+        "severityLabel": "critical",
+        "annotations": {
+          "summary": "storefront-availability is burning its error budget 16.2x faster than sustainable.",
+          "description": "1h burn rate 16.2 (5m: 21.7) against a 99.9% / 30-day objective; about 2.25% of the 30-day budget is spent per hour at this rate.",
+          "burn_rate": "16.2",
+          "error_ratio": "0.0162",
+          "runbook_url": "https://runbooks.example.com/slo/error-budget-burn"
+        },
+        "runbook": "https://runbooks.example.com/slo/error-budget-burn",
+        "fingerprint": "ad421a2a12cd7e75",
+        "startsAt": 1791237971884,
+        "burnRate": 16.2,
+        "errorRatio": 0.0162,
+        "window": "1h",
+        "longWindowMinutes": 60
+      }
+    },
+    {
+      "id": "log-141",
+      "source": "logs",
+      "line": 141,
+      "ts": 1791238008704,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:06:48.704+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_7HNMCB\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":6,\"trace_id\":\"f6b3b346eaf09da6d5c3b736869f683c\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "f6b3b346eaf09da6d5c3b736869f683c",
+        "status": 503,
+        "latencyMs": 6,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-142",
+      "source": "logs",
+      "line": 142,
+      "ts": 1791238047533,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:07:27.533+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_D9794P\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":2,\"trace_id\":\"ea4573d7ff791c9252ee3135e457c74e\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "ea4573d7ff791c9252ee3135e457c74e",
+        "status": 503,
+        "latencyMs": 2,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-33",
+      "source": "logs",
+      "line": 33,
+      "ts": 1791238060000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Started: Started container payments-api",
+      "raw": "4m20s       Normal    Started             pod/payments-api-5c8d7f9b4d-q9tmw    Started container payments-api",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "object": "pod/payments-api-5c8d7f9b4d-q9tmw",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-q9tmw",
+        "relative": true,
+        "ageMs": 260000
+      }
+    },
+    {
+      "id": "log-35",
+      "source": "logs",
+      "line": 35,
+      "ts": 1791238078000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Started: Started container payments-api",
+      "raw": "4m2s        Normal    Started             pod/payments-api-5c8d7f9b4d-h7x2q    Started container payments-api",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "object": "pod/payments-api-5c8d7f9b4d-h7x2q",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "relative": true,
+        "ageMs": 242000
+      }
+    },
+    {
+      "id": "log-36",
+      "source": "logs",
+      "line": 36,
+      "ts": 1791238144000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: Get \"http://10.244.1.19:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "2m56s       Warning   Unhealthy           pod/payments-api-5c8d7f9b4d-q9tmw    Readiness probe failed: Get \"http://10.244.1.19:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-q9tmw",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-q9tmw",
+        "relative": true,
+        "ageMs": 176000
+      }
+    },
+    {
+      "id": "log-9",
+      "source": "logs",
+      "line": 9,
+      "ts": 1791238147000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Pod payments-api-5c8d7f9b4d-q9tmw is CrashLoopBackOff (6 restarts)",
+      "raw": "payments-api-5c8d7f9b4d-q9tmw   0/1     CrashLoopBackOff   6 (2m53s ago)   24m",
+      "attrs": {
+        "pod": "payments-api-5c8d7f9b4d-q9tmw",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1440000,
+        "relative": true,
+        "ageMs": 173000
+      }
+    },
+    {
+      "id": "log-38",
+      "source": "logs",
+      "line": 38,
+      "ts": 1791238147000,
+      "tsInferred": true,
+      "severity": "info",
+      "kind": "restart",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Started: Started container payments-api",
+      "raw": "2m53s       Normal    Started             pod/payments-api-5c8d7f9b4d-zl4rk    Started container payments-api",
+      "attrs": {
+        "reason": "Started",
+        "eventType": "Normal",
+        "object": "pod/payments-api-5c8d7f9b4d-zl4rk",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-zl4rk",
+        "relative": true,
+        "ageMs": 173000
+      }
+    },
+    {
+      "id": "log-39",
+      "source": "logs",
+      "line": 39,
+      "ts": 1791238169000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: Get \"http://10.244.3.27:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "2m31s       Warning   Unhealthy           pod/payments-api-5c8d7f9b4d-h7x2q    Readiness probe failed: Get \"http://10.244.3.27:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-h7x2q",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "relative": true,
+        "ageMs": 151000
+      }
+    },
+    {
+      "id": "log-8",
+      "source": "logs",
+      "line": 8,
+      "ts": 1791238172000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Pod payments-api-5c8d7f9b4d-h7x2q is CrashLoopBackOff (6 restarts)",
+      "raw": "payments-api-5c8d7f9b4d-h7x2q   0/1     CrashLoopBackOff   6 (2m28s ago)   24m",
+      "attrs": {
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1440000,
+        "relative": true,
+        "ageMs": 148000
+      }
+    },
+    {
+      "id": "log-75",
+      "source": "logs",
+      "line": 75,
+      "ts": 1791238172000,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "oom_killed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Container payments-api in pod payments-api-5c8d7f9b4d-h7x2q last terminated: OOMKilled",
+      "raw": "      Reason:       OOMKilled",
+      "attrs": {
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "container": "payments-api",
+        "reason": "OOMKilled",
+        "state": "Last State",
+        "format": "kubectl describe",
+        "exitCode": 137,
+        "startedAt": 1791238077000,
+        "finishedAt": 1791238172000,
+        "restartCount": 6,
+        "memoryLimit": "256Mi"
+      }
+    },
+    {
+      "id": "log-40",
+      "source": "logs",
+      "line": 40,
+      "ts": 1791238245000,
+      "tsInferred": true,
+      "severity": "warn",
+      "kind": "probe_failed",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Unhealthy: Readiness probe failed: Get \"http://10.244.5.44:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "raw": "75s         Warning   Unhealthy           pod/payments-api-5c8d7f9b4d-zl4rk    Readiness probe failed: Get \"http://10.244.5.44:8080/readyz\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)",
+      "attrs": {
+        "reason": "Unhealthy",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-zl4rk",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-zl4rk",
+        "relative": true,
+        "ageMs": 75000
+      }
+    },
+    {
+      "id": "log-10",
+      "source": "logs",
+      "line": 10,
+      "ts": 1791238248000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Pod payments-api-5c8d7f9b4d-zl4rk is CrashLoopBackOff (6 restarts)",
+      "raw": "payments-api-5c8d7f9b4d-zl4rk   0/1     CrashLoopBackOff   6 (72s ago)     24m",
+      "attrs": {
+        "pod": "payments-api-5c8d7f9b4d-zl4rk",
+        "podStatus": "CrashLoopBackOff",
+        "restarts": 6,
+        "ready": "0/1",
+        "format": "kubectl get pods",
+        "podAgeMs": 1440000,
+        "relative": true,
+        "ageMs": 72000
+      }
+    },
+    {
+      "id": "log-144",
+      "source": "logs",
+      "line": 144,
+      "ts": 1791238257458,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:10:57.458+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_KQ5ZW9\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":4,\"trace_id\":\"c3171cbca7757eb96ff9dd06072bd03b\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "c3171cbca7757eb96ff9dd06072bd03b",
+        "status": 503,
+        "latencyMs": 4,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-156",
+      "source": "logs",
+      "line": 156,
+      "ts": 1791238257488,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "relatedIds": [],
+      "text": "10.224.0.4 - - [05/Oct/2026:22:10:57 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 606 0.023 [shop-frontend-3000] [] 10.244.4.8:3000 87 0.023 503 8a9e19ce7548e01ec6a60f94874aed4d",
+      "raw": "[pod/ingress-nginx-controller-6c9f8d4b7-7mlxz/controller] 2026-10-05T22:10:57.488665995Z 10.224.0.4 - - [05/Oct/2026:22:10:57 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 606 0.023 [shop-frontend-3000] [] 10.244.4.8:3000 87 0.023 503 8a9e19ce7548e01ec6a60f94874aed4d",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "ingress-nginx-controller-6c9f8d4b7-7mlxz",
+        "container": "controller"
+      }
+    },
+    {
+      "id": "log-41",
+      "source": "logs",
+      "line": 41,
+      "ts": 1791238288000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-q9tmw_shop(cd6c1861-44a0-4f59-baf2-8676e3e51367)",
+      "raw": "32s         Warning   BackOff             pod/payments-api-5c8d7f9b4d-q9tmw    Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-q9tmw_shop(cd6c1861-44a0-4f59-baf2-8676e3e51367)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-q9tmw",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-q9tmw",
+        "relative": true,
+        "ageMs": 32000
+      }
+    },
+    {
+      "id": "log-42",
+      "source": "logs",
+      "line": 42,
+      "ts": 1791238289000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-zl4rk_shop(0724245d-6d14-453d-be5a-eb6dcf8f09b2)",
+      "raw": "31s         Warning   BackOff             pod/payments-api-5c8d7f9b4d-zl4rk    Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-zl4rk_shop(0724245d-6d14-453d-be5a-eb6dcf8f09b2)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-zl4rk",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-zl4rk",
+        "relative": true,
+        "ageMs": 31000
+      }
+    },
+    {
+      "id": "trc-23",
+      "source": "traces",
+      "line": 23,
+      "ts": 1791238298829,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-24",
+        "trc-126",
+        "trc-127"
+      ],
+      "text": "frontend: POST /api/checkout failed — checkout-api responded 503",
+      "raw": "frontend POST /api/checkout trace=9216f63c89e0a9c1002713b3c5a49c59 span=69256ac98ec701fc",
+      "attrs": {
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "spanId": "69256ac98ec701fc",
+        "op": "POST /api/checkout",
+        "durMs": 52.3,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "httpStatus": 503,
+        "statusMessage": "checkout-api responded 503",
+        "medianMs": 145.5,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-24",
+      "source": "traces",
+      "line": 24,
+      "ts": 1791238298833,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [
+        "trc-23",
+        "trc-126",
+        "trc-127"
+      ],
+      "text": "frontend: POST failed — HTTP 503",
+      "raw": "frontend POST trace=9216f63c89e0a9c1002713b3c5a49c59 span=966d0a6c805abb44",
+      "attrs": {
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "spanId": "966d0a6c805abb44",
+        "op": "POST",
+        "durMs": 42.7,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "69256ac98ec701fc",
+        "httpStatus": 503,
+        "statusMessage": "HTTP 503",
+        "peer": "checkout-api",
+        "medianMs": 137.3,
+        "causeKind": "http_5xx"
+      }
+    },
+    {
+      "id": "trc-126",
+      "source": "traces",
+      "line": 126,
+      "ts": 1791238298835,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-23",
+        "trc-24",
+        "trc-127"
+      ],
+      "text": "checkout-api: POST /v1/checkout failed — payment authorization failed",
+      "raw": "checkout-api POST /v1/checkout trace=9216f63c89e0a9c1002713b3c5a49c59 span=0f6aba9bd3cde0e3",
+      "attrs": {
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "spanId": "0f6aba9bd3cde0e3",
+        "op": "POST /v1/checkout",
+        "durMs": 36.5,
+        "spanKind": "server",
+        "format": "OTLP JSON",
+        "parentId": "966d0a6c805abb44",
+        "httpStatus": 503,
+        "statusMessage": "payment authorization failed",
+        "medianMs": 132.1
+      }
+    },
+    {
+      "id": "trc-127",
+      "source": "traces",
+      "line": 127,
+      "ts": 1791238298848,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "span_error",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [
+        "trc-23",
+        "trc-24",
+        "trc-126"
+      ],
+      "text": "checkout-api: POST failed — connect ECONNREFUSED 10.0.142.17:8080",
+      "raw": "checkout-api POST trace=9216f63c89e0a9c1002713b3c5a49c59 span=56b897bba9513a1c",
+      "attrs": {
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "spanId": "56b897bba9513a1c",
+        "op": "POST",
+        "durMs": 3.8,
+        "spanKind": "client",
+        "format": "OTLP JSON",
+        "parentId": "0f6aba9bd3cde0e3",
+        "statusMessage": "connect ECONNREFUSED 10.0.142.17:8080",
+        "peer": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api",
+        "medianMs": 109.7,
+        "causeKind": "conn_refused"
+      }
+    },
+    {
+      "id": "log-145",
+      "source": "logs",
+      "line": 145,
+      "ts": 1791238298859,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "conn_refused",
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "relatedIds": [],
+      "text": "payment authorization failed: connect ECONNREFUSED 10.0.142.17:8080 (HTTP 503)",
+      "raw": "checkout-api-6f9c8d7b5-r2xvn checkout-api {\"level\":\"error\",\"message\":\"payment authorization failed\",\"timestamp\":\"2026-10-06T00:11:38.859+02:00\",\"service\":\"checkout-api\",\"order_id\":\"ord_B285LJ\",\"upstream\":\"payments-api\",\"error\":\"connect ECONNREFUSED 10.0.142.17:8080\",\"status\":503,\"latency_ms\":2,\"trace_id\":\"9216f63c89e0a9c1002713b3c5a49c59\"}",
+      "attrs": {
+        "format": "stern JSON",
+        "level": "error",
+        "pod": "checkout-api-6f9c8d7b5-r2xvn",
+        "container": "checkout-api",
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "status": 503,
+        "latencyMs": 2,
+        "targetHost": "payments-api",
+        "target": "payments-api",
+        "targetId": "service:prod-eu-west/shop/payments-api"
+      }
+    },
+    {
+      "id": "log-152",
+      "source": "logs",
+      "line": 152,
+      "ts": 1791238298873,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "relatedIds": [],
+      "text": "checkout failed (HTTP 503)",
+      "raw": "[pod/frontend-7b5d9c6f84-8jkpl/frontend] {\"level\":\"warn\",\"time\":\"2026-10-06T00:11:38.873+02:00\",\"pid\":1,\"hostname\":\"frontend-7b5d9c6f84-8jkpl\",\"service\":\"frontend\",\"msg\":\"checkout failed\",\"path\":\"/api/checkout\",\"upstream\":\"checkout-api\",\"status\":503,\"latency_ms\":32,\"trace_id\":\"9216f63c89e0a9c1002713b3c5a49c59\"}",
+      "attrs": {
+        "format": "kubectl --prefix JSON",
+        "level": "warn",
+        "pod": "frontend-7b5d9c6f84-8jkpl",
+        "container": "frontend",
+        "traceId": "9216f63c89e0a9c1002713b3c5a49c59",
+        "status": 503,
+        "latencyMs": 32,
+        "targetHost": "checkout-api",
+        "target": "checkout-api",
+        "targetId": "service:prod-eu-west/shop/checkout-api"
+      }
+    },
+    {
+      "id": "log-157",
+      "source": "logs",
+      "line": 157,
+      "ts": 1791238298889,
+      "tsInferred": false,
+      "severity": "error",
+      "kind": "http_5xx",
+      "componentId": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "relatedIds": [],
+      "text": "10.224.0.17 - - [05/Oct/2026:22:11:38 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 568 0.036 [shop-frontend-3000] [] 10.244.1.8:3000 87 0.036 503 b7ccb7f30ea53bbd0e95b4b4e8f4939e",
+      "raw": "[pod/ingress-nginx-controller-6c9f8d4b7-7mlxz/controller] 2026-10-05T22:11:38.889550806Z 10.224.0.17 - - [05/Oct/2026:22:11:38 +0000] \"POST /api/checkout HTTP/2.0\" 503 87 \"https://shop.example.com/cart\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\" 568 0.036 [shop-frontend-3000] [] 10.244.1.8:3000 87 0.036 503 b7ccb7f30ea53bbd0e95b4b4e8f4939e",
+      "attrs": {
+        "format": "kubectl --prefix",
+        "pod": "ingress-nginx-controller-6c9f8d4b7-7mlxz",
+        "container": "controller"
+      }
+    },
+    {
+      "id": "log-43",
+      "source": "logs",
+      "line": 43,
+      "ts": 1791238304000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "BackOff: Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-h7x2q_shop(2415af9d-a521-4a8d-a87c-f894a817c898)",
+      "raw": "16s         Warning   BackOff             pod/payments-api-5c8d7f9b4d-h7x2q    Back-off restarting failed container payments-api in pod payments-api-5c8d7f9b4d-h7x2q_shop(2415af9d-a521-4a8d-a87c-f894a817c898)",
+      "attrs": {
+        "reason": "BackOff",
+        "eventType": "Warning",
+        "object": "pod/payments-api-5c8d7f9b4d-h7x2q",
+        "format": "kubectl events",
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "relative": true,
+        "ageMs": 16000
+      }
+    },
+    {
+      "id": "log-73",
+      "source": "logs",
+      "line": 73,
+      "ts": 1791238320000,
+      "tsInferred": true,
+      "severity": "error",
+      "kind": "crash_loop",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "relatedIds": [],
+      "text": "Container payments-api in pod payments-api-5c8d7f9b4d-h7x2q is waiting: CrashLoopBackOff",
+      "raw": "      Reason:       CrashLoopBackOff",
+      "attrs": {
+        "pod": "payments-api-5c8d7f9b4d-h7x2q",
+        "container": "payments-api",
+        "reason": "CrashLoopBackOff",
+        "state": "State",
+        "format": "kubectl describe",
+        "relative": true,
+        "ageMs": 0,
+        "restartCount": 6,
+        "memoryLimit": "256Mi"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "metadata.labels.app.kubernetes.io/version",
+      "before": "2.13.4",
+      "after": "2.14.0",
+      "changeType": "changed",
+      "line": 21,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 2.13.4 → 2.14.0",
+      "id": "chg-z9xyto",
+      "raw": "+     app.kubernetes.io/version: \"2.14.0\"",
+      "signalId": "hlm-21"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "payments-1.8.2",
+      "after": "payments-1.9.0",
+      "changeType": "changed",
+      "line": 24,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart payments-1.8.2 → payments-1.9.0",
+      "id": "chg-u6406t",
+      "raw": "+     helm.sh/chart: payments-1.9.0",
+      "signalId": "hlm-24"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.metadata.labels.app.kubernetes.io/version",
+      "before": "2.13.4",
+      "after": "2.14.0",
+      "changeType": "changed",
+      "line": 43,
+      "category": "chart",
+      "risk": "low",
+      "summary": "app version 2.13.4 → 2.14.0",
+      "id": "chg-1kzwyu1",
+      "raw": "+         app.kubernetes.io/version: \"2.14.0\"",
+      "signalId": "hlm-43"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.spec.containers[payments-api].image",
+      "before": "registry.example.com/shop/payments-api:2.13.4",
+      "after": "registry.example.com/shop/payments-api:2.14.0",
+      "changeType": "changed",
+      "line": 52,
+      "category": "image",
+      "risk": "medium",
+      "summary": "payments-api image tag 2.13.4 → 2.14.0",
+      "id": "chg-1ylpz25",
+      "raw": "+           image: \"registry.example.com/shop/payments-api:2.14.0\"",
+      "signalId": "hlm-52"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.spec.containers[payments-api].env[PAYMENTS_CACHE_WARMUP]",
+      "before": null,
+      "after": "true",
+      "changeType": "added",
+      "line": 63,
+      "category": "env",
+      "risk": "medium",
+      "summary": "env PAYMENTS_CACHE_WARMUP added (true) to payments-api",
+      "id": "chg-grvik2",
+      "raw": "+             - name: PAYMENTS_CACHE_WARMUP",
+      "signalId": "hlm-63"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.spec.containers[payments-api].env[PAYMENTS_CACHE_WARMUP_ENTRIES]",
+      "before": null,
+      "after": "1200000",
+      "changeType": "added",
+      "line": 65,
+      "category": "env",
+      "risk": "medium",
+      "summary": "env PAYMENTS_CACHE_WARMUP_ENTRIES added (1200000) to payments-api",
+      "id": "chg-18q4xhf",
+      "raw": "+             - name: PAYMENTS_CACHE_WARMUP_ENTRIES",
+      "signalId": "hlm-65"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.spec.containers[payments-api].resources.requests.memory",
+      "before": "512Mi",
+      "after": "256Mi",
+      "changeType": "changed",
+      "line": 71,
+      "category": "resources",
+      "risk": "medium",
+      "direction": "down",
+      "summary": "payments-api memory request 512Mi → 256Mi",
+      "id": "chg-ijsp6h",
+      "raw": "+               memory: 256Mi",
+      "signalId": "hlm-71"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "Deployment",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "spec.template.spec.containers[payments-api].resources.limits.memory",
+      "before": "512Mi",
+      "after": "256Mi",
+      "changeType": "changed",
+      "line": 75,
+      "category": "resources",
+      "risk": "high",
+      "direction": "down",
+      "summary": "payments-api memory limit 512Mi → 256Mi",
+      "id": "chg-1khvnt3",
+      "raw": "+               memory: 256Mi",
+      "signalId": "hlm-75"
+    },
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "resourceKind": "ServiceMonitor",
+      "resourceName": "payments-api",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "cluster": "prod-eu-west",
+      "field": "metadata.labels.helm.sh/chart",
+      "before": "payments-1.8.2",
+      "after": "payments-1.9.0",
+      "changeType": "changed",
+      "line": 99,
+      "category": "chart",
+      "risk": "low",
+      "summary": "chart payments-1.8.2 → payments-1.9.0",
+      "id": "chg-vsxx1t",
+      "raw": "+     helm.sh/chart: payments-1.9.0",
+      "signalId": "hlm-99"
+    }
+  ],
+  "deploy": {
+    "release": "payments",
+    "namespace": "shop",
+    "revision": 42,
+    "previousRevision": 41,
+    "chartFrom": "payments-1.8.2",
+    "chartTo": "payments-1.9.0",
+    "appFrom": "2.13.4",
+    "appTo": "2.14.0",
+    "deployedAt": 1791236823000,
+    "deployedAtSource": "helm-history",
+    "tsInferred": true,
+    "cluster": "prod-eu-west",
+    "clusterKnown": true,
+    "status": "deployed",
+    "description": "Upgrade complete",
+    "line": 8,
+    "changeCount": 9,
+    "componentId": "service:prod-eu-west/shop/payments-api",
+    "signalId": "hlm-8"
+  },
+  "deploys": [
+    {
+      "release": "payments",
+      "namespace": "shop",
+      "revision": 42,
+      "previousRevision": 41,
+      "chartFrom": "payments-1.8.2",
+      "chartTo": "payments-1.9.0",
+      "appFrom": "2.13.4",
+      "appTo": "2.14.0",
+      "deployedAt": 1791236823000,
+      "deployedAtSource": "helm-history",
+      "tsInferred": true,
+      "cluster": "prod-eu-west",
+      "clusterKnown": true,
+      "status": "deployed",
+      "description": "Upgrade complete",
+      "line": 8,
+      "changeCount": 9,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "signalId": "hlm-8"
+    }
+  ],
+  "timeline": [
+    {
+      "ts": 1791236823000,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "kind": "change",
+      "severity": "info",
+      "signalId": "hlm-8"
+    },
+    {
+      "ts": 1791236971402,
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "kind": "span_slow",
+      "severity": "warn",
+      "signalId": "trc-100"
+    },
+    {
+      "ts": 1791236971408,
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "kind": "span_slow",
+      "severity": "warn",
+      "signalId": "trc-122"
+    },
+    {
+      "ts": 1791236971423,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "kind": "span_slow",
+      "severity": "warn",
+      "signalId": "trc-154"
+    },
+    {
+      "ts": 1791236990109,
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-19"
+    },
+    {
+      "ts": 1791236990115,
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "kind": "span_error",
+      "severity": "error",
+      "signalId": "trc-45"
+    },
+    {
+      "ts": 1791236992099,
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "kind": "http_5xx",
+      "severity": "error",
+      "signalId": "log-121"
+    },
+    {
+      "ts": 1791236992119,
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "kind": "http_5xx",
+      "severity": "error",
+      "signalId": "log-148"
+    },
+    {
+      "ts": 1791237000000,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "kind": "oom_killed",
+      "severity": "error",
+      "signalId": "log-47"
+    },
+    {
+      "ts": 1791237000000,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "kind": "probe_failed",
+      "severity": "warn",
+      "signalId": "log-103"
+    },
+    {
+      "ts": 1791237000000,
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "kind": "crash_loop",
+      "severity": "error",
+      "signalId": "log-104"
+    },
+    {
+      "ts": 1791237250572,
+      "componentId": "service:prod-eu-west/shop/checkout-api",
+      "kind": "conn_refused",
+      "severity": "error",
+      "signalId": "log-126"
+    },
+    {
+      "ts": 1791237897764,
+      "componentId": "service:prod-eu-west/ingress-nginx/ingress-nginx-controller",
+      "kind": "http_5xx",
+      "severity": "error",
+      "signalId": "log-155"
+    },
+    {
+      "ts": 1791237971884,
+      "componentId": "service:prod-eu-west/shop/frontend",
+      "kind": "slo_burn",
+      "severity": "critical",
+      "signalId": "alr-50"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "hyp-16cogo0",
+      "title": "Memory limit cut to 256Mi gets payments-api killed for running out of memory",
+      "category": "resource-limits",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "confidence": 0.95,
+      "summary": "payments-api in prod-eu-west is killed by the kernel when it exceeds its memory limit, which the latest release lowered (payments-api memory limit 512Mi → 256Mi). Each kill restarts the container, and repeated restarts put it in CrashLoopBackOff, so callers see refused connections.",
+      "evidence": [
+        {
+          "signalId": "log-47",
+          "changeId": null,
+          "text": "payments-api containers were killed for running out of memory (OOMKilled, 5 records from Kubernetes and the kernel, first at 21:50:00 UTC), exit code 137, memory limit 256Mi, 6 restarts so far.",
+          "weight": 0.5,
+          "source": "logs",
+          "line": 47
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1khvnt3",
+          "text": "Helm lowered the memory limit: payments-api memory limit 512Mi → 256Mi (release payments).",
+          "weight": 0.45,
+          "source": "helm",
+          "line": 75
+        },
+        {
+          "signalId": "log-104",
+          "changeId": null,
+          "text": "Kubernetes reports CrashLoopBackOff for payments-api 10 times — the kill-restart cycle after each out-of-memory kill.",
+          "weight": 0.15,
+          "source": "logs",
+          "line": 104
+        },
+        {
+          "signalId": "alr-8",
+          "changeId": null,
+          "text": "Alert KubeContainerOOMKilled is firing for payments-api.",
+          "weight": 0.15,
+          "source": "alerts",
+          "line": 8
+        },
+        {
+          "signalId": "log-48",
+          "changeId": null,
+          "text": "The kernel's out-of-memory killer on 3 nodes killed the payments-api process 4 times.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 48
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-grvik2",
+          "text": "The same release also turns on PAYMENTS_CACHE_WARMUP=true and PAYMENTS_CACHE_WARMUP_ENTRIES=1200000, which likely need more memory.",
+          "weight": 0.1,
+          "source": "helm",
+          "line": 63
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-ijsp6h",
+          "text": "The memory request went down too: payments-api memory request 512Mi → 256Mi.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 71
+        }
+      ],
+      "against": [],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop describe pod payments-api-5c8d7f9b4d-h7x2q",
+          "why": "Last State, Reason (OOMKilled), Exit Code 137 and the memory limit of each container."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop top pod payments-api-5c8d7f9b4d-h7x2q --containers",
+          "why": "Current memory use against the limit (needs metrics-server)."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop get events --field-selector involvedObject.name=payments-api-5c8d7f9b4d-h7x2q --sort-by=.lastTimestamp",
+          "why": "When the kills and back-offs started for this pod."
+        },
+        {
+          "cmd": "max by (pod) (container_memory_working_set_bytes{namespace=\"shop\", pod=~\"payments-api-.*\", container=\"payments-api\"})",
+          "why": "Prometheus query: working-set memory per pod — the number the OOM killer compares with the limit."
+        },
+        {
+          "cmd": "sum by (pod) (increase(kube_pod_container_status_restarts_total{namespace=\"shop\", pod=~\"payments-api-.*\"}[30m]))",
+          "why": "Prometheus query: restarts per pod over the incident."
+        },
+        {
+          "cmd": "helm get values payments -n shop --kube-context prod-eu-west --revision 41",
+          "why": "The resources the last good revision ran with."
+        }
+      ],
+      "rule": "oom-after-limit-cut",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-1w9nr31",
+      "title": "Helm release payments r42 broke payments-api",
+      "category": "bad-deploy",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "confidence": 0.776,
+      "summary": "Helm release payments r41 → r42 changed 9 fields (1 high-risk change) shortly before payments-api started failing.",
+      "evidence": [
+        {
+          "signalId": "log-47",
+          "changeId": null,
+          "text": "payments-api first failed 2 min 57 s after the deploy: \"OOMKilling: Memory cgroup out of memory: Killed process 29629 (payments-api) total-vm:191…\".",
+          "weight": 0.3,
+          "source": "logs",
+          "line": 47
+        },
+        {
+          "signalId": "hlm-8",
+          "changeId": null,
+          "text": "Helm release payments r41 → r42 rolled out at 21:47:03 UTC, chart payments-1.8.2 → payments-1.9.0.",
+          "weight": 0.2,
+          "source": "helm",
+          "line": 8
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1khvnt3",
+          "text": "High-risk change in this release: payments-api memory limit 512Mi → 256Mi.",
+          "weight": 0.15,
+          "source": "helm",
+          "line": 75
+        },
+        {
+          "signalId": "log-14",
+          "changeId": null,
+          "text": "Kubernetes rolled out a new ReplicaSet (payments-api-5c8d7f9b4d) for payments-api.",
+          "weight": 0.1,
+          "source": "logs",
+          "line": 14
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-1ylpz25",
+          "text": "Also changed: payments-api image tag 2.13.4 → 2.14.0.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 52
+        },
+        {
+          "signalId": null,
+          "changeId": "chg-grvik2",
+          "text": "Also changed: env PAYMENTS_CACHE_WARMUP added (true) to payments-api.",
+          "weight": 0.05,
+          "source": "helm",
+          "line": 63
+        }
+      ],
+      "against": [
+        {
+          "text": "payments-api is healthy in prod-us-east — consistent with the release if that cluster has not been upgraded yet; check its Helm history."
+        }
+      ],
+      "nextChecks": [
+        {
+          "cmd": "helm history payments -n shop --kube-context prod-eu-west --max 5",
+          "why": "Which revision is live and when each one was deployed."
+        },
+        {
+          "cmd": "helm diff revision payments 41 42 -n shop --kube-context prod-eu-west",
+          "why": "Every manifest change between the last good and the current revision (helm-diff plugin)."
+        },
+        {
+          "cmd": "helm get values payments -n shop --kube-context prod-eu-west --revision 41",
+          "why": "The values the last good revision used."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop rollout history deployment/payments-api",
+          "why": "ReplicaSet revisions of the workload and when they rolled out."
+        }
+      ],
+      "rule": "deploy-correlation",
+      "relatedComponentIds": []
+    },
+    {
+      "id": "hyp-wilx1t",
+      "title": "Health probes are failing on payments-api",
+      "category": "probe-misconfig",
+      "componentId": "service:prod-eu-west/shop/payments-api",
+      "confidence": 0.275,
+      "summary": "payments-api fails its readiness or liveness probes.",
+      "evidence": [
+        {
+          "signalId": "log-103",
+          "changeId": null,
+          "text": "Health probes fail on payments-api 4 times: \"Unhealthy: Readiness probe failed: Get \"http://10.244.3.27:8080/readyz\": context deadline…\".",
+          "weight": 0.25,
+          "source": "logs",
+          "line": 103
+        }
+      ],
+      "against": [
+        {
+          "text": "Probe settings did not change; failing probes are usually a symptom of the container being slow, overloaded or restarting."
+        },
+        {
+          "text": "Health checks fail while the container is also killed for running out of memory, crash-looping — the probe failures look like a symptom here."
+        }
+      ],
+      "nextChecks": [
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop describe pod payments-api-5c8d7f9b4d-h7x2q",
+          "why": "Probe failure messages and the probe settings in effect."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop get deployment/payments-api -o jsonpath='{.spec.template.spec.containers[?(@.name==\"payments-api\")].readinessProbe}'",
+          "why": "Readiness probe path, timeout and thresholds."
+        },
+        {
+          "cmd": "kubectl --context prod-eu-west -n shop get deployment/payments-api -o jsonpath='{.spec.template.spec.containers[?(@.name==\"payments-api\")].livenessProbe}'",
+          "why": "Liveness probe settings (a tight liveness probe restarts slow pods)."
+        }
+      ],
+      "rule": "probe-failing",
+      "relatedComponentIds": []
+    }
+  ],
+  "rollbacks": [
+    {
+      "id": "rb-13k39wi",
+      "title": "Roll back Helm release payments to r41 in prod-eu-west",
+      "kind": "helm-rollback",
+      "commands": [
+        "helm rollback payments 41 -n shop --kube-context prod-eu-west --wait --timeout 5m",
+        "kubectl --context prod-eu-west -n shop rollout status deployment/payments-api --timeout=5m"
+      ],
+      "etaMinutes": 6,
+      "risk": "low",
+      "recommended": true,
+      "fixes": [
+        "hyp-16cogo0",
+        "hyp-1w9nr31"
+      ],
+      "caveats": [
+        "Helm records the rollback as a new revision (r43) with the contents of r41; r42 stays in the history.",
+        "It reverts all of r42's template changes, not only the suspect one: payments-api image tag 2.13.4 → 2.14.0; env PAYMENTS_CACHE_WARMUP added (true) to payments-api; env PAYMENTS_CACHE_WARMUP_ENTRIES added (1200000) to payments-api; payments-api memory request 512Mi → 256Mi; and 1 more.",
+        "Hold the rollout of payments r42 to prod-us-east (healthy there) until the cause is fixed.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease payments -n shop), or it will re-apply r42 within minutes."
+      ],
+      "prerequisites": [
+        "Access to kube-context prod-eu-west with rights to change namespace shop.",
+        "Check that r41 ran without problems before r42: helm history payments -n shop --kube-context prod-eu-west --max 5"
+      ],
+      "budgetSavedPct": 4.275
+    },
+    {
+      "id": "rb-b2ofwm",
+      "title": "Restore payments-api memory limit to 512Mi",
+      "kind": "resource-restore",
+      "commands": [
+        "kubectl --context prod-eu-west -n shop set resources deployment/payments-api -c payments-api --limits=memory=512Mi --requests=memory=512Mi",
+        "kubectl --context prod-eu-west -n shop rollout status deployment/payments-api --timeout=5m"
+      ],
+      "etaMinutes": 5,
+      "risk": "medium",
+      "recommended": false,
+      "fixes": [
+        "hyp-16cogo0"
+      ],
+      "caveats": [
+        "Changing resources rolls the pods (a rolling restart).",
+        "The next helm upgrade sets the limit back to 256Mi unless the chart values change too; until then Helm's record and the cluster differ.",
+        "If Argo CD or Flux manages this release, pause auto-sync first (argocd app set <app> --sync-policy none, or flux suspend helmrelease payments -n shop), or it will revert this kubectl change within minutes.",
+        "The same release also added PAYMENTS_CACHE_WARMUP and PAYMENTS_CACHE_WARMUP_ENTRIES; with them still on, memory use may exceed even the old limit."
+      ],
+      "prerequisites": [
+        "Nodes have room for 512Mi per pod (kubectl describe nodes, Allocated resources)."
+      ],
+      "budgetSavedPct": 4.313
+    },
+    {
+      "id": "rb-zjl6v",
+      "title": "Shift user traffic away from prod-eu-west to prod-us-east",
+      "kind": "traffic-shift",
+      "commands": [
+        "aws route53 change-resource-record-sets --hosted-zone-id <zone-id> --change-batch file://<weight-0-for-prod-eu-west>.json",
+        "az network traffic-manager endpoint update --resource-group <resource-group> --profile-name <profile> --type azureEndpoints --name <prod-eu-west-endpoint> --endpoint-status Disabled",
+        "kubectl --context <gateway-cluster> -n <namespace> patch httproute <route> --type=json -p '[{\"op\":\"replace\",\"path\":\"/spec/rules/0/backendRefs/<index-of-prod-eu-west>/weight\",\"value\":0}]'"
+      ],
+      "etaMinutes": 10,
+      "risk": "medium",
+      "recommended": false,
+      "fixes": [
+        "hyp-16cogo0",
+        "hyp-1w9nr31",
+        "hyp-wilx1t"
+      ],
+      "caveats": [
+        "These are templates for three common layers (DNS weights, a cloud traffic manager, a Gateway API route); use the one that routes users between your clusters and fill the <…> placeholders.",
+        "prod-us-east must absorb the extra load; check autoscaler maximums and node capacity first.",
+        "A DNS-based shift takes effect only as resolver caches expire (the record's TTL).",
+        "This does not fix prod-eu-west; roll back or fix it before shifting traffic back, and do not roll the suspect release out to the healthy cluster meanwhile."
+      ],
+      "prerequisites": [
+        "Know which layer sends users to each cluster, and that prod-us-east serves the same routes."
+      ],
+      "budgetSavedPct": 4.125
+    }
+  ],
+  "budget": {
+    "sloTarget": 0.999,
+    "windowDays": 30,
+    "requestsPerMin": 1200,
+    "budgetSpentBeforePct": 18,
+    "errorRatio": 0.0162,
+    "errorRatioSource": "alert",
+    "burnRate": 16.2,
+    "incidentMinutes": 22.16,
+    "consumedPct": 0.8312,
+    "remainingPct": 81.1688,
+    "minutesToExhaustion": 2164.5,
+    "badRequests": 431,
+    "budgetRequests": 51840,
+    "alertRows": [
+      {
+        "severity": "Page",
+        "longWindow": "1 hour",
+        "shortWindow": "5 minutes",
+        "longMinutes": 60,
+        "shortMinutes": 5,
+        "consumedPctAtFire": 2,
+        "burnThreshold": 14.4,
+        "wouldFire": true,
+        "firesAfterMinutes": 53.33,
+        "firesInMinutes": 31.17,
+        "modelFiring": false,
+        "observedFiring": true,
+        "firing": true,
+        "firingSource": "alerts",
+        "state": "firing-observed",
+        "stateText": "Firing (in your alerts)"
+      },
+      {
+        "severity": "Page",
+        "longWindow": "6 hours",
+        "shortWindow": "30 minutes",
+        "longMinutes": 360,
+        "shortMinutes": 30,
+        "consumedPctAtFire": 5,
+        "burnThreshold": 6,
+        "wouldFire": true,
+        "firesAfterMinutes": 133.33,
+        "firesInMinutes": 111.17,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 1 h 51 min at this burn"
+      },
+      {
+        "severity": "Ticket",
+        "longWindow": "3 days",
+        "shortWindow": "6 hours",
+        "longMinutes": 4320,
+        "shortMinutes": 360,
+        "consumedPctAtFire": 10,
+        "burnThreshold": 1,
+        "wouldFire": true,
+        "firesAfterMinutes": 266.67,
+        "firesInMinutes": 244.51,
+        "modelFiring": false,
+        "observedFiring": false,
+        "firing": false,
+        "firingSource": null,
+        "state": "pending",
+        "stateText": "Fires in about 4 h 5 min at this burn"
+      }
+    ],
+    "hasEvidence": true,
+    "observedBurnRate": 16.2,
+    "observedAlert": "ErrorBudgetBurn",
+    "observedSignalId": "alr-50",
+    "projection": [
+      {
+        "label": "Mitigate now",
+        "extraMinutes": 0,
+        "consumedPct": 0.8312,
+        "remainingPct": 81.1688
+      },
+      {
+        "label": "In 30 minutes",
+        "extraMinutes": 30,
+        "consumedPct": 1.9562,
+        "remainingPct": 80.0438
+      },
+      {
+        "label": "In 2 hours",
+        "extraMinutes": 120,
+        "consumedPct": 5.3312,
+        "remainingPct": 76.6688
+      }
+    ],
+    "series": [
+      {
+        "t": 0,
+        "remainingPct": 82
+      },
+      {
+        "t": 5.92,
+        "remainingPct": 81.7779
+      },
+      {
+        "t": 11.85,
+        "remainingPct": 81.5557
+      },
+      {
+        "t": 17.77,
+        "remainingPct": 81.3336
+      },
+      {
+        "t": 23.69,
+        "remainingPct": 81.1115
+      },
+      {
+        "t": 29.62,
+        "remainingPct": 80.8893
+      },
+      {
+        "t": 35.54,
+        "remainingPct": 80.6672
+      },
+      {
+        "t": 41.46,
+        "remainingPct": 80.4451
+      },
+      {
+        "t": 47.39,
+        "remainingPct": 80.2229
+      },
+      {
+        "t": 53.31,
+        "remainingPct": 80.0008
+      },
+      {
+        "t": 59.24,
+        "remainingPct": 79.7787
+      },
+      {
+        "t": 65.16,
+        "remainingPct": 79.5565
+      },
+      {
+        "t": 71.08,
+        "remainingPct": 79.3344
+      },
+      {
+        "t": 77.01,
+        "remainingPct": 79.1123
+      },
+      {
+        "t": 82.93,
+        "remainingPct": 78.8901
+      },
+      {
+        "t": 88.85,
+        "remainingPct": 78.668
+      },
+      {
+        "t": 94.78,
+        "remainingPct": 78.4459
+      },
+      {
+        "t": 100.7,
+        "remainingPct": 78.2237
+      },
+      {
+        "t": 106.62,
+        "remainingPct": 78.0016
+      },
+      {
+        "t": 112.55,
+        "remainingPct": 77.7795
+      },
+      {
+        "t": 118.47,
+        "remainingPct": 77.5573
+      },
+      {
+        "t": 124.39,
+        "remainingPct": 77.3352
+      },
+      {
+        "t": 130.32,
+        "remainingPct": 77.1131
+      },
+      {
+        "t": 136.24,
+        "remainingPct": 76.891
+      },
+      {
+        "t": 142.16,
+        "remainingPct": 76.6688
+      }
+    ],
+    "notes": [
+      "Error ratio from the burn-rate alert ErrorBudgetBurn.",
+      "Assumes steady traffic of 1,200 requests per minute and that the current error ratio has held since the first anomaly.",
+      "Your alert ErrorBudgetBurn fired sooner than the Workbook rule would at 16.2×: its 1-hour window needs about 53 minutes of errors, and the change behind this incident went out only 25 minutes ago. The alert probably uses a shorter window or a lower threshold, or its value is a short-window reading, so the real current burn (and the budget numbers here) may differ in either direction. Check the alert rule."
+    ],
+    "source": "https://sre.google/workbook/alerting-on-slos/"
+  },
+  "traits": {
+    "clusterCount": 2,
+    "clusters": [
+      "prod-eu-west",
+      "prod-us-east"
+    ],
+    "multiCluster": true,
+    "failingClusterCount": 1,
+    "highCardinalityLabels": [
+      "pod"
+    ],
+    "logLinesPerMin": 6.3,
+    "signalsPerMin": 2.5,
+    "spanCount": 41,
+    "tracedServices": 3,
+    "untracedFailingComponents": [
+      "service:prod-eu-west/ingress-nginx/ingress-nginx-controller"
+    ],
+    "errorTracesMissing": false,
+    "sources": {
+      "logs": true,
+      "traces": true,
+      "alerts": true,
+      "helm": true
+    },
+    "hasDeployTime": true
+  },
+  "warnings": [
+    "Helm history times have no time zone; assumed +02:00."
+  ]
+}

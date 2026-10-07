@@ -1,0 +1,217 @@
+/*
+ * map.css — blast-radius map, legend and replay scrubber (SPEC §6.3).
+ * Every colour is a SPEC §6.1 token; the dark theme follows automatically when the tokens switch.
+ * Severity is carried by form as well as colour: filled = failing, solid outline = degraded,
+ * dashed = at risk, double ring + crosshair tag = suspected root.
+ */
+
+/* ---------- container ---------- */
+.wr-map { position: relative; width: 100%; min-width: 0; max-width: 100%; color: var(--ink); font-family: var(--font-body); }
+.wr-map [hidden] { display: none !important; }
+.wr-map-scroll {
+  width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden;
+  contain: inline-size; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+  border-radius: var(--r-md); scrollbar-width: thin; scrollbar-color: var(--muted) var(--surface-2);
+}
+.wr-map-scroll:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.wr-map .wr-map-svg { display: block; max-width: none; overflow: visible; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+.wr-map-svg text { font-family: var(--font-body); }
+
+.wr-map-hint {
+  display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 13px; line-height: 1.35; color: var(--ink-2);
+}
+.wr-map-hint { flex-wrap: wrap; }
+.wr-map-hint svg { flex: none; color: var(--accent); }
+.wr-map-jump {
+  margin-left: auto; min-height: 32px; max-width: 100%; padding: 0 12px 0 10px; border: 1.5px solid var(--root); border-radius: 999px;
+  background: var(--crit-bg); color: var(--ink); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.wr-map-jump::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 7px; border-radius: 50%; background: var(--root); vertical-align: 0; }
+.wr-map-jump.is-here { background: var(--surface); border-color: var(--line); }
+.wr-map-jump:hover { border-color: var(--ink-2); }
+.wr-map-jump:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ---------- lanes ---------- */
+.wr-lane .l-band { fill: var(--surface-2); stroke: var(--line); stroke-width: 1; }
+.wr-lane .l-stripe { fill: var(--ok); }
+.wr-lane.lane-failing .l-stripe { fill: var(--crit); }
+.wr-lane.lane-degraded .l-stripe { fill: var(--warn); }
+.wr-lane .l-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; letter-spacing: .06em; fill: var(--ink); }
+.wr-lane .l-count { font-size: 13px; fill: var(--ink-2); }
+.wr-lane .l-pill rect { stroke-width: 1.5; }
+.wr-lane .l-pill text { font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+.wr-lane.lane-failing .l-pill rect { fill: var(--crit); stroke: var(--crit); }
+.wr-lane.lane-failing .l-pill text { fill: var(--surface); }
+.wr-lane.lane-degraded .l-pill rect { fill: var(--surface); stroke: var(--warn); }
+.wr-lane.lane-degraded .l-pill text { fill: var(--warn); }
+.wr-lane.lane-healthy .l-pill rect { fill: var(--surface); stroke: var(--ok); }
+.wr-lane.lane-healthy .l-pill text { fill: var(--ok); }
+.wr-lane .l-sep { stroke: var(--line); stroke-width: 1; stroke-dasharray: 4 4; }
+.wr-overlay .l-seplabel {
+  font-size: 12px; font-weight: 600; letter-spacing: .06em; fill: var(--ink-2);
+  paint-order: stroke; stroke: var(--surface-2); stroke-width: 5px; stroke-linejoin: round;
+}
+
+/* ---------- entry stubs: traffic from users ---------- */
+.wr-entry .u-head, .wr-entry .u-tip { fill: var(--ink-3); }
+.wr-entry .u-body, .wr-entry .u-line { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-linecap: round; }
+.wr-entry .u-line { stroke-dasharray: 3 3; }
+.wr-mk-entry path { fill: var(--ink-3); }
+
+/* ---------- edges ---------- */
+.wr-edge .e-line { fill: none; stroke: var(--ink-3); stroke-linecap: round; }
+.wr-edge.ed-degraded .e-line { stroke: var(--warn); }
+.wr-edge.ed-failing .e-line { stroke: var(--crit); }
+.wr-edge .e-hit { fill: none; stroke: var(--surface); stroke-opacity: 0; stroke-width: 14; pointer-events: stroke; }
+.wr-edge .e-pulse { fill: none; stroke: var(--crit); stroke-opacity: 0; stroke-linecap: round; pointer-events: none; }
+.wr-edge.ed-back .e-line { stroke-dasharray: 6 4; }
+.wr-mk-ok path { fill: var(--ink-3); }
+.wr-mk-degraded path { fill: var(--warn); }
+.wr-mk-failing path { fill: var(--crit); }
+
+.wr-elabel rect { fill: var(--surface); stroke: var(--crit); stroke-width: 1.25; }
+.wr-elabel text { font-size: 12px; font-weight: 700; fill: var(--crit); }
+.wr-elabel.ed-degraded rect { stroke: var(--warn); }
+.wr-elabel.ed-degraded text { fill: var(--warn); }
+.wr-elabel.ed-ok rect { stroke: var(--line); }
+.wr-elabel.ed-ok text { fill: var(--ink-2); }
+
+/* ---------- nodes ---------- */
+.wr-map-svg .wr-node { cursor: pointer; outline: none; }
+.wr-node .n-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.wr-node .n-name { font-size: 14px; font-weight: 600; fill: var(--ink); }
+.wr-node .n-sub { font-size: 12px; fill: var(--ink-2); }
+.wr-node .n-st { font-weight: 700; }
+.wr-node .n-note { font-size: 12px; font-style: italic; fill: var(--ink-2); }
+.wr-node .n-note.is-bad { fill: var(--crit); }
+.wr-node .n-glyph { color: var(--ink-2); }
+.wr-node .n-ring { fill: none; stroke: var(--root); stroke-width: 1.5; }
+.wr-node .n-focus { fill: none; stroke: none; }
+.wr-node .n-tag rect { fill: var(--root); }
+.wr-node .n-tag text { font-size: 12px; font-weight: 700; letter-spacing: .06em; fill: var(--surface); }
+.wr-node .n-tag .n-cross { stroke: var(--surface); }
+.wr-node:not(.st-root) .n-ring, .wr-node:not(.st-root) .n-tag { display: none; }
+
+.wr-node.st-healthy .n-name { fill: var(--ink-2); }
+.wr-node.st-healthy .n-box { stroke: var(--ink-3); stroke-width: 1.25; }
+.wr-node.st-healthy .n-glyph { color: var(--ink-3); }
+.wr-node.st-failing .n-box, .wr-node.st-root .n-box { fill: var(--crit-bg); stroke: var(--crit); stroke-width: 1.75; }
+.wr-node.st-root .n-box { stroke: var(--root); stroke-width: 2.25; }
+.wr-node.st-failing .n-glyph, .wr-node.st-root .n-glyph,
+.wr-node.st-failing .n-st, .wr-node.st-root .n-st { color: var(--crit); fill: var(--crit); }
+.wr-node.st-degraded .n-box { fill: var(--surface); stroke: var(--warn); stroke-width: 2.25; }
+.wr-node.st-degraded .n-glyph, .wr-node.st-degraded .n-st { color: var(--warn); fill: var(--warn); }
+.wr-node.st-at-risk .n-box { fill: var(--surface); stroke: var(--risk); stroke-width: 1.75; stroke-dasharray: 6 4; }
+.wr-node.st-at-risk .n-glyph, .wr-node.st-at-risk .n-st { color: var(--risk); fill: var(--risk); }
+.wr-node .n-glyph path, .wr-node .n-glyph circle, .wr-node .n-glyph ellipse, .wr-node .n-glyph rect { fill: none; }
+
+.wr-map-svg .wr-node:hover .n-box { stroke-width: 2.5; }
+.wr-map-svg .wr-node.st-healthy:hover .n-box { stroke: var(--ink-2); }
+.wr-node.is-selected .n-focus { stroke: var(--accent); stroke-width: 2.5; }
+.wr-node:focus-visible .n-focus { stroke: var(--focus); stroke-width: 2.5; stroke-dasharray: 5 3; }
+
+/* neighbourhood emphasis while hovering or keyboard-focusing a node */
+.wr-map-svg .wr-node, .wr-map-svg .wr-edge, .wr-map-svg .wr-elabel { transition: opacity .12s ease-out; }
+.wr-map-svg.is-focusing .wr-node:not(.is-near) { opacity: .55; }
+.wr-map-svg.is-focusing .wr-edge:not(.is-near), .wr-map-svg.is-focusing .wr-elabel:not(.is-near) { opacity: .2; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .wr-node .n-box, .wr-node .n-name, .wr-node .n-st { transition: fill .25s ease-out, stroke .25s ease-out; }
+  .wr-edge .e-line { transition: stroke .25s ease-out; }
+  .wr-edge.ed-into-root .e-pulse { animation: wr-map-pulse 2.4s ease-in-out 3; }
+  .wr-node.is-revealing .n-box { animation: wr-map-reveal .7s ease-out 1; }
+  .wr-node.is-revealing.st-root .n-ring { transform-box: fill-box; transform-origin: center; animation: wr-map-ring .7s ease-out 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wr-map-svg .wr-node, .wr-map-svg .wr-edge, .wr-map-svg .wr-elabel { transition: none; }
+}
+@keyframes wr-map-pulse { 0%, 100% { stroke-opacity: 0; } 50% { stroke-opacity: .18; } }
+@keyframes wr-map-reveal { 0% { stroke-width: 6; } 100% { } }
+@keyframes wr-map-ring { 0% { transform: scale(1.25); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* ---------- empty state ---------- */
+.wr-map-empty {
+  display: grid; justify-items: center; gap: 6px; padding: 32px 16px 28px; text-align: center;
+  border: 1px dashed var(--line); border-radius: var(--r-md); background: var(--surface-2);
+}
+.wr-map-empty-art { display: block; max-width: 100%; height: auto; margin-bottom: 8px; }
+.wr-map-empty-art .em-lane { fill: var(--surface); stroke: var(--line); }
+.wr-map-empty-art .em-node { fill: var(--surface-2); stroke: var(--muted); stroke-width: 1.25; stroke-dasharray: 4 3; }
+.wr-map-empty-art .em-root { stroke: var(--ink-3); }
+.wr-map-empty-art .em-edge { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 3 4; }
+.wr-map-empty-title { margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.wr-map-empty-text { margin: 0; max-width: 34em; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+
+/* ---------- legend ---------- */
+.wr-map-legend {
+  display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--line); font-size: 13px; line-height: 1.3; color: var(--ink-2);
+}
+.wr-map-legend .lg-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; min-width: 0; }
+.wr-map-legend .lg-title { flex-basis: 100%; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.wr-map-legend .lg-item { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.wr-map-legend .lg-sw { flex: none; display: block; overflow: visible; }
+.wr-map-legend .lg-glyph { color: var(--ink-2); }
+.wr-map-legend .lg-line { fill: none; stroke: var(--ink-3); stroke-linecap: round; }
+.wr-map-legend .lg-fail { stroke: var(--crit); }
+.wr-map-legend .lg-chip {
+  display: inline-block; padding: 1px 7px; border: 1.25px solid var(--crit); border-radius: 999px;
+  background: var(--surface); color: var(--crit); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.wr-map-legend .wr-entry .u-line { stroke-dasharray: 3 3; }
+
+/* ---------- replay scrubber ---------- */
+.wr-scrub { display: grid; gap: 6px; margin: 0; font-family: var(--font-body); color: var(--ink); font-variant-numeric: tabular-nums; }
+.wr-scrub[hidden], .wr-scrub [hidden] { display: none !important; }
+.wr-map > .wr-scrub { margin-top: 14px; }
+.wr-scrub-row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.wr-scrub-play {
+  flex: none; display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 14px;
+  border: 1px solid var(--accent); border-radius: var(--r-sm); background: var(--accent); color: var(--accent-ink);
+  font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+}
+.wr-scrub-play:hover:not(:disabled) { filter: brightness(1.08); }
+.wr-scrub-play:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.wr-scrub-play:disabled { background: var(--surface-2); border-color: var(--line); color: var(--ink-3); cursor: not-allowed; }
+.wr-scrub-play.is-playing { background: var(--surface); color: var(--accent); }
+.wr-scrub-track { position: relative; flex: 1 1 auto; min-width: 0; padding-bottom: 18px; }
+.wr-scrub-range { display: block; width: 100%; height: 28px; margin: 0; accent-color: var(--accent); cursor: pointer; background: none; }
+.wr-scrub-range:disabled { cursor: not-allowed; opacity: .5; }
+.wr-scrub-range:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--r-sm); }
+.wr-scrub-marks { position: absolute; left: 0; right: 0; top: 4px; height: 20px; pointer-events: none; }
+.wr-scrub-mark { position: absolute; top: 0; width: 0; height: 20px; }
+.wr-scrub-mark::before { content: ""; position: absolute; left: -1px; top: -1px; width: 2px; height: 22px; border-radius: 1px; background: var(--ink-3); }
+.wr-scrub-mark.mk-anomaly::before { background: var(--crit); }
+.wr-scrub-mark.mk-deploy::before { background: var(--ink); }
+.wr-scrub.has-ticks .wr-scrub-track { padding-top: 17px; }
+.wr-scrub.has-ticks .wr-scrub-marks { top: 21px; }
+.wr-scrub-mlabel {
+  position: absolute; bottom: calc(100% + 3px); font-size: 11.5px; font-weight: 700; line-height: 1.1; white-space: nowrap; color: var(--ink);
+}
+.wr-scrub-mlabel.al-mid { left: 0; transform: translateX(-50%); }
+.wr-scrub-mlabel.al-start { left: -1px; }
+.wr-scrub-mlabel.al-end { right: -1px; }
+.wr-scrub-mark.mk-anomaly .wr-scrub-mlabel { color: var(--crit); }
+.wr-scrub-ends { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-2); }
+.wr-scrub.is-empty .wr-scrub-ends, .wr-scrub.is-empty .wr-scrub-marks { display: none; }
+.wr-scrub-readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; font-size: 14px; }
+.wr-scrub-time { font-weight: 700; color: var(--ink); }
+.wr-scrub-rel { color: var(--ink-2); }
+.wr-scrub-aff { color: var(--ink-2); }
+.wr-scrub-key { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.wr-scrub-key li { display: inline-flex; align-items: flex-start; gap: 6px; line-height: 1.35; }
+.wr-scrub-key .k-sw { flex: none; display: inline-block; width: 3px; height: 14px; margin-top: 2px; border-radius: 1px; background: var(--ink-3); }
+.wr-scrub-key .mk-anomaly .k-sw { background: var(--crit); }
+.wr-scrub-key .mk-deploy .k-sw { background: var(--ink); }
+.wr-scrub-key .mk-before .k-sw { background: none; border: 1.5px dashed var(--ink-3); width: 0; }
+.wr-scrub-note { margin: 0; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+
+@media (max-width: 760px) {
+  /* the suspected-root chip stays in reach while the reader moves down a tall map */
+  .wr-map-hint { position: sticky; top: 44px; z-index: 3; margin: -4px -4px 8px; padding: 6px 4px; background: var(--surface); }
+  .wr-map-jump { margin-left: 0; }
+  .wr-scrub-row { gap: 10px; }
+  .wr-scrub-play { padding: 0 12px; }
+  .wr-map-legend { gap: 12px 20px; }
+}
