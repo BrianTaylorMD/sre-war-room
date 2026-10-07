@@ -2,6 +2,8 @@
 
 Paste Kubernetes logs, traces, alerts and Helm history into one page and get a live blast-radius map, ranked root causes with evidence, rollback commands, and an error-budget burn estimate. Everything runs in the browser. No server, nothing leaves your machine.
 
+**Try it:** https://briantaylormd.github.io/sre-war-room/
+
 ![Blast-radius map with the replay timeline](docs/screenshot.png)
 
 **Who built it:** a physician's AI setup (Claude Code) built this in one afternoon, with tests and sourced figures. I'm not an SRE. I'd like to know where it holds up and where it doesn't.
@@ -31,7 +33,7 @@ The optional "Investigate with Claude" panel is a read-only, HolmesGPT-style sec
 
 ## Run it
 
-Open `dist/index.html` in a browser. That file is the whole app.
+Open the link above, or open `docs/index.html` from this repository in a browser. That one file is the whole app.
 
 To rebuild from source (Node 20 or newer):
 

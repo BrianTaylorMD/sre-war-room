@@ -67,6 +67,9 @@ function build() {
   // A local preview copy with the skeleton the host would add, for browser checks.
   const preview = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="data:,"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui;background:#fafafa}img{max-width:100%}[hidden]{display:none!important}</style></head><body>' + out + '</body></html>';
   writeFileSync(join(ROOT, 'dist/preview.html'), preview);
+  // The same standalone page is what GitHub Pages serves (docs/ is the Pages folder).
+  mkdirSync(join(ROOT, 'docs'), { recursive: true });
+  writeFileSync(join(ROOT, 'docs/index.html'), preview);
   const kb = (Buffer.byteLength(out) / 1024).toFixed(0);
   console.log(`dist/index.html ${kb} KB (${ORDER.length} scripts)`);
 }
